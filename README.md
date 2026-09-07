@@ -24,6 +24,10 @@ Four pieces, on purpose kept as simple as possible:
    current drivers'-championship standings for each of the four series and
    rewrites `data/standings.json`.
 
+(There's a fifth piece, the **Race Pace Archive** — its own data file and
+scraper, documented in its own section below since it works quite
+differently and only covers FIA F2/F3.)
+
 A GitHub Actions workflow (`.github/workflows/update-standings.yml`) runs the
 scraper on a schedule, and commits `data/standings.json` back to the repo if
 anything changed. GitHub Pages serves the site straight from the repo, so a
@@ -49,6 +53,62 @@ has changed since this was built (checked per-run — see the warnings in
 If you'd rather have a maintainer parse the Italian F4 PDFs properly later,
 `scraper/sources.mjs` is where that would plug in — the PDF links are on
 `acisport.it`'s F4 standings page, refreshed after each round.
+
+## Race Pace Archive (FIA F2 / FIA F3 only)
+
+A season-by-season archive of every Sprint/Feature race the 10 tracked F2/F3
+drivers have run: official finishing position + points per round, and an
+average race-pace figure per round shown as a gap to the fastest of your
+currently-selected drivers (not raw lap time — different circuits have
+different lap lengths, so raw seconds aren't comparable round to round).
+FRECA and Italian F4 aren't covered here — fia.com doesn't publish this level
+of official per-round timing for either series.
+
+**Pieces:**
+- **`data/race-pace.json`** — the data this section reads. Starts empty
+  (`rounds: {F2:[], F3:[]}`) until the first scrape runs.
+- **`scraper/race-calendar.mjs`** — the list of 2026 rounds and their
+  fia.com URL slugs for each series. A few slugs are marked `verified` (
+  fetched directly during development); the rest follow fia.com's naming
+  convention but weren't individually checked. A wrong slug just makes that
+  one round silently skip (404 → warning), not a hard failure — fix it here
+  if a round you know happened isn't showing up.
+- **`scraper/fetch-race-pace.mjs`** — for each round, opens its
+  `eventtiming-information` page, finds that round's **Provisional
+  Classification** PDF (finishing pos/points) and **History Chart** PDF
+  (lap-by-lap gaps, used to compute average pace), downloads them, and
+  parses them with `pdf-parse`.
+- **`scraper/race-pace-parsers.mjs`** — the actual PDF-text parsing logic,
+  covered by fixture tests (synthetic PDFs built with `pdfkit`) the same way
+  the standings parsers are.
+
+**Why "History Chart" and not "Lap Times":** fia.com publishes a dedicated
+Lap Times PDF for Practice and Qualifying, but **not** for race sessions —
+races only get Provisional Classification, History Chart, Sector Analysis,
+Pit Stop Summary, and Maximum Speeds. The History Chart is the closest
+substitute: it's organized one block per lap number, listing every car's
+gap-to-leader (or "PIT") and lap time for that lap, which is enough to
+reconstruct each driver's lap-by-lap pace and average it.
+
+**Known limitations, plainly stated:**
+- Pit-in/out laps are excluded from the average (they're not representative
+  of pace), but **safety car and VSC laps are not detected** — a round run
+  behind the safety car for several laps will show an inflated "gap," not a
+  real pace difference. Read this chart as a rough comparison, not a precise
+  one.
+- The parsers in `race-pace-parsers.mjs` were built from a **summarized,
+  lossy reading** of real 2026 PDFs (the research tool used to check their
+  structure can't do exact byte-for-byte text extraction), not a confirmed
+  spec. The very first live run is the real test — check
+  `data/race-pace.json`'s `warnings` array afterward, and treat any warning
+  there as "this round's PDF didn't match what the parser expects, fix the
+  regex in `race-pace-parsers.mjs`," the same troubleshooting loop as the
+  standings scraper.
+- This step runs after the standings scraper in the same workflow but with
+  `continue-on-error: true` — a bad round or a fia.com hiccup here won't
+  block the standings update from landing.
+- Re-fetches every round from scratch on every run rather than caching
+  incrementally. Simple, and cheap enough not to bother optimizing.
 
 ## One-time setup (~10 minutes)
 

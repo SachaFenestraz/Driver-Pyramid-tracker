@@ -1,0 +1,10 @@
+{
+  "updated": null,
+  "warnings": [
+    "Not yet run — this fills in after the first scheduled or manually-triggered \"Update race pace\" GitHub Actions run. See README's Race Pace Archive section."
+  ],
+  "rounds": {
+    "F2": [],
+    "F3": []
+  }
+}

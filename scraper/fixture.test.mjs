@@ -166,4 +166,70 @@ const wikiHtml = `
   console.log('OK  wikipedia parser (colspan header quirk)');
 }
 
+/* ---- Test 4/5: race-pace parsers (Provisional Classification + History  */
+/*      Chart PDFs) — built from a synthetic PDF via pdfkit so this stays   */
+/*      offline, since these are less certain than the standings parsers   */
+/*      (see race-pace-parsers.mjs's honesty note: built from a lossy      */
+/*      summarized reading of real PDFs, not confirmed byte-for-byte).     */
+import PDFDocument from 'pdfkit';
+import pdfParse from 'pdf-parse/lib/pdf-parse.js';
+import { parseProvisionalClassification, parseHistoryChart, averagePace, lapTimeToSeconds } from './race-pace-parsers.mjs';
+
+function makePdf(lines) {
+  return new Promise((resolve, reject) => {
+    const doc = new PDFDocument({ size: 'A4' });
+    const chunks = [];
+    doc.on('data', c => chunks.push(c));
+    doc.on('end', () => resolve(Buffer.concat(chunks)));
+    doc.on('error', reject);
+    doc.font('Courier').fontSize(9);
+    for (const line of lines) doc.text(line);
+    doc.end();
+  });
+}
+
+{
+  const buf = await makePdf([
+    '1  24  F. SLATER  TRIDENT  20  41:23.456  25',
+    '2  8   U. UGOCHUKWU  CAMPOS RACING  20  41:25.901  18',
+    '3  15  E. RIVERA  CAMPOS RACING  20  41:29.113  15',
+  ]);
+  const { text } = await pdfParse(buf);
+  const rows = parseProvisionalClassification(text, ['slater', 'ugochukwu', 'rivera', 'nael', 'badoer']);
+  assert.ok(rows, 'provisional classification: should find rows');
+  assert.equal(rows.length, 3);
+  const slater = rows.find(r => r.surname === 'slater');
+  assert.equal(slater.pos, 1); assert.equal(slater.carNumber, 24); assert.equal(slater.pts, 25);
+  console.log('OK  provisional classification parser (synthetic FIA-shape PDF)');
+}
+
+{
+  const buf = await makePdf([
+    'LAP 1',
+    '24   -        1:38.204',
+    '8    +1.203   1:39.500',
+    'LAP 2',
+    '24   -        1:38.900',
+    '8    PIT      2:45.671',
+    'LAP 3',
+    '24   -        1:38.650',
+    '8    +5.442   1:39.100',
+    'LAP 4',
+    '24   -        1:38.777',
+    '8    +5.900   1:39.050',
+  ]);
+  const { text } = await pdfParse(buf);
+  const byCar = parseHistoryChart(text);
+  assert.ok(byCar, 'history chart: should find laps');
+  const car24 = byCar.get(24);
+  assert.equal(car24.length, 4);
+  assert.equal(lapTimeToSeconds('1:38.204'), 98.204);
+  const pace24 = averagePace(car24);
+  assert.ok(pace24 && pace24.lapsCounted === 4 && pace24.lapsExcluded === 0);
+  const car8 = byCar.get(8);
+  const pace8 = averagePace(car8); // has 1 PIT lap among 4 -> excluded
+  assert.ok(pace8 && pace8.lapsCounted === 3 && pace8.lapsExcluded === 1);
+  console.log('OK  history chart parser + averagePace (synthetic FIA-shape PDF, PIT lap excluded)');
+}
+
 console.log('\n✅ all fixture tests passed');

@@ -33,14 +33,22 @@ jobs:
         working-directory: scraper
         run: node fetch-standings.mjs
 
+      - name: Fetch race pace archive (FIA F2/F3 only)
+        working-directory: scraper
+        run: node fetch-race-pace.mjs
+        # This scraper touches many more pages/PDFs than the standings one
+        # and is newer/less battle-tested — a bad round or a fia.com hiccup
+        # shouldn't block the standings update above from landing.
+        continue-on-error: true
+
       - name: Commit changes if anything updated
         run: |
           git config user.name "pyramid-tracker-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/standings.json
+          git add data/standings.json data/race-pace.json
           if git diff --cached --quiet; then
-            echo "No changes to standings — nothing to commit."
+            echo "No changes to commit."
           else
-            git commit -m "Auto-update standings ($(date -u +%Y-%m-%d))"
+            git commit -m "Auto-update standings + race pace ($(date -u +%Y-%m-%d))"
             git push
           fi

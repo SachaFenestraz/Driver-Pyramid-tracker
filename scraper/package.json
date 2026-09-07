@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Fetches current standings for FIA F2, FIA F3, FRECA and Italian F4 from Wikipedia and writes data/standings.json",
+  "description": "Fetches current standings and race-pace data for FIA F2, FIA F3, FRECA and Italian F4 and writes data/standings.json + data/race-pace.json",
   "scripts": {
-    "fetch": "node fetch-standings.mjs"
+    "fetch": "node fetch-standings.mjs",
+    "fetch:pace": "node fetch-race-pace.mjs",
+    "test": "node fixture.test.mjs"
   },
   "dependencies": {
-    "cheerio": "^1.0.0"
+    "cheerio": "^1.0.0",
+    "pdf-parse": "^1.1.1",
+    "pdfkit": "^0.15.0"
   }
 }

@@ -107,6 +107,16 @@
   .dcard .now .pts{font-family:'IBM Plex Mono';font-size:14px;color:var(--ink-1);text-align:right;}
   .dcard .now .ptsn{font-size:10px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;text-align:right;display:block;}
   .empty-state{padding:40px 20px;text-align:center;color:var(--ink-3);font-size:13px;border:1px dashed var(--hairline);border-radius:10px;}
+  .racepace-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:900px){.racepace-grid{grid-template-columns:1fr;}}
+  .racepace-card{background:var(--surface-1);border:1px solid var(--hairline);border-radius:10px;padding:18px;box-shadow:var(--shadow);}
+  .racepace-card h4{font-family:'Oswald';font-size:14px;letter-spacing:.02em;color:var(--dc);text-transform:uppercase;margin:0 0 2px;}
+  .racepace-card .sub{font-size:11px;color:var(--ink-3);margin-bottom:12px;}
+  .racepace-card .rp-tablewrap{max-height:190px;overflow-y:auto;margin-bottom:14px;border:1px solid var(--hairline);border-radius:8px;}
+  .racepace-card table.rp-table{width:100%;border-collapse:collapse;font-size:11.5px;}
+  .racepace-card table.rp-table th{position:sticky;top:0;background:var(--surface-2);text-align:left;font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);padding:6px 8px;}
+  .racepace-card table.rp-table td{padding:5px 8px;border-top:1px solid var(--hairline);font-family:'IBM Plex Mono';}
+  .rp-gapnote{font-size:10.5px;color:var(--ink-3);margin-top:8px;}
 
   .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin-bottom:4px;}
   .legend span{display:inline-flex;align-items:center;gap:7px;}
@@ -245,10 +255,20 @@
     <div class="shead">
       <div>
         <h2>Signature Pace</h2>
-        <div class="sub">No public source publishes session-by-session FP/Quali lap times this far down the pyramid — so pace here is wins and podiums banked per flagship season, the way paddocks actually track it.</div>
+        <div class="sub">Season-by-season form: wins and podiums banked per flagship program, the way paddocks actually track it. For actual race pace round by round, see Race Pace Archive below (FIA F2/F3 only).</div>
       </div>
     </div>
     <div class="pace-grid" id="paceGrid"></div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div>
+        <h2>Race Pace Archive</h2>
+        <div class="sub">FIA Formula 2 and Formula 3 only — FRECA and Italian F4 don't publish this level of official timing detail. Each round's Sprint/Feature finishing position and points come from the official Provisional Classification; average race pace comes from the official History Chart (races don't get a dedicated "Lap Times" document — see Methodology). Pit-in/out laps are excluded from the pace average; safety-car laps aren't detected and can skew a round's number.</div>
+      </div>
+    </div>
+    <div id="racePaceBox"></div>
   </section>
 
   <section>
@@ -271,6 +291,7 @@
       <div>
         <h5>Methodology</h5>
         <p>Data compiled 7 September 2026 from Wikipedia driver and championship pages, fiaformula2.com, fiaformula3.com, official FRECA/Italian F4 sources, and race reports from Formula1.com, Pit Debrief and Formula Scout. "Flagship season" is each driver's main single-seater program that year; parallel/secondary programs aren't shown. Karting depth differs by tier: FIA F2 drivers show only their final karting season (it's the furthest back and least relevant to their current form); FIA F3, FRECA and Italian F4 drivers show their final two. This is a compiled snapshot, not a live feed — ask for a refresh after results change.</p>
+        <p>The Race Pace Archive (FIA F2/F3 only) comes from fia.com's official per-round timing documents: finishing position and points from each session's Provisional Classification, and average pace from its History Chart, since race sessions don't get a dedicated "Lap Times" document the way Practice and Qualifying do. That average excludes pit-in/out laps but can't detect safety-car or VSC laps, so a round with a red flag or safety car will show an inflated gap — read it as a rough pace comparison, not a precise one.</p>
         <p>Comparison is capped at three drivers at once, both for chart legibility and so each gets a colour that stays distinguishable, including for colour-blind readers, in every pairing.</p>
       </div>
       <div>
@@ -290,17 +311,20 @@
 let DRIVERS = [];
 let STANDINGS = { updated: null, source: null, drivers: {} };
 let SPOTLIGHT = null;
+let RACEPACE = { updated: null, warnings: [], rounds: { F2: [], F3: [] } };
 
 async function loadData(bypassCache){
   const bust = bypassCache ? ("?t=" + Date.now()) : "";
-  const [driversRes, standingsRes, spotlightRes] = await Promise.all([
+  const [driversRes, standingsRes, spotlightRes, racePaceRes] = await Promise.all([
     fetch("./data/drivers.json" + bust),
     fetch("./data/standings.json" + bust),
     fetch("./data/karting-spotlight.json" + bust).catch(()=>null),
+    fetch("./data/race-pace.json" + bust).catch(()=>null),
   ]);
   const driversJson = await driversRes.json();
   const standingsJson = await standingsRes.json();
   try{ SPOTLIGHT = spotlightRes ? await spotlightRes.json() : null; }catch(e){ SPOTLIGHT = null; }
+  try{ RACEPACE = racePaceRes ? await racePaceRes.json() : RACEPACE; }catch(e){ /* keep default */ }
   STANDINGS = standingsJson;
   DRIVERS = driversJson.map(d => ({
     ...d,
@@ -571,6 +595,108 @@ function renderPace(){
   });
 }
 
+/* ============================= RACE PACE ARCHIVE ============================= */
+// Only FIA F2 / FIA F3 publish the official per-round timing this section
+// needs (see data/race-pace.json + scraper/fetch-race-pace.mjs). Pace is
+// shown as a GAP to the fastest of the currently-selected drivers that
+// round, not raw lap time — raw seconds aren't comparable round to round
+// since every circuit has a different lap length.
+function roundsFor(category){ return (RACEPACE.rounds && RACEPACE.rounds[category]) || []; }
+
+function renderRacePace(){
+  const box = $('#racePaceBox');
+  if(!box) return;
+  box.innerHTML = '';
+  const grid = el('div', 'racepace-grid');
+  box.appendChild(grid);
+
+  selection.forEach((id, idx) => {
+    const d = byId(id);
+    const card = el('div', `racepace-card ${slotClass(idx)}`);
+    if(d.category !== 'F2' && d.category !== 'F3'){
+      card.innerHTML = `<h4>${d.name}</h4><div class="empty-state">Race pace archive isn't available for ${CATEGORY_META[d.category].label} — fia.com doesn't publish official per-round timing PDFs for this series.</div>`;
+      grid.appendChild(card);
+      return;
+    }
+    const rounds = roundsFor(d.category);
+    const relevant = rounds.filter(r => Object.values(r.sessions||{}).some(s =>
+      (s.classification||[]).some(c=>c.driverId===id) || (s.pace||[]).some(p=>p.driverId===id)
+    ));
+    if(!relevant.length){
+      card.innerHTML = `<h4>${d.name}</h4><div class="empty-state">No race-pace data yet for ${d.name} — this fills in after the scheduled "Update race pace" run (see README).</div>`;
+      grid.appendChild(card);
+      return;
+    }
+
+    // Results table: one row per round, Sprint + Feature pos/pts.
+    const rows = relevant.map(r => {
+      const sp = r.sessions.sprint, ft = r.sessions.feature;
+      const spC = sp && sp.classification.find(c=>c.driverId===id);
+      const ftC = ft && ft.classification.find(c=>c.driverId===id);
+      return `<tr>
+        <td>${r.event}</td>
+        <td>${spC ? ord(spC.pos) : '—'}</td>
+        <td>${spC && spC.pts!==null ? spC.pts : '—'}</td>
+        <td>${ftC ? ord(ftC.pos) : '—'}</td>
+        <td>${ftC && ftC.pts!==null ? ftC.pts : '—'}</td>
+      </tr>`;
+    }).join('');
+
+    // Pace chart: Feature Race gap-to-fastest-of-selection, per round.
+    const selCatIds = selection.filter(sid => byId(sid).category === d.category);
+    const gapByRound = relevant.map(r => {
+      const ft = r.sessions.feature;
+      if(!ft) return null;
+      const paceRows = selCatIds.map(sid => ft.pace.find(p=>p.driverId===sid)).filter(Boolean);
+      if(!paceRows.length) return null;
+      const mine = ft.pace.find(p=>p.driverId===id);
+      if(!mine) return null;
+      const best = Math.min(...paceRows.map(p=>p.avgSeconds));
+      return { event: r.event, gap: mine.avgSeconds - best, isBest: mine.avgSeconds === best };
+    }).filter(Boolean);
+
+    let chartHtml = '<div class="empty-state" style="padding:24px 12px;">No Feature Race pace data yet for the currently selected drivers.</div>';
+    if(gapByRound.length){
+      const W=340,H=150, ML=34,MR=8,MT=10,MB=26;
+      const plotW=W-ML-MR, plotH=H-MT-MB;
+      const n = gapByRound.length;
+      const bw = plotW/n;
+      const maxGap = Math.max(...gapByRound.map(g=>g.gap), 0.5);
+      const color = slotVar(idx);
+      let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="overflow:visible" role="img" aria-label="${d.name} Feature Race pace gap to fastest of selection, per round">`;
+      svg += `<line class="gridline" x1="${ML}" y1="${MT}" x2="${W-MR}" y2="${MT}"/>`;
+      svg += `<text class="axislabel" x="${ML-4}" y="${MT+3}" text-anchor="end">+0.0s</text>`;
+      svg += `<text class="axislabel" x="${ML-4}" y="${MT+plotH}" text-anchor="end">+${maxGap.toFixed(1)}s</text>`;
+      gapByRound.forEach((g,i)=>{
+        const gx = ML + i*bw;
+        const bwi = bw*0.5;
+        const barH = (g.gap/maxGap)*plotH;
+        svg += `<rect x="${gx+bw*0.25}" y="${MT}" width="${bwi}" height="${Math.max(barH,1.5)}" rx="2" fill="${color}" opacity="${g.isBest?1:.55}"
+          data-tip="<b>${d.name} — ${g.event}</b>${g.isBest?'Fastest of selection this round':'+' + g.gap.toFixed(3) + 's off the fastest of selection'}" style="cursor:pointer" class="bar"/>`;
+        svg += `<text class="axislabel" x="${gx+bw/2}" y="${H-10}" text-anchor="middle">${g.event.slice(0,3)}</text>`;
+      });
+      svg += `</svg>`;
+      chartHtml = svg;
+    }
+
+    card.innerHTML = `
+      <h4>${d.name}</h4>
+      <div class="sub">${CATEGORY_META[d.category].label} · every round raced this season</div>
+      <div class="rp-tablewrap"><table class="rp-table">
+        <thead><tr><th>Round</th><th>Sprint</th><th>Pts</th><th>Feature</th><th>Pts</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+      <div class="sub" style="margin-bottom:4px;">Feature Race pace — gap to fastest of your selection, per round</div>
+      ${chartHtml}
+      <div class="rp-gapnote">Excludes pit-in/out laps; safety-car laps aren't detected and can inflate a round's gap.</div>`;
+    grid.appendChild(card);
+    card.querySelectorAll('.bar').forEach(b=>{
+      b.addEventListener('mousemove', e=> showTip(e.clientX,e.clientY, b.dataset.tip));
+      b.addEventListener('mouseleave', hideTip);
+    });
+  });
+}
+
 /* ============================= CAREER & TEAMS ============================= */
 function renderCareer(){
   const grid = $('#careerGrid');
@@ -637,6 +763,7 @@ function renderAll(){
   renderLadder();
   renderPosition();
   renderPace();
+  renderRacePace();
   renderCareer();
   renderStandouts();
 }
