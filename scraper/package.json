@@ -1,0 +1,13 @@
+{
+  "name": "pyramid-tracker-scraper",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fetches current standings for FIA F2, FIA F3, FRECA and Italian F4 from Wikipedia and writes data/standings.json",
+  "scripts": {
+    "fetch": "node fetch-standings.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  }
+}

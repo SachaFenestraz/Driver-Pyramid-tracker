@@ -1,0 +1,650 @@
+<title>Pick Your Pyramid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --surface-0:#f7f5f0; --surface-1:#ffffff; --surface-2:#edeae1; --surface-3:#e3ded0;
+    --hairline:#dcd7ca; --ink-1:#14181c; --ink-2:#565f68; --ink-3:#8a9098;
+    --d1:#2a78d6; --d2:#eb6834; --d3:#1baf7a;
+    --d1-soft:#2a78d61a; --d2-soft:#eb68341a; --d3-soft:#1baf7a1a;
+    --shadow: 0 1px 2px rgba(20,24,28,.04), 0 8px 24px -12px rgba(20,24,28,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --surface-0:#0a0e13; --surface-1:#10151c; --surface-2:#1a2029; --surface-3:#232b35;
+      --hairline:#242c36; --ink-1:#eef1f4; --ink-2:#a4adb7; --ink-3:#6c7681;
+      --d1:#3987e5; --d2:#d95926; --d3:#199e70;
+      --d1-soft:#3987e526; --d2-soft:#d9592626; --d3-soft:#199e7026;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --surface-0:#0a0e13; --surface-1:#10151c; --surface-2:#1a2029; --surface-3:#232b35;
+    --hairline:#242c36; --ink-1:#eef1f4; --ink-2:#a4adb7; --ink-3:#6c7681;
+    --d1:#3987e5; --d2:#d95926; --d3:#199e70;
+    --d1-soft:#3987e526; --d2-soft:#d9592626; --d3-soft:#199e7026;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -12px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box;}
+  body{background:var(--surface-0);color:var(--ink-1);font-family:'IBM Plex Sans', system-ui, sans-serif;margin:0;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1220px;margin:0 auto;padding:40px 28px 90px;}
+  h1,h2,h3{font-family:'Oswald','Arial Narrow',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.01em;text-wrap:balance;margin:0;color:var(--ink-1);}
+  .num,.tabular{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:10px;}
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--ink-3);display:inline-block;}
+  a{color:inherit;}
+
+  header{padding-bottom:30px;border-bottom:1px solid var(--hairline);margin-bottom:36px;}
+  header h1{font-size:clamp(32px,4.8vw,50px);line-height:1.02;margin-top:14px;}
+  header .lede{max-width:66ch;margin-top:16px;font-size:16px;line-height:1.6;color:var(--ink-2);}
+  .statusbar{margin-top:18px;padding:10px 14px;border:1px solid var(--hairline);border-radius:8px;background:var(--surface-1);font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-3);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+  .statusbar b{color:var(--ink-2);font-weight:600;}
+  .statusbar button{font:inherit;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.03em;background:var(--surface-2);border:1px solid var(--hairline);color:var(--ink-1);padding:6px 12px;border-radius:100px;cursor:pointer;white-space:nowrap;}
+  .statusbar button:hover{background:var(--surface-3);}
+  .statusbar button:disabled{opacity:.6;cursor:default;}
+  header .lede b{color:var(--ink-1);font-weight:600;}
+
+  section{margin-bottom:52px;}
+  .shead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:20px;flex-wrap:wrap;}
+  .shead h2{font-size:22px;}
+  .shead .sub{font-size:13px;color:var(--ink-3);max-width:48ch;line-height:1.55;}
+  .panel{background:var(--surface-1);border:1px solid var(--hairline);border-radius:10px;box-shadow:var(--shadow);padding:24px 26px 18px;}
+
+  /* ---------- picker ---------- */
+  .picker-groups{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  @media (max-width:980px){.picker-groups{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.picker-groups{grid-template-columns:1fr;}}
+  .pgroup{background:var(--surface-1);border:1px solid var(--hairline);border-radius:10px;box-shadow:var(--shadow);overflow:hidden;}
+  .pgroup .ghead{padding:13px 15px 11px;border-bottom:1px solid var(--hairline);background:var(--surface-2);}
+  .pgroup .ghead .gname{font-family:'Oswald';font-size:14px;letter-spacing:.03em;}
+  .pgroup .ghead .gsub{font-size:10.5px;color:var(--ink-3);margin-top:2px;font-family:'IBM Plex Mono';letter-spacing:.03em;}
+  .prow{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--hairline);cursor:pointer;user-select:none;transition:background .1s;}
+  .prow:last-child{border-bottom:none;}
+  .prow:hover{background:var(--surface-2);}
+  .prow.active{background:var(--slot-soft, var(--surface-2));}
+  .prow input{display:none;}
+  .prow .chk{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--ink-3);flex:none;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:transparent;}
+  .prow.active .chk{border-color:var(--slot-color,var(--ink-1));background:var(--slot-color,var(--ink-1));color:var(--surface-1);}
+  .prow .pinfo{flex:1;min-width:0;}
+  .prow .pname{font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .prow .pmeta{font-size:10.5px;color:var(--ink-3);font-family:'IBM Plex Mono';margin-top:1px;}
+  .prow .ppos{font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:var(--ink-2);white-space:nowrap;}
+  .prow.active .ppos{color:var(--slot-color,var(--ink-1));}
+  .picker-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:12px;color:var(--ink-3);}
+  .picker-foot button{font:inherit;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.04em;text-transform:uppercase;background:none;border:1px solid var(--hairline);color:var(--ink-2);padding:6px 12px;border-radius:100px;cursor:pointer;}
+  .picker-foot button:hover{background:var(--surface-2);}
+
+  /* ---------- driver id strip ---------- */
+  .drivers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:56px;}
+  @media (max-width:820px){.drivers{grid-template-columns:1fr;}}
+  .dcard{background:var(--surface-1);border:1px solid var(--hairline);border-radius:10px;padding:20px 20px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+  .dcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--dc);}
+  .dcard .toprow{display:flex;justify-content:space-between;align-items:flex-start;}
+  .dcard .badge{width:44px;height:44px;border-radius:8px;background:var(--dc-soft);color:var(--dc);display:flex;align-items:center;justify-content:center;font-family:'Oswald';font-weight:700;font-size:15px;letter-spacing:.02em;margin-bottom:12px;border:1px solid var(--dc);}
+  .dcard .catpill{font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);background:var(--surface-2);padding:3px 8px;border-radius:100px;white-space:nowrap;}
+  .dcard h3{font-size:20px;letter-spacing:0;}
+  .dcard .meta{font-size:12px;color:var(--ink-3);margin-top:3px;letter-spacing:.02em;}
+  .dcard .now{margin-top:14px;padding-top:14px;border-top:1px dashed var(--hairline);display:flex;justify-content:space-between;align-items:baseline;}
+  .dcard .now .pos{font-family:'Oswald';font-size:28px;font-weight:700;color:var(--dc);line-height:1;}
+  .dcard .now .posn{font-size:10px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;}
+  .dcard .now .pts{font-family:'IBM Plex Mono';font-size:14px;color:var(--ink-1);text-align:right;}
+  .dcard .now .ptsn{font-size:10px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;text-align:right;display:block;}
+  .empty-state{padding:40px 20px;text-align:center;color:var(--ink-3);font-size:13px;border:1px dashed var(--hairline);border-radius:10px;}
+
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin-bottom:4px;}
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .legend i{width:11px;height:11px;border-radius:3px;display:inline-block;background:var(--c);}
+
+  svg text{font-family:'IBM Plex Sans', sans-serif;}
+  .gridline{stroke:var(--hairline);stroke-width:1;}
+  .axislabel{fill:var(--ink-3);font-size:10.5px;}
+  .axislabel.strong{fill:var(--ink-2);font-weight:600;}
+
+  .tip{position:fixed;pointer-events:none;z-index:50;background:var(--ink-1);color:var(--surface-1);font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.5;padding:8px 11px;border-radius:7px;box-shadow:0 8px 24px rgba(0,0,0,.28);opacity:0;transform:translateY(4px);transition:opacity .12s ease, transform .12s ease;max-width:250px;}
+  .tip.show{opacity:1;transform:translateY(0);}
+  .tip b{display:block;margin-bottom:2px;font-family:'IBM Plex Sans';font-size:11.5px;}
+
+  .pace-grid,.kart-grid,.career-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:900px){.pace-grid,.kart-grid,.career-grid{grid-template-columns:1fr;}}
+  .pace-card{background:var(--surface-1);border:1px solid var(--hairline);border-radius:10px;padding:18px 18px 8px;box-shadow:var(--shadow);}
+  .pace-card h4{font-family:'Oswald';font-size:14px;letter-spacing:.02em;color:var(--dc);text-transform:uppercase;margin:0 0 2px;}
+  .pace-card .sub{font-size:11px;color:var(--ink-3);margin-bottom:10px;}
+
+  .kentry{padding:12px 0;border-top:1px dashed var(--hairline);}
+  .kentry:first-of-type{border-top:none;padding-top:2px;}
+  .kentry .kyear{font-family:'IBM Plex Mono';font-size:11px;color:var(--dc);letter-spacing:.06em;}
+  .kentry .kresult{font-family:'Oswald';font-size:14.5px;letter-spacing:.01em;margin-top:4px;color:var(--ink-1);text-transform:none;}
+  .kentry .kbody{font-size:11.5px;color:var(--ink-2);line-height:1.55;margin-top:4px;}
+
+  .career-card{background:var(--surface-1);border:1px solid var(--hairline);border-top:3px solid var(--dc);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);}
+  .career-card h4{font-family:'Oswald';font-size:15px;color:var(--dc);letter-spacing:.02em;margin-bottom:2px;}
+  .career-card .csub{font-size:11px;color:var(--ink-3);margin-bottom:10px;font-family:'IBM Plex Mono';}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  .tablewrap{overflow-x:auto;}
+  th{text-align:right;font-family:'IBM Plex Mono';font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:0 8px 8px;border-bottom:1px solid var(--hairline);white-space:nowrap;}
+  th:first-child,td:first-child{text-align:left;}
+  td{padding:9px 8px;border-bottom:1px solid var(--hairline);text-align:right;white-space:nowrap;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.team{text-align:left;color:var(--ink-2);}
+  td .pos-pill{display:inline-block;min-width:24px;padding:1px 6px;border-radius:100px;font-family:'IBM Plex Mono';font-size:11.5px;font-weight:600;background:var(--surface-2);color:var(--ink-1);}
+
+  .standouts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:900px){.standouts{grid-template-columns:1fr;}}
+  .stcard{background:var(--surface-1);border:1px solid var(--hairline);border-radius:10px;padding:20px;box-shadow:var(--shadow);border-top:3px solid var(--dc);}
+  .stcard .yr{font-family:'IBM Plex Mono';font-size:11px;color:var(--dc);letter-spacing:.06em;}
+  .stcard h4{font-size:16.5px;margin-top:6px;text-transform:none;letter-spacing:0;font-weight:600;}
+  .stcard p{font-size:12.5px;color:var(--ink-2);line-height:1.65;margin:8px 0 0;}
+  .stcard .stat{font-family:'IBM Plex Mono';font-size:11.5px;color:var(--ink-1);margin-top:10px;padding-top:10px;border-top:1px dashed var(--hairline);}
+
+  footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--hairline);}
+  footer .cols{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;}
+  @media (max-width:700px){footer .cols{grid-template-columns:1fr;}}
+  footer h5{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:0 0 8px;}
+  footer p{font-size:12.5px;color:var(--ink-2);line-height:1.7;margin:0 0 10px;}
+  footer details{font-size:12px;color:var(--ink-2);}
+  footer summary{cursor:pointer;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px;}
+  footer ul{margin:8px 0 0;padding:0 0 0 16px;line-height:1.9;columns:2;}
+  @media (max-width:700px){footer ul{columns:1;}}
+  footer ul a{color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--hairline);text-underline-offset:3px;font-size:11px;}
+  footer ul a:hover{color:var(--ink-1);}
+
+  .slot-1{--dc:var(--d1);--dc-soft:var(--d1-soft);--c:var(--d1);--slot-color:var(--d1);--slot-soft:var(--d1-soft);}
+  .slot-2{--dc:var(--d2);--dc-soft:var(--d2-soft);--c:var(--d2);--slot-color:var(--d2);--slot-soft:var(--d2-soft);}
+  .slot-3{--dc:var(--d3);--dc-soft:var(--d3-soft);--c:var(--d3);--slot-color:var(--d3);--slot-soft:var(--d3-soft);}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Current top 5, each FIA-pyramid rung</div>
+    <h1>Pick Your Pyramid</h1>
+    <p class="lede">
+      The current top 5 in <b>FIA Formula 2</b>, <b>FIA Formula 3</b>, <b>FRECA</b> and <b>Italian F4</b> —
+      20 careers in total. Pick up to three to compare: where they karted, when they hit each rung of the
+      ladder, how their results stack up year to year, and every team they've driven for along the way.
+    </p>
+    <div class="statusbar" id="statusBar">Loading…</div>
+  </header>
+
+  <section>
+    <div class="shead">
+      <div>
+        <h2>Choose Drivers</h2>
+        <div class="sub">Tap up to three. Picking a fourth swaps out your oldest pick.</div>
+      </div>
+    </div>
+    <div class="picker-groups" id="pickerGroups"></div>
+    <div class="picker-foot">
+      <span id="pickCount">3 of 3 selected</span>
+      <button id="resetBtn" type="button">Reset to default</button>
+    </div>
+  </section>
+
+  <div class="drivers" id="driverStrip"></div>
+
+  <section>
+    <div class="shead">
+      <div>
+        <h2>Karting Roots</h2>
+        <div class="sub" id="kartSub">Their final karting seasons before graduating to single-seaters.</div>
+      </div>
+    </div>
+    <div class="kart-grid" id="kartGrid"></div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div>
+        <h2>The Ladder</h2>
+        <div class="sub">First year each driver raced at each broad tier of the pyramid — karting through FIA F2, with F1 the aspiration for those who've reached it. Categorisation is deliberately broad: national/regional F4-equivalents (British F4, GB4, NACAM, Trophy series) count as "F4"; regional F3-feeders (FRECA, FREC, GB3) count as "Regional".</div>
+      </div>
+      <div class="legend" id="legendLadder"></div>
+    </div>
+    <div class="panel"><div id="ladderChart"></div></div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div>
+        <h2>Championship Position, Year by Year</h2>
+        <div class="sub">Final (or current) standing in each driver's flagship program each season. Lower on the chart is better — 1st sits at the top.</div>
+      </div>
+      <div class="legend" id="legendPos"></div>
+    </div>
+    <div class="panel"><div id="posChart"></div></div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div>
+        <h2>Signature Pace</h2>
+        <div class="sub">No public source publishes session-by-session FP/Quali lap times this far down the pyramid — so pace here is wins and podiums banked per flagship season, the way paddocks actually track it.</div>
+      </div>
+    </div>
+    <div class="pace-grid" id="paceGrid"></div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div>
+        <h2>Career &amp; Teams</h2>
+        <div class="sub">Every flagship season, and the team that ran the car.</div>
+      </div>
+    </div>
+    <div class="career-grid" id="careerGrid"></div>
+  </section>
+
+  <section>
+    <div class="shead"><div><h2>Standout Drives</h2></div></div>
+    <div class="standouts" id="standoutGrid"></div>
+  </section>
+
+  <footer>
+    <div class="cols">
+      <div>
+        <h5>Methodology</h5>
+        <p>Data compiled 7 September 2026 from Wikipedia driver and championship pages, fiaformula2.com, fiaformula3.com, official FRECA/Italian F4 sources, and race reports from Formula1.com, Pit Debrief and Formula Scout. "Flagship season" is each driver's main single-seater program that year; parallel/secondary programs aren't shown. Karting depth differs by tier: FIA F2 drivers show only their final karting season (it's the furthest back and least relevant to their current form); FIA F3, FRECA and Italian F4 drivers show their final two. This is a compiled snapshot, not a live feed — ask for a refresh after results change.</p>
+        <p>Comparison is capped at three drivers at once, both for chart legibility and so each gets a colour that stays distinguishable, including for colour-blind readers, in every pairing.</p>
+      </div>
+      <div>
+        <h5>Sources</h5>
+        <details open><summary>Show all (grouped by driver)</summary><div id="sourceList"></div></details>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+/* ======================================================================= */
+/* DATA                                                                     */
+/* ======================================================================= */
+let DRIVERS = [];
+let STANDINGS = { updated: null, source: null, drivers: {} };
+
+async function loadData(bypassCache){
+  const bust = bypassCache ? ("?t=" + Date.now()) : "";
+  const [driversRes, standingsRes] = await Promise.all([
+    fetch("./data/drivers.json" + bust),
+    fetch("./data/standings.json" + bust),
+  ]);
+  const driversJson = await driversRes.json();
+  const standingsJson = await standingsRes.json();
+  STANDINGS = standingsJson;
+  DRIVERS = driversJson.map(d => ({
+    ...d,
+    current: standingsJson.drivers[d.id] || { pos: "—", pts: null, series: "—" },
+  }));
+  DRIVERS.forEach(d => {
+    const cur = standingsJson.drivers[d.id];
+    if(!cur || !d.headline.length) return;
+    const last = d.headline[d.headline.length-1];
+    if(last.inprogress){ last.pos = parseInt(cur.pos,10) || last.pos; last.points = (cur.pts ?? last.points); }
+  });
+}
+
+const CATEGORY_META = {
+  F2:    {label:'FIA Formula 2',   sub:'Current top 5'},
+  F3:    {label:'FIA Formula 3',   sub:'Current top 5, after Monza'},
+  FRECA: {label:'FRECA',           sub:'Current top 5, after Imola'},
+  F4:    {label:'Italian F4',      sub:'Current top 5'},
+};
+const CATEGORY_ORDER = ['F2','F3','FRECA','F4'];
+const DEFAULT_SELECTION = ['slater','ugochukwu','rivera'];
+const MAX_SELECT = 3;
+
+let selection = [...DEFAULT_SELECTION];
+
+const $ = (sel, root=document) => root.querySelector(sel);
+const el = (tag, cls, html) => { const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; };
+const ord = n => { if(n===null||n===undefined) return '—'; const s=['th','st','nd','rd'], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); };
+const byId = id => DRIVERS.find(d=>d.id===id);
+const slotClass = idx => `slot-${idx+1}`;
+const slotVar = idx => `var(--d${idx+1})`;
+
+/* ============================= TOOLTIP ============================= */
+const tip = $('#tip');
+function showTip(x,y,html){ tip.innerHTML=html; tip.style.left=(x+14)+'px'; tip.style.top=(y+14)+'px'; tip.classList.add('show'); }
+function hideTip(){ tip.classList.remove('show'); }
+
+/* ============================= PICKER ============================= */
+function renderPicker(){
+  const wrap = $('#pickerGroups');
+  wrap.innerHTML = '';
+  CATEGORY_ORDER.forEach(cat=>{
+    const meta = CATEGORY_META[cat];
+    const group = el('div','pgroup');
+    group.innerHTML = `<div class="ghead"><div class="gname">${meta.label}</div><div class="gsub">${meta.sub}</div></div>`;
+    DRIVERS.filter(d=>d.category===cat).forEach(d=>{
+      const idx = selection.indexOf(d.id);
+      const row = el('div', `prow${idx>-1?' active '+slotClass(idx):''}`);
+      row.dataset.id = d.id;
+      row.innerHTML = `
+        <div class="chk">${idx>-1?'✓':''}</div>
+        <div class="pinfo">
+          <div class="pname">${d.name}</div>
+          <div class="pmeta">${d.team}</div>
+        </div>
+        <div class="ppos">${d.current.pos}</div>`;
+      row.addEventListener('click', ()=> toggleSelect(d.id));
+      group.appendChild(row);
+    });
+    wrap.appendChild(group);
+  });
+  $('#pickCount').textContent = `${selection.length} of ${MAX_SELECT} selected`;
+}
+function toggleSelect(id){
+  const i = selection.indexOf(id);
+  if(i>-1){ selection.splice(i,1); }
+  else{
+    selection.push(id);
+    if(selection.length > MAX_SELECT) selection.shift();
+  }
+  renderAll();
+}
+$('#resetBtn').addEventListener('click', ()=>{ selection=[...DEFAULT_SELECTION]; renderAll(); });
+
+/* ============================= DRIVER STRIP ============================= */
+function renderStrip(){
+  const strip = $('#driverStrip');
+  strip.innerHTML = '';
+  if(selection.length===0){
+    strip.appendChild(el('div','empty-state','Pick at least one driver above to see their career.'));
+    strip.style.gridTemplateColumns = '1fr';
+    return;
+  }
+  strip.style.gridTemplateColumns = '';
+  selection.forEach((id,idx)=>{
+    const d = byId(id);
+    const card = el('div', `dcard ${slotClass(idx)}`);
+    card.innerHTML = `
+      <div class="toprow"><div class="badge">${d.code}</div><span class="catpill">${CATEGORY_META[d.category].label}</span></div>
+      <h3>${d.name}</h3>
+      <div class="meta">${d.nat} · b. ${d.born} · ${d.team} 2026</div>
+      <div class="now">
+        <div><div class="pos">${d.current.pos}</div><div class="posn">${d.current.series}</div></div>
+        <div><span class="pts num">${d.current.pts} pts</span><span class="ptsn">current standing</span></div>
+      </div>`;
+    strip.appendChild(card);
+  });
+}
+
+/* ============================= KARTING ROOTS ============================= */
+function renderKarting(){
+  const grid = $('#kartGrid');
+  grid.innerHTML = '';
+  $('#kartSub').textContent = 'FIA F3 / FRECA / F4 drivers show their final two karting seasons; FIA F2 drivers show only their final one (it’s further back and less relevant to current form).';
+  selection.forEach((id,idx)=>{
+    const d = byId(id);
+    const card = el('div', `pace-card ${slotClass(idx)}`);
+    card.innerHTML = `<h4>${d.name}</h4><div class="sub">${CATEGORY_META[d.category].label} · final karting campaign${d.karting.length>1?'s':''}</div>`;
+    d.karting.forEach(k=>{
+      const entry = el('div','kentry');
+      entry.innerHTML = `<div class="kyear">${k.yr} · ${k.cls}</div><div class="kresult">${k.champ} — ${k.result}</div><div class="kbody">${k.body}</div>`;
+      card.appendChild(entry);
+    });
+    grid.appendChild(card);
+  });
+}
+
+/* ============================= LADDER ============================= */
+const RUNGS = ['Karting','F4 (national/regional)','Regional F3 (FRECA/FREC/GB3)','FIA Formula 3','FIA Formula 2','FIA Formula 1'];
+function classifyRung(series){
+  const s = series.toLowerCase();
+  if(/formula 2\b/.test(s)) return 4;
+  if(/formula 3\b/.test(s)) return 3;
+  if(/freca|frec\b|formula regional|gb3|eurocup-3/.test(s)) return 2;
+  if(/f4|formula 4|nacam|trophy|skip barber|usf junior|euroformula|gb4/.test(s)) return 1;
+  return -1;
+}
+function driverRoute(d){
+  const pts = [];
+  const lastKartYr = parseInt(d.karting[d.karting.length-1].yr, 10);
+  if(!isNaN(lastKartYr)) pts.push({rung:0, yr:lastKartYr});
+  const seen = {};
+  d.headline.forEach(h=>{
+    const r = classifyRung(h.series);
+    if(r>0 && seen[r]===undefined) seen[r] = h.yr;
+  });
+  [1,2,3,4].forEach(r=>{ if(seen[r]!==undefined) pts.push({rung:r, yr:seen[r]}); });
+  return pts.sort((a,b)=>a.rung-b.rung);
+}
+function renderLadder(){
+  const box = $('#ladderChart');
+  if(selection.length===0){ box.innerHTML=''; $('#legendLadder').innerHTML=''; return; }
+  const routes = selection.map(id=>({id, pts:driverRoute(byId(id))}));
+  const allYears = routes.flatMap(r=>r.pts.map(p=>p.yr));
+  const minYr = Math.min(...allYears), maxYr = Math.max(...allYears)+1;
+  const W=1080, H=360, ML=200, MR=30, MT=20, MB=34;
+  const plotW=W-ML-MR, plotH=H-MT-MB;
+  const x = yr => ML + (yr-minYr)/(maxYr-minYr)*plotW;
+  const y = i => MT + (i+0.5)/RUNGS.length*plotH;
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:100%;overflow:visible" role="img" aria-label="Career ladder">`;
+  RUNGS.forEach((r,i)=>{
+    const yy=y(i);
+    svg += `<line class="gridline" x1="${ML}" y1="${yy}" x2="${W-MR}" y2="${yy}" stroke-dasharray="${i===5?'3 4':'0'}" opacity="${i===5?0.7:1}"/>`;
+    svg += `<text class="axislabel strong" x="${ML-14}" y="${yy+4}" text-anchor="end">${r}</text>`;
+  });
+  for(let yr=Math.ceil(minYr/1)*1; yr<=maxYr; yr++){
+    if((yr-minYr)%2===0 || yr===maxYr) svg += `<text class="axislabel" x="${x(yr)}" y="${H-14}" text-anchor="middle">${yr}${yr===maxYr?' →':''}</text>`;
+  }
+
+  routes.forEach((route,di)=>{
+    const d = byId(route.id);
+    const color = slotVar(di);
+    const pts = route.pts;
+    const path = pts.map((p,i)=> `${i===0?'M':'L'} ${x(p.yr).toFixed(1)} ${y(p.rung).toFixed(1)}`).join(' ');
+    svg += `<path d="${path}" fill="none" stroke="${color}" stroke-width="2.5" opacity=".9"/>`;
+    const last = pts[pts.length-1];
+    if(last.rung < 5){
+      svg += `<line x1="${x(last.yr)}" y1="${y(last.rung)}" x2="${x(Math.min(last.yr+0.9,maxYr))}" y2="${y(5)}" stroke="${color}" stroke-width="2" stroke-dasharray="2 4" opacity=".4"/>`;
+    }
+    pts.forEach(p=>{
+      const jitter = (di-(routes.length-1)/2)*7;
+      svg += `<circle class="dot" data-tip="<b>${d.name} — ${RUNGS[p.rung]}</b>${p.yr}" cx="${x(p.yr)+jitter}" cy="${y(p.rung)}" r="6.5" fill="${color}" stroke="var(--surface-1)" stroke-width="2" style="cursor:pointer"/>`;
+    });
+  });
+  svg += `</svg>`;
+  box.innerHTML = svg;
+  box.querySelectorAll('circle.dot').forEach(c=>{
+    c.addEventListener('mousemove', e=> showTip(e.clientX,e.clientY, c.dataset.tip));
+    c.addEventListener('mouseleave', hideTip);
+  });
+  const leg = $('#legendLadder');
+  leg.innerHTML='';
+  selection.forEach((id,idx)=> leg.innerHTML += `<span><i style="--c:${slotVar(idx)}"></i>${byId(id).name}</span>`);
+}
+
+/* ============================= POSITION CHART ============================= */
+function renderPosition(){
+  const box = $('#posChart');
+  if(selection.length===0){ box.innerHTML=''; $('#legendPos').innerHTML=''; return; }
+  const allPts = selection.flatMap(id=>byId(id).headline.map(h=>h.yr));
+  const minYr = Math.min(...allPts), maxYr = Math.max(...allPts);
+  const W=1080,H=340, ML=46, MR=190, MT=20, MB=32;
+  const plotW=W-ML-MR, plotH=H-MT-MB;
+  const x = yr => ML + (maxYr>minYr ? (yr-minYr)/(maxYr-minYr)*plotW : plotW/2);
+  const maxPos = 26;
+  const yScale = pos => MT + (Math.min(pos||maxPos,maxPos)-1)/(maxPos-1)*plotH;
+
+  let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:100%;overflow:visible" role="img" aria-label="Championship position by year">`;
+  [1,5,10,15,20,26].forEach(p=>{
+    const yy=yScale(p);
+    svg += `<line class="gridline" x1="${ML}" y1="${yy}" x2="${W-MR}" y2="${yy}"/>`;
+    svg += `<text class="axislabel" x="${ML-10}" y="${yy+3.5}" text-anchor="end">${p===1?'1st':p+'th'}</text>`;
+  });
+  for(let yr=minYr; yr<=maxYr; yr++) svg += `<text class="axislabel" x="${x(yr)}" y="${H-10}" text-anchor="middle">${yr}</text>`;
+
+  selection.forEach((id,di)=>{
+    const d = byId(id);
+    const color = slotVar(di);
+    const pts = d.headline;
+    const path = pts.map((p,i)=> `${i===0?'M':'L'} ${x(p.yr).toFixed(1)} ${yScale(p.pos).toFixed(1)}`).join(' ');
+    svg += `<path d="${path}" fill="none" stroke="${color}" stroke-width="2.5"/>`;
+    pts.forEach(p=>{
+      svg += `<circle class="dot" r="6" cx="${x(p.yr)}" cy="${yScale(p.pos)}" fill="${color}" stroke="var(--surface-1)" stroke-width="2"
+        data-tip="<b>${d.name} — ${p.yr}</b>${p.series}: ${ord(p.pos)}${p.inprogress?'*':''} · ${p.points!==undefined&&p.points!==null?p.points+' pts':'—'} (${p.team})" style="cursor:pointer"/>`;
+    });
+    const lastp = pts[pts.length-1];
+    svg += `<text x="${x(lastp.yr)+12}" y="${yScale(lastp.pos)+4}" font-size="12" font-family="IBM Plex Mono" fill="${color}" font-weight="600">${d.name.split(' ').pop()}</text>`;
+  });
+  svg += `</svg>`;
+  box.innerHTML = svg;
+  box.querySelectorAll('circle.dot').forEach(c=>{
+    c.addEventListener('mousemove', e=> showTip(e.clientX,e.clientY, c.dataset.tip));
+    c.addEventListener('mouseleave', hideTip);
+  });
+  const leg = $('#legendPos');
+  leg.innerHTML='';
+  selection.forEach((id,idx)=> leg.innerHTML += `<span><i style="--c:${slotVar(idx)}"></i>${byId(id).name} — flagship program each year</span>`);
+}
+
+/* ============================= PACE SMALL MULTIPLES ============================= */
+function renderPace(){
+  const grid = $('#paceGrid');
+  grid.innerHTML = '';
+  selection.forEach((id,idx)=>{
+    const d = byId(id);
+    const color = slotVar(idx);
+    const card = el('div', `pace-card ${slotClass(idx)}`);
+    const W=340,H=190, ML=30,MR=8,MT=10,MB=26;
+    const plotW=W-ML-MR, plotH=H-MT-MB;
+    const n = d.headline.length;
+    const bw = plotW/n;
+    const maxV = Math.max(...d.headline.map(p=>Math.max(p.wins||0, p.podiums||0)))||1;
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="overflow:visible" role="img" aria-label="${d.name} wins and podiums by season">`;
+    svg += `<line class="gridline" x1="${ML}" y1="${MT+plotH}" x2="${W-MR}" y2="${MT+plotH}"/>`;
+    d.headline.forEach((p,i)=>{
+      const gx = ML + i*bw;
+      const bwi = bw*0.32;
+      const winsH = ((p.wins||0)/maxV)*plotH;
+      const podH = ((p.podiums||0)/maxV)*plotH;
+      svg += `<rect x="${gx+bw*0.14}" y="${MT+plotH-winsH}" width="${bwi}" height="${winsH}" rx="2.5" fill="${color}"
+        data-tip="<b>${d.name} — ${p.yr}</b>${p.series}: ${p.wins||0} win${p.wins===1?'':'s'}" style="cursor:pointer" class="bar"/>`;
+      if(p.podiums!==null && p.podiums!==undefined){
+        svg += `<rect x="${gx+bw*0.54}" y="${MT+plotH-podH}" width="${bwi}" height="${podH}" rx="2.5" fill="${color}" opacity=".38"
+          data-tip="<b>${d.name} — ${p.yr}</b>${p.series}: ${p.podiums} podium${p.podiums===1?'':'s'}" style="cursor:pointer" class="bar"/>`;
+      } else {
+        svg += `<text x="${gx+bw*0.54+6}" y="${MT+plotH-4}" font-size="9" fill="var(--ink-3)" font-family="IBM Plex Mono">n/a</text>`;
+      }
+      svg += `<text class="axislabel" x="${gx+bw/2}" y="${H-10}" text-anchor="middle">${String(p.yr).slice(2)}</text>`;
+    });
+    svg += `</svg>`;
+    card.innerHTML = `<h4>${d.name}</h4><div class="sub">Wins (solid) vs podiums (light) · flagship program</div>${svg}`;
+    grid.appendChild(card);
+    card.querySelectorAll('.bar').forEach(b=>{
+      b.addEventListener('mousemove', e=> showTip(e.clientX,e.clientY, b.dataset.tip));
+      b.addEventListener('mouseleave', hideTip);
+    });
+  });
+}
+
+/* ============================= CAREER & TEAMS ============================= */
+function renderCareer(){
+  const grid = $('#careerGrid');
+  grid.innerHTML = '';
+  selection.forEach((id,idx)=>{
+    const d = byId(id);
+    const card = el('div', `career-card ${slotClass(idx)}`);
+    let rows = d.headline.map(h=>`
+      <tr>
+        <td>${h.yr}${h.inprogress?'*':''}</td>
+        <td class="team">${h.series}</td>
+        <td class="team">${h.team}</td>
+        <td class="tabular">${h.wins!==undefined&&h.wins!==null?h.wins:'—'}</td>
+        <td class="tabular">${h.podiums!==undefined&&h.podiums!==null?h.podiums:'—'}</td>
+        <td class="tabular">${h.points!==undefined&&h.points!==null?h.points:'—'}</td>
+        <td><span class="pos-pill">${ord(h.pos)}</span></td>
+      </tr>`).join('');
+    card.innerHTML = `
+      <h4>${d.name}</h4>
+      <div class="csub">${CATEGORY_META[d.category].label} · every flagship season & team</div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Yr</th><th>Series</th><th>Team</th><th>W</th><th>Pod</th><th>Pts</th><th>Pos</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ============================= STANDOUTS ============================= */
+function renderStandouts(){
+  const grid = $('#standoutGrid');
+  grid.innerHTML = '';
+  selection.forEach((id,idx)=>{
+    const d = byId(id);
+    const card = el('div', `stcard ${slotClass(idx)}`);
+    card.innerHTML = `<div class="yr">${d.standout.yr}</div><h4>${d.standout.title}</h4><p>${d.standout.body}</p><div class="stat">${d.standout.stat}</div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ============================= SOURCES ============================= */
+function renderSources(){
+  const box = $('#sourceList');
+  box.innerHTML = '';
+  const ul = el('ul');
+  DRIVERS.forEach(d=>{
+    (d.sources||[]).forEach(url=>{
+      const li = el('li', null, `<a href="${url}" target="_blank" rel="noopener">${d.name} — ${new URL(url).hostname.replace('www.','')}</a>`);
+      ul.appendChild(li);
+    });
+  });
+  box.appendChild(ul);
+}
+
+/* ============================= MAIN ============================= */
+function renderAll(){
+  renderPicker();
+  renderStrip();
+  renderKarting();
+  renderLadder();
+  renderPosition();
+  renderPace();
+  renderCareer();
+  renderStandouts();
+}
+/* ============================= BOOT / STATUS BAR ============================= */
+function renderStatusBar(){
+  const bar = $('#statusBar');
+  if(!bar) return;
+  let when = '—';
+  try{
+    if(STANDINGS.updated){
+      when = new Date(STANDINGS.updated).toLocaleString(undefined, { dateStyle:'medium', timeStyle:'short' });
+    }
+  }catch(e){}
+  const warnCount = (STANDINGS.warnings||[]).length;
+  bar.innerHTML = `
+    <span>Data last updated <b>${when}</b> · source: ${STANDINGS.source||'—'}${warnCount?` · <span title="${(STANDINGS.warnings||[]).join(' | ').replace(/"/g,'&quot;')}">${warnCount} item${warnCount===1?'':'s'} unchanged this run</span>`:''}</span>
+    <button id="refreshBtn" type="button">↻ Reload latest data</button>`;
+  $('#refreshBtn').addEventListener('click', async ()=>{
+    const btn = $('#refreshBtn');
+    btn.disabled = true; btn.textContent = 'Reloading…';
+    try{ await loadData(true); renderStatusBar(); renderAll(); }
+    finally{ btn.disabled = false; }
+  });
+}
+
+async function boot(){
+  const bar = $('#statusBar');
+  if(bar) bar.textContent = 'Loading current standings…';
+  try{
+    await loadData(false);
+  }catch(err){
+    if(bar) bar.textContent = 'Could not load data/standings.json — showing nothing. (' + err.message + ')';
+    console.error(err);
+    return;
+  }
+  renderStatusBar();
+  renderAll();
+  renderSources();
+}
+boot();
+</script>

@@ -1,0 +1,107 @@
+{
+  "updated": "2026-09-07T00:00:00Z",
+  "source": "seed (compiled manually through the Monza round)",
+  "warnings": [],
+  "drivers": {
+    "slater": {
+      "pos": "1st*",
+      "pts": 141,
+      "series": "2026 FIA F3"
+    },
+    "ugochukwu": {
+      "pos": "2nd*",
+      "pts": 126,
+      "series": "2026 FIA F3"
+    },
+    "rivera": {
+      "pos": "3rd*",
+      "pts": 76,
+      "series": "2026 FIA F3"
+    },
+    "nael": {
+      "pos": "4th*",
+      "pts": 75,
+      "series": "2026 FIA F3"
+    },
+    "badoer": {
+      "pos": "5th*",
+      "pts": 71,
+      "series": "2026 FIA F3"
+    },
+    "tsolov": {
+      "pos": "1st*",
+      "pts": 177,
+      "series": "2026 FIA F2"
+    },
+    "camara": {
+      "pos": "2nd*",
+      "pts": 166,
+      "series": "2026 FIA F2"
+    },
+    "mini": {
+      "pos": "3rd*",
+      "pts": 147,
+      "series": "2026 FIA F2"
+    },
+    "dunne": {
+      "pos": "4th*",
+      "pts": 118,
+      "series": "2026 FIA F2"
+    },
+    "leon": {
+      "pos": "5th*",
+      "pts": 114,
+      "series": "2026 FIA F2"
+    },
+    "olivieri": {
+      "pos": "1st*",
+      "pts": 180,
+      "series": "2026 FRECA"
+    },
+    "wheldon": {
+      "pos": "2nd*",
+      "pts": 177,
+      "series": "2026 FRECA"
+    },
+    "nakamuraberta": {
+      "pos": "3rd*",
+      "pts": 172,
+      "series": "2026 FRECA"
+    },
+    "aldhaheri": {
+      "pos": "4th*",
+      "pts": 159,
+      "series": "2026 FRECA"
+    },
+    "francot": {
+      "pos": "5th*",
+      "pts": 100,
+      "series": "2026 FRECA"
+    },
+    "sammalisto": {
+      "pos": "1st*",
+      "pts": 288,
+      "series": "2026 Italian F4"
+    },
+    "cristofor": {
+      "pos": "2nd*",
+      "pts": 233,
+      "series": "2026 Italian F4"
+    },
+    "aksoy": {
+      "pos": "3rd*",
+      "pts": 214,
+      "series": "2026 Italian F4"
+    },
+    "bansal": {
+      "pos": "4th*",
+      "pts": 198,
+      "series": "2026 Italian F4"
+    },
+    "savinkov": {
+      "pos": "5th*",
+      "pts": 168,
+      "series": "2026 Italian F4"
+    }
+  }
+}

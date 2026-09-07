@@ -1,0 +1,1489 @@
+[
+  {
+    "id": "slater",
+    "name": "Freddie Slater",
+    "code": "SLA",
+    "nat": "GBR",
+    "born": "9 Aug 2008",
+    "team": "Trident",
+    "category": "F3",
+    "karting": [
+      {
+        "yr": "2020",
+        "champ": "FIA Karting World Championship",
+        "cls": "OK-Junior",
+        "result": "Champion",
+        "body": "Ricky Flynn Motorsport. Won the final at Portimão in wet conditions, aged 12."
+      },
+      {
+        "yr": "2021",
+        "champ": "FIA Karting European Championship",
+        "cls": "OK-Junior",
+        "result": "Champion",
+        "body": "A dominant, largely unchallenged title run through the Genk final."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2023,
+        "series": "Italian F4",
+        "pos": 16,
+        "points": 24,
+        "wins": 0,
+        "poles": 0,
+        "podiums": 0,
+        "team": "Van Amersfoort Racing"
+      },
+      {
+        "yr": 2024,
+        "series": "Italian F4",
+        "pos": 1,
+        "points": 383,
+        "wins": 15,
+        "poles": 11,
+        "podiums": 16,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "FRECA",
+        "pos": 1,
+        "points": 313,
+        "wins": 8,
+        "poles": 6,
+        "podiums": 12,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 3",
+        "pos": 1,
+        "points": 141,
+        "wins": 1,
+        "poles": 3,
+        "podiums": 8,
+        "team": "Trident",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2024",
+      "title": "A record-breaking Italian F4 season",
+      "body": "15 wins, 11 poles and 10 fastest laps from 20 races for Prema — the biggest single-season haul the championship had seen, surpassing the previous benchmark set by Andrea Kimi Antonelli.",
+      "stat": "15W · 11P · 10FL · 383 PTS"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Freddie_Slater_(racing_driver)",
+      "https://theracebox.com/fia-karting-world-championship-junior-slater-crowned-on-the-edge/",
+      "https://www.fia.com/news/fia-karting-danilo-albanese-and-freddie-slater-are-new-european-champions-sarno"
+    ]
+  },
+  {
+    "id": "ugochukwu",
+    "name": "Ugo Ugochukwu",
+    "code": "UGO",
+    "nat": "USA",
+    "born": "23 Apr 2007",
+    "team": "Campos Racing",
+    "category": "F3",
+    "karting": [
+      {
+        "yr": "2020",
+        "champ": "FIA Karting European Championship",
+        "cls": "OK-Junior",
+        "result": "Champion",
+        "body": "65 points, edging Arvid Lindblad by 5 — five heat-race wins including a lights-to-flag Sarno round, title sealed at Wackersdorf."
+      },
+      {
+        "yr": "2021",
+        "champ": "FIA Karting World Championship",
+        "cls": "OK (senior)",
+        "result": "Led qualifying heats",
+        "body": "Moved up to senior OK and led after the heats at Campillos (two wins, one second) before Tuukka Taponen took the world title in the final."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2022,
+        "series": "Italian F4",
+        "pos": 10,
+        "points": 84,
+        "wins": 0,
+        "podiums": 4,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2023,
+        "series": "Italian F4",
+        "pos": 2,
+        "points": 280,
+        "wins": 3,
+        "podiums": 13,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2024,
+        "series": "FREC",
+        "pos": 11,
+        "points": 76,
+        "wins": 1,
+        "podiums": 2,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "FIA Formula 3",
+        "pos": 16,
+        "points": 43,
+        "wins": 0,
+        "podiums": 2,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 3",
+        "pos": 2,
+        "points": 126,
+        "wins": 2,
+        "podiums": null,
+        "team": "Campos Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2024",
+      "title": "Macau — first American winner in 43 years",
+      "body": "A quiet FREC season masked what came next: Ugochukwu won the Macau Grand Prix outright, becoming the first American to win it since 1981.",
+      "stat": "1st · MACAU GP · 2024"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Ugo_Ugochukwu",
+      "https://tkart.it/en/news/events/fia-karting-european-championship-okj-sarno-final-ugo-ugochukwu-wins-unchallenged",
+      "https://www.kartcom.com/en/news/2021/10/31/ugochukwu-leads-the-ok-world-championship-heats/"
+    ]
+  },
+  {
+    "id": "rivera",
+    "name": "Ernesto Rivera",
+    "code": "RIV",
+    "nat": "MEX",
+    "born": "1 Dec 2008",
+    "team": "Campos Racing",
+    "category": "F3",
+    "karting": [
+      {
+        "yr": "2022",
+        "champ": "SKUSA SuperNationals",
+        "cls": "X30 Junior",
+        "result": "Champion",
+        "body": "Racing for Rolison Performance, won X30 Junior at the SuperNationals in Las Vegas — one of North America’s most competitive one-off karting events."
+      },
+      {
+        "yr": "2023",
+        "champ": "SKUSA SuperNationals",
+        "cls": "X30 Junior / KA100 Senior",
+        "result": "Champion (both)",
+        "body": "Defended his X30 Junior title and won KA100 Senior in the same week, plus 2nd in the Rotax US Trophy Senior Max standings."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2024,
+        "series": "F4 Spanish",
+        "pos": 5,
+        "points": 148,
+        "wins": 1,
+        "podiums": 2,
+        "team": "Griffin Core by Campos"
+      },
+      {
+        "yr": 2025,
+        "series": "Eurocup-3",
+        "pos": 4,
+        "points": 176,
+        "wins": 3,
+        "poles": 2,
+        "podiums": 7,
+        "team": "Campos Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 3",
+        "pos": 3,
+        "points": 76,
+        "wins": 2,
+        "podiums": 3,
+        "team": "Campos Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2026",
+      "title": "Feature-race winner at Spa",
+      "body": "Scored his maiden FIA F3 Feature Race victory at Spa-Francorchamps with a charging drive through the field — the turning point of his rookie F3 season.",
+      "stat": "FEATURE WIN · SPA · 2026"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Ernesto_Rivera_(racing_driver)",
+      "https://www.formula1.com/en/latest/article/f3-ernesto-rivera-storms-through-for-spa-feature-race-win.6XdAV15PUfpVdn1TNVfR9A"
+    ]
+  },
+  {
+    "id": "nael",
+    "name": "Théophile Naël",
+    "code": "NAE",
+    "nat": "FRA",
+    "born": "22 Jun 2007",
+    "team": "Campos Racing",
+    "category": "F3",
+    "karting": [
+      {
+        "yr": "2020",
+        "champ": "IAME Series France",
+        "cls": "X30 Junior",
+        "result": "Round winner, Le Mans",
+        "body": "Clean sweep at Le Mans — heats, semi-final and final, plus the lap record — to take the series lead."
+      },
+      {
+        "yr": "2021",
+        "champ": "IAME Euro Series",
+        "cls": "X30 Junior",
+        "result": "Vice-Champion",
+        "body": "Won the opener at Mariembourg and led most of the year; a wet-weather withdrawal at the Genk finale cost him the title. Also 3rd, IAME World Final."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2022,
+        "series": "Spanish F4",
+        "pos": 19,
+        "points": 11,
+        "wins": 0,
+        "podiums": 0,
+        "team": "Saintéloc Racing"
+      },
+      {
+        "yr": 2023,
+        "series": "Spanish F4",
+        "pos": 1,
+        "points": 314,
+        "wins": 8,
+        "poles": 5,
+        "podiums": 14,
+        "team": "Saintéloc Racing"
+      },
+      {
+        "yr": 2024,
+        "series": "FREC",
+        "pos": 9,
+        "points": 81,
+        "wins": 1,
+        "poles": 1,
+        "podiums": 1,
+        "team": "Saintéloc Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "FIA Formula 3",
+        "pos": 8,
+        "points": 72,
+        "wins": 0,
+        "podiums": 3,
+        "team": "Van Amersfoort Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 3",
+        "pos": 4,
+        "points": 75,
+        "wins": 2,
+        "poles": 3,
+        "podiums": 4,
+        "team": "Campos Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2025",
+      "title": "Pole and victory at the Macau Grand Prix",
+      "body": "A mid-table maiden F3 season ended with a statement: pole position and a feature-race win at Macau — the result that took him to Campos.",
+      "stat": "POLE · WIN · MACAU GP 2025"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Th%C3%A9ophile_Na%C3%ABl",
+      "https://www.kartmag.fr/iame-euro-series-nael-vice-champion-leveque-relegue-5e/",
+      "https://www.kartmag.fr/iame-world-final-theophile-nael-sur-le-podium-x30-junior/"
+    ]
+  },
+  {
+    "id": "badoer",
+    "name": "Brando Badoer",
+    "code": "BAD",
+    "nat": "ITA",
+    "born": "15 Sep 2006",
+    "team": "Rodin Motorsport",
+    "category": "F3",
+    "karting": [
+      {
+        "yr": "2020",
+        "champ": "WSK Super Master Series",
+        "cls": "OK-Junior",
+        "result": "3rd",
+        "body": "Kart Republic/IAME package; also contested the WSK Euro Series the same year."
+      },
+      {
+        "yr": "2021",
+        "champ": "WSK Champions Cup",
+        "cls": "OK-Junior",
+        "result": "Pole position, Adria",
+        "body": "Final karting season with Kart Republic — pole at Adria in a field that included future rival Andrea Kimi Antonelli (senior OK)."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2022,
+        "series": "Italian F4",
+        "pos": 16,
+        "points": 14,
+        "wins": 0,
+        "poles": 0,
+        "podiums": 0,
+        "team": "Van Amersfoort Racing"
+      },
+      {
+        "yr": 2023,
+        "series": "Italian F4",
+        "pos": 6,
+        "points": 165,
+        "wins": 0,
+        "poles": 1,
+        "podiums": 5,
+        "team": "Van Amersfoort Racing"
+      },
+      {
+        "yr": 2024,
+        "series": "FRECA",
+        "pos": 5,
+        "points": 174,
+        "wins": 0,
+        "poles": 1,
+        "podiums": 7,
+        "team": "Van Amersfoort Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "FIA Formula 3",
+        "pos": 25,
+        "points": 13,
+        "wins": 0,
+        "podiums": 0,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 3",
+        "pos": 5,
+        "points": 71,
+        "wins": 1,
+        "podiums": 2,
+        "team": "Rodin Motorsport",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2026",
+      "title": "Maiden F3 win in the Monaco Feature Race",
+      "body": "After a difficult rookie F3 season at Prema, won the Feature Race at the Monaco round for Rodin Motorsport — his first F3 win, on one of the calendar’s most prestigious circuits.",
+      "stat": "FEATURE WIN · MONACO · 2026"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Brando_Badoer",
+      "https://www.formula1.com/en/latest/article/f3-badoer-takes-first-win-in-monte-carlo-feature-race.20b28cP7DD18lhiel5W9ZG"
+    ]
+  },
+  {
+    "id": "tsolov",
+    "name": "Nikola Tsolov",
+    "code": "TSO",
+    "nat": "BGR",
+    "born": "21 Dec 2006",
+    "team": "Campos Racing",
+    "category": "F2",
+    "karting": [
+      {
+        "yr": "2021",
+        "champ": "CIK-FIA World Championship",
+        "cls": "OK",
+        "result": "5th",
+        "body": "Final karting season at senior OK, world-championship level, before graduating to Spanish F4 in 2022."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2022,
+        "series": "Spanish F4",
+        "pos": 1,
+        "points": 400,
+        "wins": 13,
+        "poles": 15,
+        "podiums": 18,
+        "team": "Campos Racing"
+      },
+      {
+        "yr": 2023,
+        "series": "FIA Formula 3",
+        "pos": 22,
+        "points": 6,
+        "wins": 0,
+        "podiums": 0,
+        "team": "ART Grand Prix"
+      },
+      {
+        "yr": 2024,
+        "series": "FIA Formula 3",
+        "pos": 11,
+        "points": 75,
+        "wins": 3,
+        "podiums": 3,
+        "team": "ART Grand Prix"
+      },
+      {
+        "yr": 2025,
+        "series": "FIA Formula 3",
+        "pos": 2,
+        "points": 124,
+        "wins": 2,
+        "poles": 3,
+        "podiums": 6,
+        "team": "Campos Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 2",
+        "pos": 1,
+        "points": 177,
+        "wins": 6,
+        "podiums": 8,
+        "team": "Campos Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2025",
+      "title": "First driver to five wins in an F3 season",
+      "body": "Won the Monaco feature race to become the first driver to record five victories in a single FIA Formula 3 season — a series record.",
+      "stat": "5 WINS IN ONE SEASON (RECORD)"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Nikola_Tsolov",
+      "https://www.fiaformula2.com/Standings/Driver?seasonId=183"
+    ]
+  },
+  {
+    "id": "camara",
+    "name": "Rafael Câmara",
+    "code": "CAM",
+    "nat": "BRA",
+    "born": "5 May 2005",
+    "team": "Invicta Racing",
+    "category": "F2",
+    "karting": [
+      {
+        "yr": "2021",
+        "champ": "CIK-FIA European Championship",
+        "cls": "Senior OK",
+        "result": "Vice-Champion",
+        "body": "Runner-up plus wins in the WSK Champions Cup and WSK Super Master Series, before stepping up to F4 in 2022."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2022,
+        "series": "Italian F4",
+        "pos": 3,
+        "points": 239,
+        "wins": 2,
+        "poles": 4,
+        "podiums": 10,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2023,
+        "series": "FRECA",
+        "pos": 5,
+        "points": 173,
+        "wins": 2,
+        "poles": 3,
+        "podiums": 5,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2024,
+        "series": "FRECA",
+        "pos": 1,
+        "points": 309,
+        "wins": 7,
+        "poles": 7,
+        "podiums": 12,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "FIA Formula 3",
+        "pos": 1,
+        "points": 166,
+        "wins": 4,
+        "poles": 5,
+        "podiums": 5,
+        "team": "Trident"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 2",
+        "pos": 2,
+        "points": 166,
+        "wins": 1,
+        "poles": 2,
+        "podiums": 3,
+        "team": "Invicta Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2025",
+      "title": "F3 champion in his rookie season",
+      "body": "Won the FIA Formula 3 title at the penultimate round in his rookie year with Trident — the first driver to win F3 in his debut season since it began in 2019.",
+      "stat": "F3 CHAMPION · ROOKIE YEAR"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Rafael_C%C3%A2mara",
+      "https://www.fiaformula2.com/Standings/Driver?seasonId=183"
+    ]
+  },
+  {
+    "id": "mini",
+    "name": "Gabriele Minì",
+    "code": "MIN",
+    "nat": "ITA",
+    "born": "20 Mar 2005",
+    "team": "MP Motorsport",
+    "category": "F2",
+    "karting": [
+      {
+        "yr": "2019",
+        "champ": "FIA Karting European Championship / WSK Champions Cup",
+        "cls": "OK",
+        "result": "2nd (both)",
+        "body": "Runner-up in both, and named FIA Karting Rookie of the Year, before moving to cars in 2020."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2020,
+        "series": "Italian F4",
+        "pos": 1,
+        "points": 284,
+        "wins": 4,
+        "poles": 9,
+        "podiums": 12,
+        "team": "Prema Powerteam"
+      },
+      {
+        "yr": 2021,
+        "series": "FRECA",
+        "pos": 7,
+        "points": 122,
+        "wins": 0,
+        "podiums": 4,
+        "team": "ART Grand Prix"
+      },
+      {
+        "yr": 2022,
+        "series": "FRECA",
+        "pos": 2,
+        "points": 242,
+        "wins": 3,
+        "poles": 3,
+        "podiums": 9,
+        "team": "ART Grand Prix"
+      },
+      {
+        "yr": 2023,
+        "series": "FIA Formula 3",
+        "pos": 7,
+        "points": 92,
+        "wins": 2,
+        "poles": 2,
+        "podiums": 4,
+        "team": "Hitech Pulse-Eight"
+      },
+      {
+        "yr": 2024,
+        "series": "FIA Formula 3",
+        "pos": 2,
+        "points": 130,
+        "wins": 1,
+        "poles": 1,
+        "podiums": 5,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "FIA Formula 2",
+        "pos": 13,
+        "points": 72,
+        "wins": 0,
+        "podiums": 3,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 2",
+        "pos": 3,
+        "points": 147,
+        "wins": 2,
+        "podiums": 9,
+        "team": "MP Motorsport",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2026",
+      "title": "Maiden F2 win in Miami",
+      "body": "After a difficult rookie F2 campaign, scored his first F2 victory in the Miami feature race with a late overtake — propelling him into the 2026 title fight.",
+      "stat": "1ST F2 WIN · MIAMI · 2026"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Gabriele_Min%C3%AC",
+      "https://www.fiaformula2.com/Standings/Driver?seasonId=183"
+    ]
+  },
+  {
+    "id": "dunne",
+    "name": "Alex Dunne",
+    "code": "DUN",
+    "nat": "IRL",
+    "born": "11 Nov 2005",
+    "team": "Rodin Motorsport",
+    "category": "F2",
+    "karting": [
+      {
+        "yr": "2020",
+        "champ": "CIK-FIA European Championship",
+        "cls": "OK",
+        "result": "25th",
+        "body": "Raced senior OK across the top European and World Championship series before moving into single-seaters in 2021."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2021,
+        "series": "ADAC F4",
+        "pos": 8,
+        "points": 76,
+        "wins": 0,
+        "poles": 2,
+        "podiums": 2,
+        "team": "US Racing"
+      },
+      {
+        "yr": 2022,
+        "series": "British F4",
+        "pos": 1,
+        "points": 412,
+        "wins": 11,
+        "poles": 11,
+        "podiums": 17,
+        "team": "Hitech GP"
+      },
+      {
+        "yr": 2023,
+        "series": "GB3",
+        "pos": 2,
+        "points": 466,
+        "wins": 5,
+        "poles": 1,
+        "podiums": 7,
+        "team": "Hitech GP"
+      },
+      {
+        "yr": 2024,
+        "series": "FIA Formula 3",
+        "pos": 14,
+        "points": 50,
+        "wins": 0,
+        "podiums": 2,
+        "team": "MP Motorsport"
+      },
+      {
+        "yr": 2025,
+        "series": "FIA Formula 2",
+        "pos": 5,
+        "points": 150,
+        "wins": 2,
+        "poles": 2,
+        "podiums": 8,
+        "team": "Rodin Motorsport"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 2",
+        "pos": 4,
+        "points": 118,
+        "wins": 0,
+        "podiums": 5,
+        "team": "Rodin Motorsport",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2022",
+      "title": "Record-breaking British F4 title",
+      "body": "Dominated British F4 with Hitech GP: 11 wins and 11 poles — a new record for most wins in a single British F4 season.",
+      "stat": "11W / 11P IN ONE SEASON (RECORD)"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Alex_Dunne",
+      "https://www.fiaformula2.com/Standings/Driver?seasonId=183"
+    ]
+  },
+  {
+    "id": "leon",
+    "name": "Noel León",
+    "code": "LEO",
+    "nat": "MEX",
+    "born": "21 Dec 2004",
+    "team": "Campos Racing",
+    "category": "F2",
+    "karting": [
+      {
+        "yr": "2017",
+        "champ": "Rotax Max Challenge Mexico (Noreste)",
+        "cls": "Junior",
+        "result": "3rd",
+        "body": "Final karting season before moving into NACAM F4 the same year."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2020,
+        "series": "NACAM F4",
+        "pos": 1,
+        "points": 325,
+        "wins": 7,
+        "poles": 10,
+        "podiums": 15,
+        "team": "Ram Racing"
+      },
+      {
+        "yr": 2021,
+        "series": "F4 United States",
+        "pos": 1,
+        "points": 212,
+        "wins": 2,
+        "poles": 3,
+        "podiums": 11,
+        "team": "DEForce Racing"
+      },
+      {
+        "yr": 2022,
+        "series": "FRECA",
+        "pos": 23,
+        "points": 3,
+        "wins": 0,
+        "podiums": 0,
+        "team": "Arden Motorsport"
+      },
+      {
+        "yr": 2023,
+        "series": "Euroformula Open",
+        "pos": 1,
+        "points": 394,
+        "wins": 7,
+        "poles": 5,
+        "podiums": 16,
+        "team": "Motopark"
+      },
+      {
+        "yr": 2024,
+        "series": "FIA Formula 3",
+        "pos": 10,
+        "points": 79,
+        "wins": 0,
+        "podiums": 4,
+        "team": "Van Amersfoort Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "FIA Formula 3",
+        "pos": 17,
+        "points": 36,
+        "wins": 0,
+        "podiums": 2,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FIA Formula 2",
+        "pos": 5,
+        "points": 114,
+        "wins": 2,
+        "podiums": 3,
+        "team": "Campos Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2023",
+      "title": "Dominant Euroformula Open title",
+      "body": "Won the Euroformula Open title with Motopark in a commanding campaign — seven wins and a huge points margin, his single-seater breakthrough.",
+      "stat": "CHAMPION · 7 WINS · +87 PTS MARGIN"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Noel_Le%C3%B3n",
+      "https://www.fiaformula2.com/Standings/Driver?seasonId=183"
+    ]
+  },
+  {
+    "id": "olivieri",
+    "name": "Emanuele Olivieri",
+    "code": "OLI",
+    "nat": "ITA",
+    "born": "2 Aug 2008",
+    "team": "R-ace GP",
+    "category": "FRECA",
+    "karting": [
+      {
+        "yr": "2022",
+        "champ": "WSK Final Cup",
+        "cls": "OK-Junior",
+        "result": "Champion",
+        "body": "Won with IPK; results elsewhere in the season were more inconsistent."
+      },
+      {
+        "yr": "2023",
+        "champ": "South Garda Winter Cup / WSK Champions Cup",
+        "cls": "OK",
+        "result": "5th / 8th",
+        "body": "Final karting season in OK for IPK/Birel ART; also attended Ferrari Driver Academy and Richard Mille Young Talent Academy scouting camps."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2024,
+        "series": "Italian F4",
+        "pos": 17,
+        "points": 11,
+        "wins": 0,
+        "team": "AKM Motorsport"
+      },
+      {
+        "yr": 2025,
+        "series": "Italian F4",
+        "pos": 7,
+        "points": 140,
+        "wins": 0,
+        "poles": 2,
+        "podiums": 4,
+        "team": "R-ace GP"
+      },
+      {
+        "yr": 2026,
+        "series": "FRECA",
+        "pos": 1,
+        "points": 180,
+        "poles": 1,
+        "team": "R-ace GP",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2025",
+      "title": "2025 F4 Middle East Champion",
+      "body": "Won the F4 Middle East title with R-ace GP in a dominant campaign — his first major title — before stepping up to FRECA as championship leader.",
+      "stat": "CHAMPION · 339 PTS · 6W · 5P (F4 ME 2025)"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Emanuele_Olivieri",
+      "https://en.wikipedia.org/wiki/2026_Formula_Regional_European_Championship"
+    ]
+  },
+  {
+    "id": "wheldon",
+    "name": "Sebastian Wheldon",
+    "code": "WHE",
+    "nat": "USA",
+    "born": "1 Feb 2009",
+    "team": "MP Motorsport",
+    "category": "FRECA",
+    "karting": [
+      {
+        "yr": "2021",
+        "champ": "SKUSA SuperNationals",
+        "cls": "X30 Junior",
+        "result": "7th",
+        "body": "One of the top US karting events."
+      },
+      {
+        "yr": "2022",
+        "champ": "SKUSA SuperNationals",
+        "cls": "X30 Junior",
+        "result": "10th",
+        "body": "Final full karting season before moving into cars via Skip Barber in 2023."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2023,
+        "series": "Skip Barber Formula Race Series",
+        "pos": 1,
+        "points": 456,
+        "wins": 6,
+        "poles": 10,
+        "podiums": 13,
+        "team": "Skip Barber Racing School"
+      },
+      {
+        "yr": 2024,
+        "series": "USF Juniors",
+        "pos": 3,
+        "points": 308,
+        "wins": 4,
+        "podiums": 9,
+        "team": "Victory Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "Italian F4",
+        "pos": 3,
+        "points": 256,
+        "wins": 6,
+        "podiums": 9,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FRECA",
+        "pos": 2,
+        "points": 177,
+        "wins": 2,
+        "podiums": 5,
+        "team": "MP Motorsport",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2023",
+      "title": "Skip Barber champion, car-racing debut",
+      "body": "Won the Skip Barber title in his very first year in cars. Son of the late two-time Indy 500 winner Dan Wheldon, and part of Andretti Global’s development pathway before his move to Europe.",
+      "stat": "CHAMPION · 6W · 10P · 13POD IN 16 RACES"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Sebastian_Wheldon",
+      "https://en.wikipedia.org/wiki/2026_Formula_Regional_European_Championship"
+    ]
+  },
+  {
+    "id": "nakamuraberta",
+    "name": "Kean Nakamura-Berta",
+    "code": "NAK",
+    "nat": "GBR",
+    "born": "12 Nov 2007",
+    "team": "Prema Racing",
+    "category": "FRECA",
+    "karting": [
+      {
+        "yr": "2022",
+        "champ": "CIK-FIA European Championship",
+        "cls": "OK",
+        "result": "Champion",
+        "body": "Won a closely contested (and controversial) European title over his own teammate."
+      },
+      {
+        "yr": "2023",
+        "champ": "CIK-FIA World Championship (OK) / KZ2",
+        "cls": "OK & KZ2",
+        "result": "3rd (OK Worlds)",
+        "body": "Split his final karting year between OK and the faster-geared KZ2 class before moving to F4."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2023,
+        "series": "F4 South East Asia",
+        "pos": 6,
+        "points": 48,
+        "poles": 2,
+        "podiums": 1,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2024,
+        "series": "Italian F4",
+        "pos": 6,
+        "points": 170,
+        "wins": 1,
+        "podiums": 5,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "Italian F4",
+        "pos": 1,
+        "points": 342,
+        "wins": 9,
+        "poles": 9,
+        "podiums": 17,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FRECA",
+        "pos": 3,
+        "points": 172,
+        "wins": 1,
+        "poles": 3,
+        "team": "Prema Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2025",
+      "title": "Dominant Italian F4 title",
+      "body": "Swept to the title with Prema, winning 9 of the season’s races and taking 9 poles — one of the most dominant junior-formula seasons of the year — shortly before joining the Williams Driver Academy.",
+      "stat": "CHAMPION · 342 PTS · 9W · 9P · 17 POD"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Kean_Nakamura-Berta",
+      "https://en.wikipedia.org/wiki/2026_Formula_Regional_European_Championship"
+    ]
+  },
+  {
+    "id": "aldhaheri",
+    "name": "Rashid Al Dhaheri",
+    "code": "ALD",
+    "nat": "ARE",
+    "born": "8 Apr 2008",
+    "team": "R-ace GP",
+    "category": "FRECA",
+    "karting": [
+      {
+        "yr": "2021",
+        "champ": "WSK Super Master Series",
+        "cls": "OK-Junior",
+        "result": "Champion",
+        "body": "Won along with strong WSK Champions Cup results — a rapid rise on the European karting scene."
+      },
+      {
+        "yr": "2022",
+        "champ": "WSK Super Master Series / Italian ACI Championship",
+        "cls": "OK",
+        "result": "16th / 11th",
+        "body": "Stepped up to OK for his final karting season, less standout, before moving into F4 in 2023."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2023,
+        "series": "Italian F4",
+        "pos": 10,
+        "points": 68,
+        "wins": 0,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2024,
+        "series": "Italian F4",
+        "pos": 10,
+        "points": 95,
+        "podiums": 1,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2025,
+        "series": "FRECA",
+        "pos": 8,
+        "points": 105,
+        "poles": 1,
+        "podiums": 3,
+        "team": "Prema Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FRECA",
+        "pos": 4,
+        "points": 159,
+        "wins": 3,
+        "poles": 1,
+        "podiums": 7,
+        "team": "R-ace GP",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2026",
+      "title": "First Emirati driver to lead an FIA championship",
+      "body": "Made history in 2026, per multiple reports, as the first Emirati driver to lead an FIA-sanctioned championship for a sustained stretch, as a Mercedes Junior Team member since March 2025.",
+      "stat": "LED FRECA STANDINGS · MULTIPLE ROUNDS"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Rashid_Al_Dhaheri",
+      "https://en.wikipedia.org/wiki/2026_Formula_Regional_European_Championship"
+    ]
+  },
+  {
+    "id": "francot",
+    "name": "Reno Francot",
+    "code": "FRA",
+    "nat": "NLD",
+    "born": "2 Nov 2007",
+    "team": "CL Motorsport",
+    "category": "FRECA",
+    "karting": [
+      {
+        "yr": "2021",
+        "champ": "Karting Academy Trophy",
+        "cls": "OK-Junior",
+        "result": "4th",
+        "body": "Raced internationally for Exprit and Tony Kart racing teams."
+      },
+      {
+        "yr": "2022",
+        "champ": "WSK Super Master Series / Champions of the Future",
+        "cls": "OK-Junior",
+        "result": "Final karting season",
+        "body": "Drove for Birel ART Racing across the main international OK-Junior series before moving to cars in 2023."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2023,
+        "series": "F4 CEZ",
+        "pos": 2,
+        "points": 261,
+        "wins": 3,
+        "podiums": 14,
+        "team": "Jenzer Motorsport"
+      },
+      {
+        "yr": 2024,
+        "series": "Italian F4",
+        "pos": 14,
+        "points": 34,
+        "team": "Jenzer Motorsport"
+      },
+      {
+        "yr": 2025,
+        "series": "F4 Middle East",
+        "pos": 5,
+        "wins": 1,
+        "podiums": 1,
+        "team": "PHM Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "FRECA",
+        "pos": 5,
+        "points": 100,
+        "wins": 1,
+        "podiums": 3,
+        "team": "CL Motorsport",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2026",
+      "title": "Maiden FRECA win, for driver and team",
+      "body": "Scored his and CL Motorsport’s first-ever FRECA victory in a chaotic final race of the Red Bull Ring triple-header — the breakthrough that propelled him into the title fight.",
+      "stat": "MAIDEN WIN · RED BULL RING · 2026"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Reno_Francot",
+      "https://en.wikipedia.org/wiki/2026_Formula_Regional_European_Championship"
+    ]
+  },
+  {
+    "id": "sammalisto",
+    "name": "Luka Sammalisto",
+    "code": "SAM",
+    "nat": "FIN",
+    "born": "25 Nov 2007",
+    "team": "US Racing",
+    "category": "F4",
+    "karting": [
+      {
+        "yr": "2022",
+        "champ": "Finnish Karting Championship",
+        "cls": "OK",
+        "result": "Champion",
+        "body": "National title as a Kart Republic factory driver (2021–23), capping a karting career that began at age seven."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2024,
+        "series": "Italian F4",
+        "pos": 18,
+        "points": 11,
+        "team": "R-ace GP"
+      },
+      {
+        "yr": 2025,
+        "series": "Italian F4",
+        "pos": 8,
+        "points": 132,
+        "podiums": 3,
+        "team": "US Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "Italian F4",
+        "pos": 1,
+        "points": 288,
+        "wins": 4,
+        "poles": 2,
+        "podiums": 4,
+        "team": "US Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2026",
+      "title": "Championship-leading breakout",
+      "body": "After two modest rookie/sophomore Italian F4 campaigns, surged to the points lead in 2026 with US Racing — four wins, two poles through five rounds.",
+      "stat": "288 PTS · 4W · 2P · P1 (5 RDS)"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Luka_Sammalisto",
+      "https://en.wikipedia.org/wiki/2026_Italian_F4_Championship"
+    ]
+  },
+  {
+    "id": "cristofor",
+    "name": "David Cosma Cristofor",
+    "code": "COS",
+    "nat": "ROU",
+    "born": "5 Feb 2009",
+    "team": "Prema Racing",
+    "category": "F4",
+    "karting": [
+      {
+        "yr": "2022",
+        "champ": "Romanian Karting Masters",
+        "cls": "Junior ROK",
+        "result": "2nd",
+        "body": "Runner-up, part of a record that also included multiple Mini-class Romanian titles in 2019–20."
+      },
+      {
+        "yr": "2023",
+        "champ": "Andrea Margutti Trophy",
+        "cls": "OK-Junior",
+        "result": "Winner",
+        "body": "Won the prestigious Trophy plus a 4th at a karting World Championship event — the strongest year of his junior karting career."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2025,
+        "series": "Italian F4",
+        "pos": 26,
+        "points": 7,
+        "poles": 2,
+        "team": "PHM Racing"
+      },
+      {
+        "yr": 2026,
+        "series": "Italian F4",
+        "pos": 2,
+        "points": 233,
+        "poles": 1,
+        "podiums": 6,
+        "team": "Prema Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2026",
+      "title": "Title-contending sophomore season",
+      "body": "Moved to Prema for his second full Italian F4 season and became a consistent podium threat — six podiums and a pole so far.",
+      "stat": "233 PTS · 6 POD · 1P · P2 (5 RDS)"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/David_Cosma_Cristofor",
+      "https://en.wikipedia.org/wiki/2026_Italian_F4_Championship"
+    ]
+  },
+  {
+    "id": "aksoy",
+    "name": "Alp Aksoy",
+    "code": "AKS",
+    "nat": "TUR",
+    "born": "10 Oct 2010",
+    "team": "Prema Racing",
+    "category": "F4",
+    "karting": [
+      {
+        "yr": "2023",
+        "champ": "Trofeo Delle Industrie",
+        "cls": "OK-Junior",
+        "result": "2nd",
+        "body": "Runner-up, part of a karting career that began around age five."
+      },
+      {
+        "yr": "2024",
+        "champ": "WSK Euro Series",
+        "cls": "OK",
+        "result": "8th",
+        "body": "Stepped up to OK for his final karting season before moving into cars."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2025,
+        "series": "Formula Trophy (UAE)",
+        "pos": 1,
+        "points": 105,
+        "wins": 2,
+        "poles": 3,
+        "podiums": 4,
+        "team": "Mumbai Falcons"
+      },
+      {
+        "yr": 2026,
+        "series": "Italian F4",
+        "pos": 3,
+        "points": 214,
+        "wins": 2,
+        "poles": 2,
+        "podiums": 4,
+        "team": "Prema Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2025",
+      "title": "Formula Trophy champion, single-seater debut",
+      "body": "Won the Formula Trophy title in his first full single-seater season with Mumbai Falcons — form that earned him a Prema Formula 4 seat for 2026.",
+      "stat": "CHAMPION · 105 PTS · 2W (FORMULA TROPHY 2025)"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Alp_Aksoy",
+      "https://en.wikipedia.org/wiki/2026_Italian_F4_Championship"
+    ]
+  },
+  {
+    "id": "bansal",
+    "name": "Ary Bansal",
+    "code": "BAN",
+    "nat": "IND",
+    "born": "8 Nov 2009",
+    "team": "US Racing",
+    "category": "F4",
+    "karting": [
+      {
+        "yr": "2022",
+        "champ": "Champions of the Future / CIK-FIA European & World Championships / WSK Euro Series",
+        "cls": "OK-Junior",
+        "result": "Lower midfield",
+        "body": "Contested a full slate of top European OK-Junior championships against the deepest fields, out of Bengaluru, India."
+      },
+      {
+        "yr": "2023",
+        "champ": "IAME Asia Final",
+        "cls": "X30 Junior",
+        "result": "2nd",
+        "body": "Runner-up — one of his strongest junior karting results — before moving into single-seaters."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2024,
+        "series": "F4 Spanish / Formula Trophy UAE",
+        "pos": 14,
+        "points": 14,
+        "team": "Rodin Motorsport"
+      },
+      {
+        "yr": 2025,
+        "series": "GB4",
+        "pos": 1,
+        "points": 402,
+        "wins": 4,
+        "poles": 2,
+        "podiums": 11,
+        "team": "Elite Motorsport"
+      },
+      {
+        "yr": 2026,
+        "series": "Italian F4",
+        "pos": 4,
+        "points": 198,
+        "podiums": 3,
+        "team": "US Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2025",
+      "title": "GB4 champion",
+      "body": "Won the GB4 title with Elite Motorsport, sealing it by eleven points in the final race after four wins and eleven podiums — his breakout result before a full-season move to Italian F4.",
+      "stat": "CHAMPION · 402 PTS · 4W · 11 POD"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/Ary_Bansal",
+      "https://en.wikipedia.org/wiki/2026_Italian_F4_Championship"
+    ]
+  },
+  {
+    "id": "savinkov",
+    "name": "Oleksandr Savinkov",
+    "code": "SAV",
+    "nat": "UKR",
+    "born": "—",
+    "team": "US Racing",
+    "category": "F4",
+    "karting": [
+      {
+        "yr": "—",
+        "champ": "Karting background not verifiable from public sources",
+        "cls": "—",
+        "result": "—",
+        "body": "Team materials reference \"a promising karting career\" but no source gives verifiable class-by-class results, championships or years — flagged here rather than guessed."
+      }
+    ],
+    "headline": [
+      {
+        "yr": 2024,
+        "series": "Italian F4",
+        "pos": null,
+        "points": 0,
+        "team": "AKM Motorsport"
+      },
+      {
+        "yr": 2025,
+        "series": "E4 Championship",
+        "pos": 22,
+        "team": "R-ace GP"
+      },
+      {
+        "yr": 2026,
+        "series": "Italian F4",
+        "pos": 5,
+        "points": 168,
+        "podiums": 3,
+        "team": "US Racing",
+        "inprogress": true
+      }
+    ],
+    "standout": {
+      "yr": "2026",
+      "title": "Best season yet, third year in Italian F4",
+      "body": "After scoring almost nothing in 2024 and a limited 2025, has stepped up markedly with US Racing in 2026, reaching the top five with three podiums.",
+      "stat": "168 PTS · 3 POD · P5 — UP FROM 27TH IN 2025"
+    },
+    "sources": [
+      "https://en.wikipedia.org/wiki/2026_Italian_F4_Championship",
+      "https://www.acisport.it/en/F4/news/2025/125946/oleksandr-savinkov-and-noah-killion-announced-by-us-racing-for-2026"
+    ]
+  }
+]
