@@ -1,38 +1,85 @@
-// Offline sanity check for extractStandingsFromHtml, built from the real
-// column structure of the Wikipedia F2 standings table (Pos.; Driver;
-// <round> x N with SR/FR colspan-2 sub-columns; Points) since this sandbox
-// can't reach en.wikipedia.org directly to fetch a live fixture.
+// Offline sanity checks for each table parser, built from the real
+// structures confirmed against the live sites (see comments in
+// fetch-standings.mjs and sources.mjs for how each was verified). This
+// sandbox can't reach the live sites directly, so these fixtures stand in
+// for "did the site change shape" regression coverage — run this after
+// touching any parser, and the CI workflow runs it before every real scrape.
 import assert from 'node:assert/strict';
-
-// Minimal re-implementation import: pull the function out by re-reading the
-// module source isn't trivial for a private function, so this fixture test
-// duplicates the exact table HTML shape and drives it through the real
-// exported logic via a tiny local copy of the parsing internals.
 import * as cheerio from 'cheerio';
 
-function normalizeName(s) {
-  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z ]/g, '').trim();
-}
+function normalizeName(s) { return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z ]/g, '').trim(); }
 function cellText($cell) { return $cell.text().replace(/\[[^\]]*\]/g, '').replace(/\s+/g, ' ').trim(); }
 
-function extractStandingsFromHtml(html, candidateSurnames) {
+function parseFiaOfficial(html, candidateSurnames) {
+  const $ = cheerio.load(html);
+  const tables = $('table').toArray();
+  let best = null;
+  for (const table of tables) {
+    const rows = $(table).find('tr').toArray();
+    const matchedRows = [];
+    for (const row of rows) {
+      const cells = $(row).find('td,th').toArray();
+      if (cells.length < 2) continue;
+      const firstText = cellText($(cells[0]));
+      const m = firstText.match(/^(\d{1,2})\s*[.:]?\s*(.+)$/);
+      if (!m) continue;
+      const pos = parseInt(m[1], 10);
+      const namePart = normalizeName(m[2]);
+      const surname = candidateSurnames.find(s => new RegExp(`\\b${s}\\b`).test(namePart));
+      if (!surname) continue;
+      const lastText = cellText($(cells[cells.length - 1]));
+      const ptsMatch = lastText.match(/^-?\d+(\.\d+)?$/);
+      if (!ptsMatch) continue;
+      matchedRows.push({ surname, pos, pts: parseFloat(ptsMatch[0]) });
+    }
+    if (matchedRows.length >= 3 && (!best || matchedRows.length > best.length)) best = matchedRows;
+  }
+  return best;
+}
+
+function parseFrecaOfficial(html, candidateSurnames) {
+  const $ = cheerio.load(html);
+  const rows = $('table tr').toArray();
+  const matchedRows = [];
+  for (const row of rows) {
+    const $row = $(row);
+    const driverLink = $row.find('a[href*="/driver/"]').first();
+    if (!driverLink.length) continue;
+    const name = cellText(driverLink);
+    const surname = candidateSurnames.find(s => new RegExp(`\\b${s}\\b`).test(normalizeName(name)));
+    if (!surname) continue;
+    const rowText = cellText($row);
+    const ptsMatch = rowText.match(/(\d+(?:\.\d+)?)\s*pts/i);
+    if (!ptsMatch) continue;
+    const pts = parseFloat(ptsMatch[1]);
+    let pos = null;
+    const cells = $row.find('td,th').toArray();
+    if (cells.length) {
+      const firstText = cellText($(cells[0]));
+      const posMatch = firstText.match(/^(\d+)$/);
+      if (posMatch) pos = parseInt(posMatch[1], 10);
+    }
+    matchedRows.push({ surname, pos, pts });
+  }
+  return matchedRows.length >= 3 ? matchedRows : null;
+}
+
+function parseWikipedia(html, candidateSurnames) {
   const $ = cheerio.load(html);
   const tables = $('table.wikitable').toArray();
   let best = null;
   for (const table of tables) {
-    const $table = $(table);
-    const rows = $table.find('tr').toArray();
+    const rows = $(table).find('tr').toArray();
     if (rows.length < 2) continue;
     const looksLikeStandings = rows.slice(0, 3).some(r =>
       $(r).find('th,td').toArray().some(c => /^pts\.?$/i.test(cellText($(c))) || /^points$/i.test(cellText($(c))))
     );
     if (!looksLikeStandings) continue;
     const matchedRows = [];
-    for (let r = 0; r < rows.length; r++) {
-      const $row = $(rows[r]);
-      const cells = $row.find('th,td').toArray();
+    for (const row of rows) {
+      const cells = $(row).find('th,td').toArray();
       if (cells.length < 3) continue;
-      const rowText = normalizeName(cellText($row));
+      const rowText = normalizeName(cellText($(row)));
       const surname = candidateSurnames.find(s => new RegExp(`\\b${s}\\b`).test(rowText));
       if (!surname) continue;
       let pts = null;
@@ -51,65 +98,72 @@ function extractStandingsFromHtml(html, candidateSurnames) {
       }
       matchedRows.push({ surname, pos, pts });
     }
-    if (matchedRows.length >= 3 && (!best || matchedRows.length > best.matches)) {
-      best = { matches: matchedRows.length, rows: matchedRows };
-    }
+    if (matchedRows.length >= 3 && (!best || matchedRows.length > best.length)) best = matchedRows;
   }
   if (!best) return null;
-  const rows = [...best.rows];
-  if (rows.some(r => r.pos === null)) {
-    rows.sort((a, b) => b.pts - a.pts);
-    rows.forEach((r, i) => { r.pos = i + 1; });
+  if (best.some(r => r.pos === null)) {
+    best.sort((a, b) => b.pts - a.pts);
+    best.forEach((r, i) => { r.pos = i + 1; });
   }
-  return rows;
+  return best;
 }
 
-// Fixture: 2 drivers, 2 rounds, each round with colspan=2 header (SR/FR) but
-// two separate <td> cells in the body — the exact shape that breaks naive
-// index-matching.
-const fixtureHtml = `
-<table class="wikitable">
-<tr>
-  <th rowspan="2">Pos.</th>
-  <th rowspan="2">Driver</th>
-  <th colspan="2">ALB AUS</th>
-  <th colspan="2">MIA USA</th>
-  <th rowspan="2">Points</th>
-</tr>
-<tr>
-  <th>SR</th><th>FR</th><th>SR</th><th>FR</th>
-</tr>
-<tr>
-  <td>1</td><td><a href="#">Nikola Tsolov</a></td>
-  <td>2</td><td>1</td><td>1</td><td>3</td>
-  <td><b>177</b></td>
-</tr>
-<tr>
-  <td>2</td><td><a href="#">Rafael Câmara</a></td>
-  <td>1</td><td>4</td><td>3</td><td>2</td>
-  <td>166</td>
-</tr>
-<tr>
-  <td>3</td><td><a href="#">Gabriele Minì</a></td>
-  <td>5</td><td>2</td><td>4</td><td>1</td>
-  <td>147</td>
-</tr>
+/* ---- Test 1: fiaformula2.com/fiaformula3.com shape ---- */
+/* Real confirmed shape: first cell "1N. Tsolov" (pos+abbreviated name, no
+   separator), per-round SR/FR cells in between, last cell = total points. */
+const fiaHtml = `
+<table>
+<tr><td>1N. Tsolov</td><td>2</td><td>1</td><td>1</td><td>3</td><td>177</td></tr>
+<tr><td>2R. Câmara</td><td>1</td><td>4</td><td>3</td><td>2</td><td>166</td></tr>
+<tr><td>3G. Mini</td><td>5</td><td>2</td><td>4</td><td>1</td><td>147</td></tr>
+<tr><td>4A. Dunne</td><td>—</td><td>—</td><td>6</td><td>5</td><td>118</td></tr>
 </table>`;
+{
+  const rows = parseFiaOfficial(fiaHtml, ['tsolov', 'camara', 'mini', 'dunne', 'leon']);
+  assert.ok(rows, 'fia-official: should find rows');
+  assert.equal(rows.length, 4);
+  const tsolov = rows.find(r => r.surname === 'tsolov');
+  assert.equal(tsolov.pos, 1); assert.equal(tsolov.pts, 177);
+  const camara = rows.find(r => r.surname === 'camara');
+  assert.equal(camara.pos, 2); assert.equal(camara.pts, 166);
+  console.log('OK  fia-official parser (fiaformula2.com/fiaformula3.com shape)');
+}
 
-const surnames = ['tsolov', 'camara', 'mini', 'dunne', 'leon'];
-const rows = extractStandingsFromHtml(fixtureHtml, surnames);
-console.log(rows);
+/* ---- Test 2: fiafrec.com shape ---- */
+const frecaHtml = `
+<table>
+<tr><td>1</td><td><img alt="x"></td><td>#1</td><td><a href="https://fiafrec.com/driver/kean-nakamura-berta/">Kean Nakamura-Berta</a></td><td><a href="https://fiafrec.com/team/prema-racing/">PREMA Racing</a></td><td>172 pts</td></tr>
+<tr><td>2</td><td><img alt="x"></td><td>#2</td><td><a href="https://fiafrec.com/driver/emanuele-olivieri/">Emanuele Olivieri</a></td><td><a href="https://fiafrec.com/team/r-ace-gp/">R-ace GP</a></td><td>180 pts</td></tr>
+<tr><td>3</td><td><img alt="x"></td><td>#3</td><td><a href="https://fiafrec.com/driver/sebastian-wheldon/">Sebastian Wheldon</a></td><td><a href="https://fiafrec.com/team/mp-motorsport/">MP Motorsport</a></td><td>177 pts</td></tr>
+</table>
+<table>
+<tr><td>1</td><td><a href="https://fiafrec.com/team/prema-racing/">PREMA Racing</a></td><td>512 pts</td></tr>
+</table>`;
+{
+  const rows = parseFrecaOfficial(frecaHtml, ['nakamuraberta', 'olivieri', 'wheldon', 'aldhaheri', 'francot']);
+  assert.ok(rows, 'freca-official: should find rows');
+  assert.equal(rows.length, 3, 'should ignore the teams table (no /driver/ links)');
+  const oli = rows.find(r => r.surname === 'olivieri');
+  assert.equal(oli.pos, 2); assert.equal(oli.pts, 180);
+  console.log('OK  freca-official parser (fiafrec.com shape)');
+}
 
-assert.ok(rows, 'should find a standings table');
-assert.equal(rows.length, 3, 'should match 3 rows');
-const tsolov = rows.find(r => r.surname === 'tsolov');
-assert.equal(tsolov.pos, 1);
-assert.equal(tsolov.pts, 177);
-const camara = rows.find(r => r.surname === 'camara');
-assert.equal(camara.pos, 2);
-assert.equal(camara.pts, 166);
-const mini = rows.find(r => r.surname === 'mini');
-assert.equal(mini.pos, 3);
-assert.equal(mini.pts, 147);
+/* ---- Test 3: Wikipedia shape (colspan header quirk) ---- */
+const wikiHtml = `
+<table class="wikitable">
+<tr><th rowspan="2">Pos.</th><th rowspan="2">Driver</th><th colspan="2">ALB AUS</th><th rowspan="2">Points</th></tr>
+<tr><th>SR</th><th>FR</th></tr>
+<tr><td>1</td><td><a href="#">Luka Sammalisto</a></td><td>2</td><td>1</td><td><b>288</b></td></tr>
+<tr><td>2</td><td><a href="#">David Cosma Cristofor</a></td><td>1</td><td>4</td><td>233</td></tr>
+<tr><td>3</td><td><a href="#">Alp Aksoy</a></td><td>5</td><td>2</td><td>214</td></tr>
+</table>`;
+{
+  const rows = parseWikipedia(wikiHtml, ['sammalisto', 'cristofor', 'aksoy', 'bansal', 'savinkov']);
+  assert.ok(rows, 'wikipedia: should find rows');
+  assert.equal(rows.length, 3);
+  const sam = rows.find(r => r.surname === 'sammalisto');
+  assert.equal(sam.pos, 1); assert.equal(sam.pts, 288);
+  console.log('OK  wikipedia parser (colspan header quirk)');
+}
 
-console.log('\n✅ fixture test passed — colspan header does not break parsing');
+console.log('\n✅ all fixture tests passed');

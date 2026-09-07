@@ -46,6 +46,19 @@
   .statusbar button{font:inherit;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.03em;background:var(--surface-2);border:1px solid var(--hairline);color:var(--ink-1);padding:6px 12px;border-radius:100px;cursor:pointer;white-space:nowrap;}
   .statusbar button:hover{background:var(--surface-3);}
   .statusbar button:disabled{opacity:.6;cursor:default;}
+
+  .spotlight{background:var(--surface-1);border:1px solid var(--hairline);border-left:4px solid var(--spot);border-radius:10px;box-shadow:var(--shadow);padding:22px 24px;display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;}
+  @media (max-width:760px){.spotlight{grid-template-columns:1fr;}}
+  .spotlight .sp-badge{width:52px;height:52px;border-radius:10px;background:var(--spot-soft);color:var(--spot);display:flex;align-items:center;justify-content:center;font-family:'Oswald';font-weight:700;font-size:20px;border:1px solid var(--spot);flex:none;}
+  .spotlight .sp-week{font-family:'IBM Plex Mono';font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--spot);}
+  .spotlight h3{font-size:19px;text-transform:none;letter-spacing:0;margin-top:4px;}
+  .spotlight .sp-meta{font-size:12px;color:var(--ink-3);margin-top:2px;font-family:'IBM Plex Mono';}
+  .spotlight p{font-size:13px;color:var(--ink-2);line-height:1.65;margin:10px 0 0;max-width:70ch;}
+  .spotlight .sp-stat{font-family:'IBM Plex Mono';font-size:16px;color:var(--ink-1);text-align:right;white-space:nowrap;}
+  .spotlight .sp-statn{font-size:10px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;display:block;margin-top:2px;text-align:right;}
+  :root{--spot:#b9862a;--spot-soft:#b9862a1a;}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--spot:#e0a94d;--spot-soft:#e0a94d26;}}
+  :root[data-theme="dark"]{--spot:#e0a94d;--spot-soft:#e0a94d26;}
   header .lede b{color:var(--ink-1);font-weight:600;}
 
   section{margin-bottom:52px;}
@@ -173,6 +186,16 @@
   <section>
     <div class="shead">
       <div>
+        <h2>Karting Spotlight</h2>
+        <div class="sub">One standout drive from the go-kart world's latest race weekend — a judgment call, not a stat pull, refreshed weekly.</div>
+      </div>
+    </div>
+    <div id="spotlightBox"></div>
+  </section>
+
+  <section>
+    <div class="shead">
+      <div>
         <h2>Choose Drivers</h2>
         <div class="sub">Tap up to three. Picking a fourth swaps out your oldest pick.</div>
       </div>
@@ -266,15 +289,18 @@
 /* ======================================================================= */
 let DRIVERS = [];
 let STANDINGS = { updated: null, source: null, drivers: {} };
+let SPOTLIGHT = null;
 
 async function loadData(bypassCache){
   const bust = bypassCache ? ("?t=" + Date.now()) : "";
-  const [driversRes, standingsRes] = await Promise.all([
+  const [driversRes, standingsRes, spotlightRes] = await Promise.all([
     fetch("./data/drivers.json" + bust),
     fetch("./data/standings.json" + bust),
+    fetch("./data/karting-spotlight.json" + bust).catch(()=>null),
   ]);
   const driversJson = await driversRes.json();
   const standingsJson = await standingsRes.json();
+  try{ SPOTLIGHT = spotlightRes ? await spotlightRes.json() : null; }catch(e){ SPOTLIGHT = null; }
   STANDINGS = standingsJson;
   DRIVERS = driversJson.map(d => ({
     ...d,
@@ -596,6 +622,10 @@ function renderSources(){
       ul.appendChild(li);
     });
   });
+  if(SPOTLIGHT && SPOTLIGHT.source){
+    const li = el('li', null, `<a href="${SPOTLIGHT.source}" target="_blank" rel="noopener">Karting spotlight (${SPOTLIGHT.driver}) — ${new URL(SPOTLIGHT.source).hostname.replace('www.','')}</a>`);
+    ul.appendChild(li);
+  }
   box.appendChild(ul);
 }
 
@@ -627,9 +657,34 @@ function renderStatusBar(){
   $('#refreshBtn').addEventListener('click', async ()=>{
     const btn = $('#refreshBtn');
     btn.disabled = true; btn.textContent = 'Reloading…';
-    try{ await loadData(true); renderStatusBar(); renderAll(); }
+    try{ await loadData(true); renderStatusBar(); renderAll(); renderSpotlight(); }
     finally{ btn.disabled = false; }
   });
+}
+
+/* ============================= KARTING SPOTLIGHT ============================= */
+function renderSpotlight(){
+  const box = $('#spotlightBox');
+  if(!box) return;
+  if(!SPOTLIGHT){
+    box.innerHTML = `<div class="empty-state">No spotlight pick loaded yet — see README for how the weekly pick gets added.</div>`;
+    return;
+  }
+  const weekLabel = (()=>{ try{ return new Date(SPOTLIGHT.weekOf).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}); }catch(e){ return SPOTLIGHT.weekOf; } })();
+  box.innerHTML = `
+    <div class="spotlight">
+      <div class="sp-badge">${(SPOTLIGHT.nat||'—').slice(0,3).toUpperCase()}</div>
+      <div>
+        <div class="sp-week">Week of ${weekLabel} · ${SPOTLIGHT.class||'Karting'}</div>
+        <h3>${SPOTLIGHT.driver} — ${SPOTLIGHT.event}</h3>
+        <div class="sp-meta">${SPOTLIGHT.result}</div>
+        <p>${SPOTLIGHT.whyItMattered}</p>
+      </div>
+      <div>
+        <div class="sp-stat">${SPOTLIGHT.stat}</div>
+        <span class="sp-statn">picked ${SPOTLIGHT.compiledAt||''}</span>
+      </div>
+    </div>`;
 }
 
 async function boot(){
@@ -644,6 +699,7 @@ async function boot(){
   }
   renderStatusBar();
   renderAll();
+  renderSpotlight();
   renderSources();
 }
 boot();

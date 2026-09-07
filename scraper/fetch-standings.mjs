@@ -1,23 +1,15 @@
-// Fetches current drivers'-championship standings for each tracked series from
-// Wikipedia and merges them into ../data/standings.json.
+// Fetches current drivers'-championship standings for each tracked series,
+// preferring each series' own official site, and merges the result into
+// ../data/standings.json.
 //
-// Why Wikipedia and not the official series sites: the official standings
-// pages (fiaformula2.com etc.) render their tables client-side from an
-// internal API that isn't public/stable enough to depend on here, and
-// scraping a commercial site's markup is exactly the kind of thing that
-// breaks silently. Wikipedia's season-standings tables are community
-// maintained, usually updated within a day or two of a race weekend, openly
-// licensed, and have a fairly consistent table shape across seasons/series.
-// Trade-off: it can lag official live timing by up to a day or two, and this
-// script's table-parsing is heuristic, not a real API contract — see the
-// README for what to do if a source page's layout changes and this starts
-// coming back empty for a series.
+// Each source in sources.mjs declares a `type` (which parser below handles
+// its page) and a `wikiFallback` (a Wikipedia page to retry against if the
+// primary source comes back empty/unparseable — a redesign, a network
+// hiccup, or new bot-detection shouldn't silently freeze a whole category).
 //
 // This script updates ONLY: position, points, and the "series" label for
 // each driver's *current* season. It does not update wins/poles/podiums
-// breakdowns, karting history, or anything else in data/drivers.json —
-// those are refreshed by hand periodically (they change far less often and
-// aren't reliably table-shaped on Wikipedia).
+// breakdowns, karting history, or anything else in data/drivers.json.
 
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -29,7 +21,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DRIVERS_PATH = path.join(__dirname, '..', 'data', 'drivers.json');
 const STANDINGS_PATH = path.join(__dirname, '..', 'data', 'standings.json');
 
-const UA = 'pyramid-tracker-scraper/1.0 (personal project; contact via GitHub repo issues)';
+const UA = 'Mozilla/5.0 (compatible; pyramid-tracker-scraper/1.0; +https://github.com/) personal-project';
+
+async function fetchHtml(url) {
+  const res = await fetch(url, { headers: { 'User-Agent': UA, Accept: 'text/html' } });
+  if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`);
+  return res.text();
+}
 
 async function fetchWikipediaHtml(page) {
   const url = `https://en.wikipedia.org/w/api.php?action=parse&page=${encodeURIComponent(page)}&format=json&prop=text&formatversion=2`;
@@ -41,126 +39,189 @@ async function fetchWikipediaHtml(page) {
 }
 
 function normalizeName(s) {
-  return s
-    .normalize('NFD').replace(/[̀-ͯ]/g, '') // strip accents
-    .toLowerCase()
-    .replace(/[^a-z ]/g, '')
-    .trim();
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z ]/g, '').trim();
 }
-
 function surnameOf(fullName) {
   const parts = fullName.trim().split(/\s+/);
   return normalizeName(parts[parts.length - 1]);
 }
-
 function ordinal(n) {
   const s = ['th', 'st', 'nd', 'rd'];
   const v = n % 100;
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
-
 function cellText($cell) {
   return $cell.text().replace(/\[[^\]]*\]/g, '').replace(/\s+/g, ' ').trim();
 }
 
-// Finds the best-looking "drivers' championship standings" table on the page
-// and extracts {surnameMatch -> {pos, pts}} for rows that match one of the
-// candidate surnames.
-//
-// Deliberately does NOT try to line up a "Points" header with a column index:
-// these tables use colspan on grouped round headers (one <th> covering both
-// a Sprint and Feature Race sub-column), so the header row has fewer cells
-// than the body rows and index-matching silently misaligns. Instead this
-// relies on a convention that holds across every WikiProject Motorsport
-// standings table checked so far: **Pos. is the first cell of a body row,
-// Points is the last.** That's more robust to how many round columns exist
-// in between than trying to resolve colspans.
-function extractStandingsFromHtml(html, candidateSurnames) {
+/* ---------------------------------------------------------------------- */
+/* Parser: fiaformula2.com / fiaformula3.com                              */
+/*                                                                        */
+/* Confirmed shape (checked against a live render, since the page is      */
+/* server-rendered but has quirky header colspans that don't line up      */
+/* with body columns — see README): each body row's FIRST cell is         */
+/* "1N. Tsolov" (rank + abbreviated name, no separator), and the LAST     */
+/* cell is the season points total, e.g. "177". Everything in between is  */
+/* per-round Sprint/Feature points and isn't used here.                   */
+/* ---------------------------------------------------------------------- */
+function parseFiaOfficial(html, candidateSurnames) {
   const $ = cheerio.load(html);
-  const tables = $('table.wikitable').toArray();
-  let best = null; // {matches, rows}
+  const tables = $('table').toArray();
+  let best = null;
 
   for (const table of tables) {
-    const $table = $(table);
-    const rows = $table.find('tr').toArray();
-    if (rows.length < 2) continue;
+    const rows = $(table).find('tr').toArray();
+    const matchedRows = [];
+    for (const row of rows) {
+      const cells = $(row).find('td,th').toArray();
+      if (cells.length < 2) continue;
+      const firstText = cellText($(cells[0]));
+      const m = firstText.match(/^(\d{1,2})\s*[.:]?\s*(.+)$/); // "1N. Tsolov" / "1. N. Tsolov"
+      if (!m) continue;
+      const pos = parseInt(m[1], 10);
+      const namePart = normalizeName(m[2]);
+      const surname = candidateSurnames.find(s => new RegExp(`\\b${s}\\b`).test(namePart));
+      if (!surname) continue;
 
-    // Confirm this table is a standings table at all: some header row within
-    // the first few rows must mention points/pts. We don't use its column
-    // index — just its presence, to avoid matching an unrelated table.
+      const lastText = cellText($(cells[cells.length - 1]));
+      const ptsMatch = lastText.match(/^-?\d+(\.\d+)?$/);
+      if (!ptsMatch) continue;
+      matchedRows.push({ surname, pos, pts: parseFloat(ptsMatch[0]) });
+    }
+    if (matchedRows.length >= 3 && (!best || matchedRows.length > best.length)) best = matchedRows;
+  }
+  return best; // null if nothing usable found
+}
+
+/* ---------------------------------------------------------------------- */
+/* Parser: fiafrec.com/standings/                                         */
+/*                                                                        */
+/* Confirmed shape: plain WordPress table, one row per driver, containing */
+/* an <a href*="/driver/"> with the driver's full name as link text, and  */
+/* a "NNN pts" cell elsewhere in the row. Distinguishing from the teams'  */
+/* table on the same page by requiring that driver-link.                  */
+/* ---------------------------------------------------------------------- */
+function parseFrecaOfficial(html, candidateSurnames) {
+  const $ = cheerio.load(html);
+  const rows = $('table tr').toArray();
+  const matchedRows = [];
+  for (const row of rows) {
+    const $row = $(row);
+    const driverLink = $row.find('a[href*="/driver/"]').first();
+    if (!driverLink.length) continue;
+    const name = cellText(driverLink);
+    const surname = candidateSurnames.find(s => new RegExp(`\\b${s}\\b`).test(normalizeName(name)));
+    if (!surname) continue;
+
+    const rowText = cellText($row);
+    const ptsMatch = rowText.match(/(\d+(?:\.\d+)?)\s*pts/i);
+    if (!ptsMatch) continue;
+    const pts = parseFloat(ptsMatch[1]);
+
+    let pos = null;
+    const cells = $row.find('td,th').toArray();
+    if (cells.length) {
+      const firstText = cellText($(cells[0]));
+      const posMatch = firstText.match(/^(\d+)$/);
+      if (posMatch) pos = parseInt(posMatch[1], 10);
+    }
+    matchedRows.push({ surname, pos, pts });
+  }
+  return matchedRows.length >= 3 ? matchedRows : null;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Parser: generic Wikipedia season-standings table                       */
+/* (see comment history — colspan-safe: Pos. is first cell, Points last)  */
+/* ---------------------------------------------------------------------- */
+function parseWikipedia(html, candidateSurnames) {
+  const $ = cheerio.load(html);
+  const tables = $('table.wikitable').toArray();
+  let best = null;
+
+  for (const table of tables) {
+    const rows = $(table).find('tr').toArray();
+    if (rows.length < 2) continue;
     const looksLikeStandings = rows.slice(0, 3).some(r =>
       $(r).find('th,td').toArray().some(c => /^pts\.?$/i.test(cellText($(c))) || /^points$/i.test(cellText($(c))))
     );
     if (!looksLikeStandings) continue;
 
     const matchedRows = [];
-    for (let r = 0; r < rows.length; r++) {
-      const $row = $(rows[r]);
-      const cells = $row.find('th,td').toArray();
+    for (const row of rows) {
+      const cells = $(row).find('th,td').toArray();
       if (cells.length < 3) continue;
-      const rowText = normalizeName(cellText($row));
+      const rowText = normalizeName(cellText($(row)));
       const surname = candidateSurnames.find(s => new RegExp(`\\b${s}\\b`).test(rowText));
       if (!surname) continue;
 
-      // Points: last cell in the row that parses as a number.
       let pts = null;
       for (let c = cells.length - 1; c >= 0 && pts === null; c--) {
         const t = cellText($(cells[c]));
-        const m = t.match(/^-?\d+(\.\d+)?$/); // whole-cell number only — avoids grabbing a stray digit from a name/note
+        const m = t.match(/^-?\d+(\.\d+)?$/);
         if (m) pts = parseFloat(m[0]);
       }
       if (pts === null) continue;
 
-      // Position: first cell in the row that parses as a plain integer.
       let pos = null;
       for (let c = 0; c < cells.length; c++) {
         const t = cellText($(cells[c]));
         const m = t.match(/^(\d+)(st|nd|rd|th)?\.?$/i);
         if (m) { pos = parseInt(m[1], 10); break; }
-        if (t) break; // first non-empty cell wasn't a position — stop looking
+        if (t) break;
       }
       matchedRows.push({ surname, pos, pts });
     }
+    if (matchedRows.length >= 3 && (!best || matchedRows.length > best.length)) best = matchedRows;
+  }
+  if (!best) return null;
+  if (best.some(r => r.pos === null)) {
+    best.sort((a, b) => b.pts - a.pts);
+    best.forEach((r, i) => { r.pos = i + 1; });
+  }
+  return best;
+}
 
-    if (matchedRows.length >= 3 && (!best || matchedRows.length > best.matches)) {
-      best = { matches: matchedRows.length, rows: matchedRows };
+const PARSERS = {
+  'fia-official': parseFiaOfficial,
+  'freca-official': parseFrecaOfficial,
+};
+
+async function getRowsForSource(src, surnames, warnings) {
+  if (src.type !== 'wikipedia') {
+    try {
+      const html = await fetchHtml(src.url);
+      const rows = PARSERS[src.type](html, surnames);
+      if (rows) return { rows, usedFallback: false };
+      warnings.push(`${src.category}: official source "${src.url}" returned no recognizable table — falling back to Wikipedia`);
+    } catch (err) {
+      warnings.push(`${src.category}: official source failed (${err.message}) — falling back to Wikipedia`);
     }
   }
-
-  if (!best) return null;
-
-  // If we couldn't read an explicit position for everyone, rank by points desc.
-  const rows = [...best.rows];
-  if (rows.some(r => r.pos === null)) {
-    rows.sort((a, b) => b.pts - a.pts);
-    rows.forEach((r, i) => { r.pos = i + 1; });
+  // Wikipedia primary or fallback.
+  try {
+    const html = await fetchWikipediaHtml(src.wikiFallback);
+    const rows = parseWikipedia(html, surnames);
+    if (rows) return { rows, usedFallback: src.type !== 'wikipedia' };
+    warnings.push(`${src.category}: Wikipedia fallback ("${src.wikiFallback}") also returned no recognizable table`);
+  } catch (err) {
+    warnings.push(`${src.category}: Wikipedia fallback failed too (${err.message})`);
   }
-  return rows;
+  return { rows: null, usedFallback: true };
 }
 
 async function main() {
   const drivers = JSON.parse(await readFile(DRIVERS_PATH, 'utf8'));
   const standings = JSON.parse(await readFile(STANDINGS_PATH, 'utf8'));
 
-  const results = { updated: new Date().toISOString(), source: 'wikipedia (automated)', drivers: { ...standings.drivers }, warnings: [] };
+  const results = { updated: new Date().toISOString(), source: 'mixed (official sites + Wikipedia fallback)', drivers: { ...standings.drivers }, warnings: [] };
 
   for (const src of SOURCES) {
     const catDrivers = drivers.filter(d => d.category === src.category);
     const surnames = catDrivers.map(d => surnameOf(d.name));
 
-    let html;
-    try {
-      html = await fetchWikipediaHtml(src.page);
-    } catch (err) {
-      results.warnings.push(`${src.category}: fetch failed — ${err.message}`);
-      continue;
-    }
-
-    const rows = extractStandingsFromHtml(html, surnames);
-    if (!rows) {
-      results.warnings.push(`${src.category}: no recognizable standings table found on "${src.page}" — left unchanged`);
-      continue;
-    }
+    const { rows, usedFallback } = await getRowsForSource(src, surnames, results.warnings);
+    if (!rows) continue; // warnings already recorded; leave this category's standings untouched
 
     let updatedCount = 0;
     for (const d of catDrivers) {
@@ -173,7 +234,7 @@ async function main() {
       results.drivers[d.id] = { pos: `${ordinal(row.pos)}*`, pts: row.pts, series: src.series };
       updatedCount++;
     }
-    console.log(`${src.category}: updated ${updatedCount}/${catDrivers.length} drivers from ${rows.length} matched rows`);
+    console.log(`${src.category}: updated ${updatedCount}/${catDrivers.length} drivers from ${rows.length} matched rows${usedFallback ? ' (via Wikipedia fallback)' : ' (official site)'}`);
   }
 
   await writeFile(STANDINGS_PATH, JSON.stringify(results, null, 2) + '\n');
