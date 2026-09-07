@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-07T21:21:36.860Z",
-  "source": "wikipedia (automated)",
+  "updated": "2026-09-07T21:24:30.856Z",
+  "source": "mixed (official sites + Wikipedia fallback)",
   "drivers": {
     "slater": {
       "pos": "1st*",
@@ -103,5 +103,7 @@
       "series": "2026 Italian F4"
     }
   },
-  "warnings": []
+  "warnings": [
+    "FRECA: official source failed (HTTP 403 fetching https://fiafrec.com/standings/) — falling back to Wikipedia"
+  ]
 }
