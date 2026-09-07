@@ -1,7 +1,6 @@
 {
-  "updated": "2026-09-07T00:00:00Z",
-  "source": "seed (compiled manually through the Monza round)",
-  "warnings": [],
+  "updated": "2026-09-07T21:21:36.860Z",
+  "source": "wikipedia (automated)",
   "drivers": {
     "slater": {
       "pos": "1st*",
@@ -55,27 +54,27 @@
     },
     "olivieri": {
       "pos": "1st*",
-      "pts": 180,
+      "pts": 200,
       "series": "2026 FRECA"
     },
     "wheldon": {
       "pos": "2nd*",
-      "pts": 177,
+      "pts": 180,
       "series": "2026 FRECA"
     },
     "nakamuraberta": {
       "pos": "3rd*",
-      "pts": 172,
+      "pts": 175,
       "series": "2026 FRECA"
     },
     "aldhaheri": {
       "pos": "4th*",
-      "pts": 159,
+      "pts": 165,
       "series": "2026 FRECA"
     },
     "francot": {
       "pos": "5th*",
-      "pts": 100,
+      "pts": 123,
       "series": "2026 FRECA"
     },
     "sammalisto": {
@@ -103,5 +102,6 @@
       "pts": 168,
       "series": "2026 Italian F4"
     }
-  }
+  },
+  "warnings": []
 }
