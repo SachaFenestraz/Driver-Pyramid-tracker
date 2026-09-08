@@ -168,11 +168,13 @@ const wikiHtml = `
 
 /* ---- Test 4/5: race-pace parsers (Provisional Classification + History  */
 /*      Chart PDFs) — built from a synthetic PDF via pdfkit so this stays   */
-/*      offline, since these are less certain than the standings parsers   */
-/*      (see race-pace-parsers.mjs's honesty note: built from a lossy      */
-/*      summarized reading of real PDFs, not confirmed byte-for-byte).     */
+/*      offline. The History Chart fixture (Test 5) mirrors the REAL       */
+/*      fia.com layout confirmed against a live 2026 F2 Sprint Race PDF    */
+/*      (see race-pace-parsers.mjs's header comment): a wide table, one    */
+/*      "LAP n / GAP / TIME" column-triplet per lap, rows are POSITIONS    */
+/*      not fixed cars, and the lap leader's GAP cell is genuinely absent. */
 import PDFDocument from 'pdfkit';
-import { extractRows } from './pdf-table.mjs';
+import { extractRows, extractPositionedRows } from './pdf-table.mjs';
 import { parseProvisionalClassification, parseHistoryChart, averagePace, lapTimeToSeconds } from './race-pace-parsers.mjs';
 
 function makePdf(lines) {
@@ -204,32 +206,32 @@ function makePdf(lines) {
 }
 
 {
+  // Reproduces the real wide layout: 2 laps per header block, 2 cars.
+  // Car 24 leads both laps (blank GAP cell, genuinely omitted — no
+  // placeholder text at all, same as the real PDF). Car 8 runs P2 lap 1,
+  // then pits lap 2 (GAP cell literally "PIT").
+  const col = (s, w) => s.padEnd(w);
   const buf = await makePdf([
-    'LAP 1',
-    '24   -        1:38.204',
-    '8    +1.203   1:39.500',
-    'LAP 2',
-    '24   -        1:38.900',
-    '8    PIT      2:45.671',
-    'LAP 3',
-    '24   -        1:38.650',
-    '8    +5.442   1:39.100',
-    'LAP 4',
-    '24   -        1:38.777',
-    '8    +5.900   1:39.050',
+    col('LAP 1', 10) + col('GAP', 10) + col('TIME', 10) + col('LAP 2', 10) + col('GAP', 10) + 'TIME',
+    col('24', 10) + col('', 10) + col('1:38.204', 10) + col('24', 10) + col('', 10) + '1:38.900',
+    col('8', 10) + col('+1.203', 10) + col('1:39.500', 10) + col('8', 10) + col('PIT', 10) + '2:45.671',
   ]);
-  const pdfRows = await extractRows(buf);
-  const byCar = parseHistoryChart(pdfRows);
+  const positionedRows = await extractPositionedRows(buf);
+  const byCar = parseHistoryChart(positionedRows);
   assert.ok(byCar, 'history chart: should find laps');
   const car24 = byCar.get(24);
-  assert.equal(car24.length, 4);
+  assert.ok(car24, 'car 24 (leader, blank GAP both laps) should be found');
+  assert.equal(car24.length, 2);
   assert.equal(lapTimeToSeconds('1:38.204'), 98.204);
-  const pace24 = averagePace(car24);
-  assert.ok(pace24 && pace24.lapsCounted === 4 && pace24.lapsExcluded === 0);
+  assert.equal(car24.find(l => l.lap === 1).timeSeconds, 98.204);
+  assert.equal(car24.find(l => l.lap === 2).timeSeconds, 98.9);
+  assert.equal(car24.every(l => !l.pit), true, 'leader laps should never be flagged PIT');
   const car8 = byCar.get(8);
-  const pace8 = averagePace(car8); // has 1 PIT lap among 4 -> excluded
-  assert.ok(pace8 && pace8.lapsCounted === 3 && pace8.lapsExcluded === 1);
-  console.log('OK  history chart parser + averagePace (synthetic FIA-shape PDF, PIT lap excluded)');
+  assert.ok(car8, 'car 8 (P2 lap1, pits lap2) should be found');
+  assert.equal(car8.length, 2);
+  assert.equal(car8.find(l => l.lap === 1).pit, false);
+  assert.equal(car8.find(l => l.lap === 2).pit, true);
+  console.log('OK  history chart parser (real fia.com wide-table shape: position-based rows, blank-GAP leader handled)');
 }
 
 console.log('\n✅ all fixture tests passed');

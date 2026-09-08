@@ -36,8 +36,6 @@ jobs:
       - name: Fetch race pace archive (FIA F2/F3 only)
         working-directory: scraper
         run: node fetch-race-pace.mjs
-        env:
-          RACE_PACE_DEBUG: '1'
         # This scraper touches many more pages/PDFs than the standings one
         # and is newer/less battle-tested — a bad round or a fia.com hiccup
         # shouldn't block the standings update above from landing.

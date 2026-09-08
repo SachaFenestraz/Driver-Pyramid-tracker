@@ -95,9 +95,15 @@ of official per-round timing for either series.
 Lap Times PDF for Practice and Qualifying, but **not** for race sessions —
 races only get Provisional Classification, History Chart, Sector Analysis,
 Pit Stop Summary, and Maximum Speeds. The History Chart is the closest
-substitute: it's organized one block per lap number, listing every car's
-gap-to-leader (or "PIT") and lap time for that lap, which is enough to
-reconstruct each driver's lap-by-lap pace and average it.
+substitute, confirmed against a real live 2026 PDF: it's a wide table, a
+few laps per page, three columns per lap ("LAP n" / "GAP" / "TIME"), and
+each *row* is a running **position** for that lap — not a fixed car, since
+the driver in P3 changes lap to lap. Whoever leads a given lap gets a
+blank GAP cell (no gap to itself), which is genuinely absent from the
+page rather than blank text — `pdf-table.mjs` + `race-pace-parsers.mjs`
+handle this by anchoring every cell to the nearest known column position
+(read off each lap-block's own header) instead of assuming a fixed
+left-to-right cell order, which is what a naive parse gets wrong.
 
 **Known limitations, plainly stated:**
 - Pit-in/out laps are excluded from the average (they're not representative
@@ -105,14 +111,14 @@ reconstruct each driver's lap-by-lap pace and average it.
   behind the safety car for several laps will show an inflated "gap," not a
   real pace difference. Read this chart as a rough comparison, not a precise
   one.
-- The parsers in `race-pace-parsers.mjs` were built from a **summarized,
-  lossy reading** of real 2026 PDFs (the research tool used to check their
-  structure can't do exact byte-for-byte text extraction), not a confirmed
-  spec. The very first live run is the real test — check
-  `data/race-pace.json`'s `warnings` array afterward, and treat any warning
-  there as "this round's PDF didn't match what the parser expects, fix the
-  regex in `race-pace-parsers.mjs`," the same troubleshooting loop as the
-  standings scraper.
+- The column-gap threshold (`minGapChars` in `pdf-table.mjs`) that decides
+  where one cell ends and the next begins was tuned against synthetic
+  fixtures reproducing the real layout, then verified against one live
+  round (2026 F2 Melbourne Sprint Race). A different round or session
+  could still lay out slightly differently — check `data/race-pace.json`'s
+  `warnings` array after any run, and treat a warning there as "this
+  round's PDF didn't match, go look at it," the same troubleshooting loop
+  as the standings scraper.
 - This step runs after the standings scraper in the same workflow but with
   `continue-on-error: true` — a bad round or a fia.com hiccup here won't
   block the standings update from landing.

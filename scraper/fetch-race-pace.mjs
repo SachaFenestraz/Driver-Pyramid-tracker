@@ -13,7 +13,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import * as cheerio from 'cheerio';
-import { extractRows } from './pdf-table.mjs';
+import { extractRows, extractPositionedRows } from './pdf-table.mjs';
 import { F2_ROUNDS, F3_ROUNDS, FIA_BASE, RACE_SESSIONS } from './race-calendar.mjs';
 import { parseProvisionalClassification, parseHistoryChart, averagePace } from './race-pace-parsers.mjs';
 
@@ -36,11 +36,16 @@ async function fetchText(url) {
   return res.text();
 }
 
-async function fetchPdfRows(url) {
+async function fetchPdfBuffer(url) {
   const res = await fetch(url, { headers: { 'User-Agent': UA } });
   if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`);
-  const buf = Buffer.from(await res.arrayBuffer());
-  return extractRows(buf);
+  return Buffer.from(await res.arrayBuffer());
+}
+async function fetchPdfRows(url) {
+  return extractRows(await fetchPdfBuffer(url));
+}
+async function fetchPdfPositionedRows(url) {
+  return extractPositionedRows(await fetchPdfBuffer(url));
 }
 
 // Finds the PDF href on a round's timing page whose link text/filename
@@ -101,12 +106,8 @@ async function fetchRound(category, round, catDrivers, warnings) {
 
     if (historyUrl) {
       try {
-        const pdfRows = await fetchPdfRows(historyUrl);
-        if (process.env.RACE_PACE_DEBUG && !global.__debugPrinted) {
-          global.__debugPrinted = true;
-          console.log(`::warning::HISTORY CHART DEBUG (${category} ${round.event} ${sess.label}) first 20 rows: ${JSON.stringify(pdfRows.slice(0, 20))}`);
-        }
-        const byCar = parseHistoryChart(pdfRows);
+        const positionedRows = await fetchPdfPositionedRows(historyUrl);
+        const byCar = parseHistoryChart(positionedRows);
         if (byCar) {
           for (const [carNumber, laps] of byCar) {
             const surname = carToSurname.get(carNumber);
