@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0",
-    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^4.10.38",
     "pdfkit": "^0.15.0"
   }
 }

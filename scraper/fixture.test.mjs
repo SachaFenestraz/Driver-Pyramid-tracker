@@ -172,7 +172,7 @@ const wikiHtml = `
 /*      (see race-pace-parsers.mjs's honesty note: built from a lossy      */
 /*      summarized reading of real PDFs, not confirmed byte-for-byte).     */
 import PDFDocument from 'pdfkit';
-import pdfParse from 'pdf-parse/lib/pdf-parse.js';
+import { extractRows } from './pdf-table.mjs';
 import { parseProvisionalClassification, parseHistoryChart, averagePace, lapTimeToSeconds } from './race-pace-parsers.mjs';
 
 function makePdf(lines) {
@@ -194,8 +194,8 @@ function makePdf(lines) {
     '2  8   U. UGOCHUKWU  CAMPOS RACING  20  41:25.901  18',
     '3  15  E. RIVERA  CAMPOS RACING  20  41:29.113  15',
   ]);
-  const { text } = await pdfParse(buf);
-  const rows = parseProvisionalClassification(text, ['slater', 'ugochukwu', 'rivera', 'nael', 'badoer']);
+  const pdfRows = await extractRows(buf);
+  const rows = parseProvisionalClassification(pdfRows, ['slater', 'ugochukwu', 'rivera', 'nael', 'badoer']);
   assert.ok(rows, 'provisional classification: should find rows');
   assert.equal(rows.length, 3);
   const slater = rows.find(r => r.surname === 'slater');
@@ -218,8 +218,8 @@ function makePdf(lines) {
     '24   -        1:38.777',
     '8    +5.900   1:39.050',
   ]);
-  const { text } = await pdfParse(buf);
-  const byCar = parseHistoryChart(text);
+  const pdfRows = await extractRows(buf);
+  const byCar = parseHistoryChart(pdfRows);
   assert.ok(byCar, 'history chart: should find laps');
   const car24 = byCar.get(24);
   assert.equal(car24.length, 4);

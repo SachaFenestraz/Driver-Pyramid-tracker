@@ -13,12 +13,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import * as cheerio from 'cheerio';
-// NOTE: importing 'pdf-parse' directly (not its /lib/pdf-parse.js) triggers
-// a known bug in v1.1.1 where its index.js runs a debug self-test against a
-// bundled sample file when loaded as a CJS module from ESM — crashing with
-// "ENOENT ./test/data/05-versions-space.pdf". Importing the inner lib file
-// skips that debug wrapper entirely.
-import pdfParse from 'pdf-parse/lib/pdf-parse.js';
+import { extractRows } from './pdf-table.mjs';
 import { F2_ROUNDS, F3_ROUNDS, FIA_BASE, RACE_SESSIONS } from './race-calendar.mjs';
 import { parseProvisionalClassification, parseHistoryChart, averagePace } from './race-pace-parsers.mjs';
 
@@ -41,12 +36,11 @@ async function fetchText(url) {
   return res.text();
 }
 
-async function fetchPdfText(url) {
+async function fetchPdfRows(url) {
   const res = await fetch(url, { headers: { 'User-Agent': UA } });
   if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`);
   const buf = Buffer.from(await res.arrayBuffer());
-  const parsed = await pdfParse(buf);
-  return parsed.text;
+  return extractRows(buf);
 }
 
 // Finds the PDF href on a round's timing page whose link text/filename
@@ -88,8 +82,8 @@ async function fetchRound(category, round, catDrivers, warnings) {
     let carToSurname = new Map();
     if (classUrl) {
       try {
-        const text = await fetchPdfText(classUrl);
-        const rows = parseProvisionalClassification(text, surnames);
+        const pdfRows = await fetchPdfRows(classUrl);
+        const rows = parseProvisionalClassification(pdfRows, surnames);
         if (rows) {
           for (const r of rows) carToSurname.set(r.carNumber, r.surname);
           for (const d of catDrivers) {
@@ -107,8 +101,8 @@ async function fetchRound(category, round, catDrivers, warnings) {
 
     if (historyUrl) {
       try {
-        const text = await fetchPdfText(historyUrl);
-        const byCar = parseHistoryChart(text);
+        const pdfRows = await fetchPdfRows(historyUrl);
+        const byCar = parseHistoryChart(pdfRows);
         if (byCar) {
           for (const [carNumber, laps] of byCar) {
             const surname = carToSurname.get(carNumber);

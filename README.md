@@ -76,11 +76,20 @@ of official per-round timing for either series.
 - **`scraper/fetch-race-pace.mjs`** — for each round, opens its
   `eventtiming-information` page, finds that round's **Provisional
   Classification** PDF (finishing pos/points) and **History Chart** PDF
-  (lap-by-lap gaps, used to compute average pace), downloads them, and
-  parses them with `pdf-parse`.
-- **`scraper/race-pace-parsers.mjs`** — the actual PDF-text parsing logic,
-  covered by fixture tests (synthetic PDFs built with `pdfkit`) the same way
-  the standings parsers are.
+  (lap-by-lap gaps, used to compute average pace), and downloads them.
+- **`scraper/pdf-table.mjs`** — turns a PDF into rows of table cells using
+  each text run's actual on-page position, not its literal characters (a
+  "column gap" in a real PDF isn't reliably a run of space characters — it
+  can just be a cursor move with no space glyph at all). Built on
+  `pdfjs-dist` (Mozilla's actively-maintained PDF.js). An earlier version of
+  this used the `pdf-parse` package instead; it was dropped after its
+  bundled 2018-era PDF.js build threw `bad XRef entry` on some
+  perfectly-valid modern PDFs (this **broke the very first CI run** of this
+  feature — caught and fixed the same day, see git history if curious).
+- **`scraper/race-pace-parsers.mjs`** — the actual table-parsing logic
+  (works on the rows-of-cells `pdf-table.mjs` produces), covered by fixture
+  tests (synthetic PDFs built with `pdfkit`) the same way the standings
+  parsers are.
 
 **Why "History Chart" and not "Lap Times":** fia.com publishes a dedicated
 Lap Times PDF for Practice and Qualifying, but **not** for race sessions —
