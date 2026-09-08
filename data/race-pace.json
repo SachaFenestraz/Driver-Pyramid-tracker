@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T08:22:28.240Z",
+  "updated": "2026-09-08T09:15:10.351Z",
   "warnings": [
     "F2 Madrid: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/madrid/eventtiming-information) — skipped",
     "F2 Baku: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/baku/eventtiming-information) — skipped",
@@ -47,31 +47,41 @@
                 "driverId": "leon",
                 "avgSeconds": 102.255,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 10,
+                "gridSize": 22
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 101.069,
                 "lapsCounted": 22,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 4,
+                "gridSize": 22
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 102.577,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 19,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 102.412,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 12,
+                "gridSize": 22
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 102.498,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 15,
+                "gridSize": 22
               }
             ]
           },
@@ -104,25 +114,33 @@
                 "driverId": "tsolov",
                 "avgSeconds": 101.552,
                 "lapsCounted": 32,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 2,
+                "gridSize": 20
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 101.581,
                 "lapsCounted": 32,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 3,
+                "gridSize": 20
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 101.619,
                 "lapsCounted": 32,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 4,
+                "gridSize": 20
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 102.074,
                 "lapsCounted": 32,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 11,
+                "gridSize": 20
               }
             ]
           }
@@ -166,31 +184,41 @@
                 "driverId": "tsolov",
                 "avgSeconds": 102.881,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 1,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 102.937,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 22
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 103.132,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 7,
+                "gridSize": 22
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 103.252,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 22
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 103.265,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 10,
+                "gridSize": 22
               }
             ]
           },
@@ -218,19 +246,25 @@
                 "driverId": "camara",
                 "avgSeconds": 133.079,
                 "lapsCounted": 23,
-                "lapsExcluded": 2
+                "lapsExcluded": 2,
+                "gridRank": 18,
+                "gridSize": 19
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 132.113,
                 "lapsCounted": 22,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 11,
+                "gridSize": 19
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 132.09,
                 "lapsCounted": 22,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 10,
+                "gridSize": 19
               }
             ]
           }
@@ -274,31 +308,41 @@
                 "driverId": "mini",
                 "avgSeconds": 93.593,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 7,
+                "gridSize": 21
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 93.46,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 5,
+                "gridSize": 21
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 93.666,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 21
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 93.574,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 21
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 93.807,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 13,
+                "gridSize": 21
               }
             ]
           },
@@ -336,31 +380,41 @@
                 "driverId": "tsolov",
                 "avgSeconds": 100.209,
                 "lapsCounted": 34,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 18,
+                "gridSize": 21
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 99.83,
                 "lapsCounted": 34,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 12,
+                "gridSize": 21
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 97.65,
                 "lapsCounted": 30,
-                "lapsExcluded": 4
+                "lapsExcluded": 4,
+                "gridRank": 6,
+                "gridSize": 21
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 100.14,
                 "lapsCounted": 34,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 17,
+                "gridSize": 21
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 99.087,
                 "lapsCounted": 33,
-                "lapsExcluded": 4
+                "lapsExcluded": 4,
+                "gridRank": 9,
+                "gridSize": 21
               }
             ]
           }
@@ -404,31 +458,41 @@
                 "driverId": "leon",
                 "avgSeconds": 86.214,
                 "lapsCounted": 30,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 1,
+                "gridSize": 22
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 86.347,
                 "lapsCounted": 30,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 22
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 87.02,
                 "lapsCounted": 30,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 8,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 87.181,
                 "lapsCounted": 30,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 22
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 87.933,
                 "lapsCounted": 30,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 22
               }
             ]
           },
@@ -461,25 +525,33 @@
                 "driverId": "tsolov",
                 "avgSeconds": 85.651,
                 "lapsCounted": 41,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 1,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 85.909,
                 "lapsCounted": 41,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 2,
+                "gridSize": 22
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 86.681,
                 "lapsCounted": 41,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 11,
+                "gridSize": 22
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 86.652,
                 "lapsCounted": 41,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 8,
+                "gridSize": 22
               }
             ]
           }
@@ -523,31 +595,41 @@
                 "driverId": "leon",
                 "avgSeconds": 92.635,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 4,
+                "gridSize": 22
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 92.611,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 22
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 92.423,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 2,
+                "gridSize": 22
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 92.675,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 92.825,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 8,
+                "gridSize": 22
               }
             ]
           },
@@ -585,31 +667,41 @@
                 "driverId": "dunne",
                 "avgSeconds": 95.287,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 3,
+                "gridSize": 21
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 94.879,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 1,
+                "gridSize": 21
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 95.327,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 4,
+                "gridSize": 21
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 95.211,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 2,
+                "gridSize": 21
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 95.673,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 9,
+                "gridSize": 21
               }
             ]
           }
@@ -653,31 +745,41 @@
                 "driverId": "mini",
                 "avgSeconds": 84.494,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 19
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 84.577,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 7,
+                "gridSize": 19
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 84.487,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 5,
+                "gridSize": 19
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 84.86,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 19
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 84.703,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 10,
+                "gridSize": 19
               }
             ]
           },
@@ -715,31 +817,41 @@
                 "driverId": "tsolov",
                 "avgSeconds": 84.249,
                 "lapsCounted": 39,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 1,
+                "gridSize": 20
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 84.786,
                 "lapsCounted": 39,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 9,
+                "gridSize": 20
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 84.352,
                 "lapsCounted": 39,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 3,
+                "gridSize": 20
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 84.79,
                 "lapsCounted": 39,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 10,
+                "gridSize": 20
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 84.615,
                 "lapsCounted": 39,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 6,
+                "gridSize": 20
               }
             ]
           }
@@ -783,31 +895,41 @@
                 "driverId": "mini",
                 "avgSeconds": 112.468,
                 "lapsCounted": 18,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 15,
+                "gridSize": 20
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 112.244,
                 "lapsCounted": 18,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 9,
+                "gridSize": 20
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 112.182,
                 "lapsCounted": 18,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 5,
+                "gridSize": 20
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 112.426,
                 "lapsCounted": 18,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 13,
+                "gridSize": 20
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 111.797,
                 "lapsCounted": 18,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 1,
+                "gridSize": 20
               }
             ]
           },
@@ -845,31 +967,41 @@
                 "driverId": "tsolov",
                 "avgSeconds": 106.207,
                 "lapsCounted": 28,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 1,
+                "gridSize": 21
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 106.465,
                 "lapsCounted": 28,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 3,
+                "gridSize": 21
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 106.507,
                 "lapsCounted": 28,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 5,
+                "gridSize": 21
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 106.788,
                 "lapsCounted": 28,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 7,
+                "gridSize": 21
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 106.845,
                 "lapsCounted": 28,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 8,
+                "gridSize": 21
               }
             ]
           }
@@ -903,19 +1035,25 @@
                 "driverId": "tsolov",
                 "avgSeconds": 139.738,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 10,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 139.824,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 22
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 139.863,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 12,
+                "gridSize": 22
               }
             ]
           },
@@ -953,31 +1091,41 @@
                 "driverId": "camara",
                 "avgSeconds": 135.11,
                 "lapsCounted": 18,
-                "lapsExcluded": 2
+                "lapsExcluded": 2,
+                "gridRank": 8,
+                "gridSize": 20
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 136.021,
                 "lapsCounted": 18,
-                "lapsExcluded": 2
+                "lapsExcluded": 2,
+                "gridRank": 13,
+                "gridSize": 20
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 135.587,
                 "lapsCounted": 18,
-                "lapsExcluded": 2
+                "lapsExcluded": 2,
+                "gridRank": 10,
+                "gridSize": 20
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 137.177,
                 "lapsCounted": 18,
-                "lapsExcluded": 2
+                "lapsExcluded": 2,
+                "gridRank": 15,
+                "gridSize": 20
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 132.131,
                 "lapsCounted": 17,
-                "lapsExcluded": 3
+                "lapsExcluded": 3,
+                "gridRank": 1,
+                "gridSize": 20
               }
             ]
           }
@@ -1016,25 +1164,33 @@
                 "driverId": "mini",
                 "avgSeconds": 94.97,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 22
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 95.221,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 22
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 95.546,
                 "lapsCounted": 28,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 96.077,
                 "lapsCounted": 27,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 19,
+                "gridSize": 22
               }
             ]
           },
@@ -1072,31 +1228,41 @@
                 "driverId": "leon",
                 "avgSeconds": 94.98,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 1,
+                "gridSize": 22
               },
               {
                 "driverId": "camara",
                 "avgSeconds": 95.003,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 3,
+                "gridSize": 22
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 95.499,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 10,
+                "gridSize": 22
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 95.351,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 8,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 95.657,
                 "lapsCounted": 36,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 11,
+                "gridSize": 22
               }
             ]
           }
@@ -1135,25 +1301,33 @@
                 "driverId": "tsolov",
                 "avgSeconds": 104.875,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 22
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 104.807,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 8,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 104.903,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 22
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 104.96,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 14,
+                "gridSize": 22
               }
             ]
           },
@@ -1191,31 +1365,41 @@
                 "driverId": "camara",
                 "avgSeconds": 102.228,
                 "lapsCounted": 29,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 4,
+                "gridSize": 22
               },
               {
                 "driverId": "dunne",
                 "avgSeconds": 102.537,
                 "lapsCounted": 29,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 9,
+                "gridSize": 22
               },
               {
                 "driverId": "leon",
                 "avgSeconds": 102.371,
                 "lapsCounted": 29,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 5,
+                "gridSize": 22
               },
               {
                 "driverId": "tsolov",
                 "avgSeconds": 102.484,
                 "lapsCounted": 29,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 6,
+                "gridSize": 22
               },
               {
                 "driverId": "mini",
                 "avgSeconds": 102.733,
                 "lapsCounted": 29,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 14,
+                "gridSize": 22
               }
             ]
           }
@@ -1256,25 +1440,33 @@
                 "driverId": "badoer",
                 "avgSeconds": 99.736,
                 "lapsCounted": 7,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 30
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 100.715,
                 "lapsCounted": 7,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 30
               },
               {
                 "driverId": "slater",
                 "avgSeconds": 100.959,
                 "lapsCounted": 7,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 10,
+                "gridSize": 30
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 101.176,
                 "lapsCounted": 7,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 30
               }
             ]
           },
@@ -1307,25 +1499,33 @@
                 "driverId": "nael",
                 "avgSeconds": 112.215,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 27
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 112.159,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 4,
+                "gridSize": 27
               },
               {
                 "driverId": "slater",
                 "avgSeconds": 112.189,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 5,
+                "gridSize": 27
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 112.497,
                 "lapsCounted": 23,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 21,
+                "gridSize": 27
               }
             ]
           }
@@ -1359,19 +1559,25 @@
                 "driverId": "ugochukwu",
                 "avgSeconds": 97.396,
                 "lapsCounted": 17,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 19,
+                "gridSize": 26
               },
               {
                 "driverId": "slater",
                 "avgSeconds": 99.116,
                 "lapsCounted": 17,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 25,
+                "gridSize": 26
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 92.626,
                 "lapsCounted": 16,
-                "lapsExcluded": 2
+                "lapsExcluded": 2,
+                "gridRank": 1,
+                "gridSize": 26
               }
             ]
           },
@@ -1409,31 +1615,41 @@
                 "driverId": "badoer",
                 "avgSeconds": 91.666,
                 "lapsCounted": 27,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 1,
+                "gridSize": 28
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 91.686,
                 "lapsCounted": 27,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 2,
+                "gridSize": 28
               },
               {
                 "driverId": "slater",
                 "avgSeconds": 92.305,
                 "lapsCounted": 27,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 5,
+                "gridSize": 28
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 92.331,
                 "lapsCounted": 27,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 28
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 92.48,
                 "lapsCounted": 27,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 7,
+                "gridSize": 28
               }
             ]
           }
@@ -1467,19 +1683,25 @@
                 "driverId": "slater",
                 "avgSeconds": 105.638,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 4,
+                "gridSize": 29
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 105.906,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 12,
+                "gridSize": 29
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 105.827,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 10,
+                "gridSize": 29
               }
             ]
           },
@@ -1517,31 +1739,41 @@
                 "driverId": "nael",
                 "avgSeconds": 95.047,
                 "lapsCounted": 25,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 1,
+                "gridSize": 30
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 95.332,
                 "lapsCounted": 25,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 30
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 95.418,
                 "lapsCounted": 25,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 4,
+                "gridSize": 30
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 95.666,
                 "lapsCounted": 25,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 8,
+                "gridSize": 30
               },
               {
                 "driverId": "slater",
                 "avgSeconds": 95.587,
                 "lapsCounted": 25,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 7,
+                "gridSize": 30
               }
             ]
           }
@@ -1580,25 +1812,33 @@
                 "driverId": "rivera",
                 "avgSeconds": 90.065,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 2,
+                "gridSize": 29
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 90.505,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 29
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 90.736,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 17,
+                "gridSize": 29
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 91.152,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 25,
+                "gridSize": 29
               }
             ]
           },
@@ -1636,31 +1876,41 @@
                 "driverId": "ugochukwu",
                 "avgSeconds": 90.68,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 2,
+                "gridSize": 28
               },
               {
                 "driverId": "slater",
                 "avgSeconds": 90.706,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 28
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 91.043,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 17,
+                "gridSize": 28
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 91.197,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 22,
+                "gridSize": 28
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 91.111,
                 "lapsCounted": 26,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 20,
+                "gridSize": 28
               }
             ]
           }
@@ -1704,31 +1954,41 @@
                 "driverId": "ugochukwu",
                 "avgSeconds": 109.513,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 1,
+                "gridSize": 30
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 110.491,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 30
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 110.822,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 14,
+                "gridSize": 30
               },
               {
                 "driverId": "slater",
                 "avgSeconds": 110.533,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 7,
+                "gridSize": 30
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 110.926,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 19,
+                "gridSize": 30
               }
             ]
           },
@@ -1766,31 +2026,41 @@
                 "driverId": "slater",
                 "avgSeconds": 116.787,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 8,
+                "gridSize": 30
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 116.728,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 4,
+                "gridSize": 30
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 116.738,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 5,
+                "gridSize": 30
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 116.799,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 30
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 117.256,
                 "lapsCounted": 21,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 22,
+                "gridSize": 30
               }
             ]
           }
@@ -1829,25 +2099,33 @@
                 "driverId": "badoer",
                 "avgSeconds": 155.819,
                 "lapsCounted": 12,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 29
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 156.049,
                 "lapsCounted": 12,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 7,
+                "gridSize": 29
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 156.114,
                 "lapsCounted": 12,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 29
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 169.927,
                 "lapsCounted": 10,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 29,
+                "gridSize": 29
               }
             ]
           },
@@ -1885,31 +2163,41 @@
                 "driverId": "slater",
                 "avgSeconds": 139.279,
                 "lapsCounted": 15,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 5,
+                "gridSize": 27
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 138.982,
                 "lapsCounted": 15,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 27
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 140.61,
                 "lapsCounted": 15,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 24,
+                "gridSize": 27
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 139.729,
                 "lapsCounted": 15,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 12,
+                "gridSize": 27
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 138.778,
                 "lapsCounted": 14,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 2,
+                "gridSize": 27
               }
             ]
           }
@@ -1953,31 +2241,41 @@
                 "driverId": "nael",
                 "avgSeconds": 102.808,
                 "lapsCounted": 19,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 2,
+                "gridSize": 28
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 103.01,
                 "lapsCounted": 19,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 4,
+                "gridSize": 28
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 103.134,
                 "lapsCounted": 19,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 28
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 103.67,
                 "lapsCounted": 19,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 28
               },
               {
                 "driverId": "slater",
                 "avgSeconds": 103.711,
                 "lapsCounted": 19,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 12,
+                "gridSize": 28
               }
             ]
           },
@@ -2015,31 +2313,41 @@
                 "driverId": "slater",
                 "avgSeconds": 109.313,
                 "lapsCounted": 23,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 15,
+                "gridSize": 27
               },
               {
                 "driverId": "badoer",
                 "avgSeconds": 109.336,
                 "lapsCounted": 23,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 16,
+                "gridSize": 27
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 109.2,
                 "lapsCounted": 23,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 11,
+                "gridSize": 27
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 109.354,
                 "lapsCounted": 23,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 18,
+                "gridSize": 27
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 109.295,
                 "lapsCounted": 23,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 14,
+                "gridSize": 27
               }
             ]
           }
@@ -2083,31 +2391,41 @@
                 "driverId": "badoer",
                 "avgSeconds": 119.141,
                 "lapsCounted": 17,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 12,
+                "gridSize": 30
               },
               {
                 "driverId": "rivera",
                 "avgSeconds": 119.034,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 30
               },
               {
                 "driverId": "slater",
                 "avgSeconds": 118.8,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 30
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 119.28,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 19,
+                "gridSize": 30
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 119.242,
                 "lapsCounted": 18,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 16,
+                "gridSize": 30
               }
             ]
           },
@@ -2135,19 +2453,25 @@
                 "driverId": "badoer",
                 "avgSeconds": 113.073,
                 "lapsCounted": 20,
-                "lapsExcluded": 2
+                "lapsExcluded": 2,
+                "gridRank": 27,
+                "gridSize": 28
               },
               {
                 "driverId": "nael",
                 "avgSeconds": 111.482,
                 "lapsCounted": 21,
-                "lapsExcluded": 1
+                "lapsExcluded": 1,
+                "gridRank": 22,
+                "gridSize": 28
               },
               {
                 "driverId": "ugochukwu",
                 "avgSeconds": 111.036,
                 "lapsCounted": 22,
-                "lapsExcluded": 0
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 28
               }
             ]
           }
