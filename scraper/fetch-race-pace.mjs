@@ -102,6 +102,10 @@ async function fetchRound(category, round, catDrivers, warnings) {
     if (historyUrl) {
       try {
         const pdfRows = await fetchPdfRows(historyUrl);
+        if (process.env.RACE_PACE_DEBUG && !global.__debugPrinted) {
+          global.__debugPrinted = true;
+          console.log(`::warning::HISTORY CHART DEBUG (${category} ${round.event} ${sess.label}) first 20 rows: ${JSON.stringify(pdfRows.slice(0, 20))}`);
+        }
         const byCar = parseHistoryChart(pdfRows);
         if (byCar) {
           for (const [carNumber, laps] of byCar) {
