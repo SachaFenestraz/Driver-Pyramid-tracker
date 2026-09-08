@@ -141,3 +141,29 @@ export function averagePace(laps) {
   const sum = clean.reduce((acc, l) => acc + l.timeSeconds, 0);
   return { avgSeconds: sum / clean.length, lapsCounted: clean.length, lapsExcluded: laps.length - clean.length };
 }
+
+/**
+ * Ranks every car's average pace within one session, fastest first — this
+ * is what powers "P4 of 22" against the WHOLE grid, not just the tracked
+ * drivers. parseHistoryChart() already returns every car that appears in
+ * the PDF (it isn't filtered to tracked drivers), so this just needs to
+ * run averagePace() over each of them and sort.
+ *
+ * @param {Map<number, {lap:number,timeSeconds:number,pit:boolean}[]>} byCar
+ *   from parseHistoryChart — one entry per car number seen in the PDF.
+ * @returns {Map<number, {rank:number, of:number, avgSeconds:number}>}
+ *   keyed by car number; only cars with a valid averagePace() (>=3 clean
+ *   laps) are included, so `of` is the size of the field with usable pace
+ *   data for that session, not the full entry list.
+ */
+export function rankPaceByCar(byCar) {
+  const entries = [];
+  for (const [carNumber, laps] of byCar) {
+    const pace = averagePace(laps);
+    if (pace) entries.push({ carNumber, avgSeconds: pace.avgSeconds });
+  }
+  entries.sort((a, b) => a.avgSeconds - b.avgSeconds);
+  const out = new Map();
+  entries.forEach((e, i) => out.set(e.carNumber, { rank: i + 1, of: entries.length, avgSeconds: e.avgSeconds }));
+  return out;
+}

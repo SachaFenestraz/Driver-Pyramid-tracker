@@ -57,12 +57,16 @@ If you'd rather have a maintainer parse the Italian F4 PDFs properly later,
 ## Race Pace Archive (FIA F2 / FIA F3 only)
 
 A season-by-season archive of every Sprint/Feature race the 10 tracked F2/F3
-drivers have run: official finishing position + points per round, and an
+drivers have run: official finishing position + points per round, an
 average race-pace figure per round shown as a gap to the fastest of your
 currently-selected drivers (not raw lap time — different circuits have
-different lap lengths, so raw seconds aren't comparable round to round).
-FRECA and Italian F4 aren't covered here — fia.com doesn't publish this level
-of official per-round timing for either series.
+different lap lengths, so raw seconds aren't comparable round to round), and
+a "Pace Rk" column showing where that average pace ranked against the
+**whole grid** that started the session — not just the other tracked
+drivers (e.g. "P4/22" = 4th-fastest average pace out of 22 cars with usable
+lap data that race). Hovering a rank cell shows the exact average and lap
+count. FRECA and Italian F4 aren't covered here — fia.com doesn't publish
+this level of official per-round timing for either series.
 
 **Pieces:**
 - **`data/race-pace.json`** — the data this section reads. Starts empty
@@ -89,7 +93,11 @@ of official per-round timing for either series.
 - **`scraper/race-pace-parsers.mjs`** — the actual table-parsing logic
   (works on the rows-of-cells `pdf-table.mjs` produces), covered by fixture
   tests (synthetic PDFs built with `pdfkit`) the same way the standings
-  parsers are.
+  parsers are. Also exports `rankPaceByCar()`, which ranks every car's
+  average pace within a session (fastest first) — `parseHistoryChart()`
+  already extracts laps for every car in the PDF, not just the tracked 10,
+  so this just runs `averagePace()` over the whole field and sorts. That's
+  what the site's "Pace Rk" column reads.
 
 **Why "History Chart" and not "Lap Times":** fia.com publishes a dedicated
 Lap Times PDF for Practice and Qualifying, but **not** for race sessions —

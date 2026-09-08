@@ -6,6 +6,12 @@
 // doc). FRECA and Italian F4 aren't covered — fia.com doesn't publish this
 // level of official timing detail for them.
 //
+// Each tracked driver's pace entry also carries gridRank/gridSize: where
+// their average pace ranks against EVERY car in that session (not just the
+// other tracked drivers) — parseHistoryChart() already extracts laps for
+// the whole field, so rankPaceByCar() (race-pace-parsers.mjs) just sorts
+// all of them before we filter down to our 10.
+//
 // Re-fetches every round on every run rather than trying to cache
 // incrementally — simpler, and cheap enough (a few dozen small PDF
 // requests every scheduled run) not to bother with a "what's new" diff.
@@ -15,7 +21,7 @@ import path from 'node:path';
 import * as cheerio from 'cheerio';
 import { extractRows, extractPositionedRows } from './pdf-table.mjs';
 import { F2_ROUNDS, F3_ROUNDS, FIA_BASE, RACE_SESSIONS } from './race-calendar.mjs';
-import { parseProvisionalClassification, parseHistoryChart, averagePace } from './race-pace-parsers.mjs';
+import { parseProvisionalClassification, parseHistoryChart, averagePace, rankPaceByCar } from './race-pace-parsers.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DRIVERS_PATH = path.join(__dirname, '..', 'data', 'drivers.json');
@@ -109,13 +115,26 @@ async function fetchRound(category, round, catDrivers, warnings) {
         const positionedRows = await fetchPdfPositionedRows(historyUrl);
         const byCar = parseHistoryChart(positionedRows);
         if (byCar) {
+          // Rank every car's average pace against the WHOLE grid first —
+          // byCar covers every car seen in the PDF, not just our tracked
+          // drivers — then pull out just our drivers' rank + total field.
+          const ranked = rankPaceByCar(byCar);
           for (const [carNumber, laps] of byCar) {
             const surname = carToSurname.get(carNumber);
             if (!surname) continue; // car not one of our tracked drivers (or no classification match)
             const d = catDrivers.find(dd => surnameOf(dd.name) === surname);
             if (!d) continue;
             const pace = averagePace(laps);
-            if (pace) entry.pace.push({ driverId: d.id, avgSeconds: Math.round(pace.avgSeconds * 1000) / 1000, lapsCounted: pace.lapsCounted, lapsExcluded: pace.lapsExcluded });
+            if (!pace) continue;
+            const gridRank = ranked.get(carNumber); // same avgSeconds, so always present when pace is
+            entry.pace.push({
+              driverId: d.id,
+              avgSeconds: Math.round(pace.avgSeconds * 1000) / 1000,
+              lapsCounted: pace.lapsCounted,
+              lapsExcluded: pace.lapsExcluded,
+              gridRank: gridRank ? gridRank.rank : null,
+              gridSize: gridRank ? gridRank.of : null,
+            });
           }
         } else {
           warnings.push(`${category} ${round.event} ${sess.label}: history chart PDF had no recognizable laps`);

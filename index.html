@@ -117,6 +117,7 @@
   .racepace-card table.rp-table th{position:sticky;top:0;background:var(--surface-2);text-align:left;font-family:'IBM Plex Mono';font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);padding:6px 8px;}
   .racepace-card table.rp-table td{padding:5px 8px;border-top:1px solid var(--hairline);font-family:'IBM Plex Mono';}
   .rp-gapnote{font-size:10.5px;color:var(--ink-3);margin-top:8px;}
+  .rp-of{color:var(--ink-3);}
 
   .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin-bottom:4px;}
   .legend span{display:inline-flex;align-items:center;gap:7px;}
@@ -265,7 +266,7 @@
     <div class="shead">
       <div>
         <h2>Race Pace Archive</h2>
-        <div class="sub">FIA Formula 2 and Formula 3 only — FRECA and Italian F4 don't publish this level of official timing detail. Each round's Sprint/Feature finishing position and points come from the official Provisional Classification; average race pace comes from the official History Chart (races don't get a dedicated "Lap Times" document — see Methodology). Pit-in/out laps are excluded from the pace average; safety-car laps aren't detected and can skew a round's number.</div>
+        <div class="sub">FIA Formula 2 and Formula 3 only — FRECA and Italian F4 don't publish this level of official timing detail. Each round's Sprint/Feature finishing position and points come from the official Provisional Classification; average race pace, and where it ranks against the WHOLE grid that raced (not just your selection), comes from the official History Chart (races don't get a dedicated "Lap Times" document — see Methodology). Pit-in/out laps are excluded from the pace average; safety-car laps aren't detected and can skew a round's number.</div>
       </div>
     </div>
     <div id="racePaceBox"></div>
@@ -628,17 +629,24 @@ function renderRacePace(){
       return;
     }
 
-    // Results table: one row per round, Sprint + Feature pos/pts.
+    // Results table: one row per round, Sprint + Feature pos/pts, plus
+    // where this driver's average pace ranked against the WHOLE grid that
+    // raced (not just the other tracked drivers) in each session.
+    const rankCell = p => p && p.gridRank ? `<span title="${p.avgSeconds.toFixed(3)}s avg, ${p.lapsCounted} laps counted${p.lapsExcluded?`, ${p.lapsExcluded} pit lap${p.lapsExcluded===1?'':'s'} excluded`:''}">P${p.gridRank}<span class="rp-of">/${p.gridSize}</span></span>` : '—';
     const rows = relevant.map(r => {
       const sp = r.sessions.sprint, ft = r.sessions.feature;
       const spC = sp && sp.classification.find(c=>c.driverId===id);
       const ftC = ft && ft.classification.find(c=>c.driverId===id);
+      const spP = sp && sp.pace.find(p=>p.driverId===id);
+      const ftP = ft && ft.pace.find(p=>p.driverId===id);
       return `<tr>
         <td>${r.event}</td>
         <td>${spC ? ord(spC.pos) : '—'}</td>
         <td>${spC && spC.pts!==null ? spC.pts : '—'}</td>
+        <td>${rankCell(spP)}</td>
         <td>${ftC ? ord(ftC.pos) : '—'}</td>
         <td>${ftC && ftC.pts!==null ? ftC.pts : '—'}</td>
+        <td>${rankCell(ftP)}</td>
       </tr>`;
     }).join('');
 
@@ -683,9 +691,10 @@ function renderRacePace(){
       <h4>${d.name}</h4>
       <div class="sub">${CATEGORY_META[d.category].label} · every round raced this season</div>
       <div class="rp-tablewrap"><table class="rp-table">
-        <thead><tr><th>Round</th><th>Sprint</th><th>Pts</th><th>Feature</th><th>Pts</th></tr></thead>
+        <thead><tr><th>Round</th><th>Sprint</th><th>Pts</th><th title="Average race pace rank vs. the whole grid that started this session">Pace Rk</th><th>Feature</th><th>Pts</th><th title="Average race pace rank vs. the whole grid that started this session">Pace Rk</th></tr></thead>
         <tbody>${rows}</tbody>
       </table></div>
+      <div class="rp-gapnote" style="margin-bottom:14px;">"Pace Rk" = average race pace rank against every car that started that session (not just your selection) — hover a value for the exact average and lap count.</div>
       <div class="sub" style="margin-bottom:4px;">Feature Race pace — gap to fastest of your selection, per round</div>
       ${chartHtml}
       <div class="rp-gapnote">Excludes pit-in/out laps; safety-car laps aren't detected and can inflate a round's gap.</div>`;

@@ -175,7 +175,7 @@ const wikiHtml = `
 /*      not fixed cars, and the lap leader's GAP cell is genuinely absent. */
 import PDFDocument from 'pdfkit';
 import { extractRows, extractPositionedRows } from './pdf-table.mjs';
-import { parseProvisionalClassification, parseHistoryChart, averagePace, lapTimeToSeconds } from './race-pace-parsers.mjs';
+import { parseProvisionalClassification, parseHistoryChart, averagePace, lapTimeToSeconds, rankPaceByCar } from './race-pace-parsers.mjs';
 
 function makePdf(lines) {
   return new Promise((resolve, reject) => {
@@ -232,6 +232,32 @@ function makePdf(lines) {
   assert.equal(car8.find(l => l.lap === 1).pit, false);
   assert.equal(car8.find(l => l.lap === 2).pit, true);
   console.log('OK  history chart parser (real fia.com wide-table shape: position-based rows, blank-GAP leader handled)');
+}
+
+/* ---- Test 6: rankPaceByCar — grid-wide pace ranking ---- */
+/* Doesn't need a PDF — operates directly on the byCar Map shape that      */
+/* parseHistoryChart() produces (car -> array of {lap,timeSeconds,pit}).   */
+/* Builds a 5-car field, one car with too few clean laps to rank, and a    */
+/* pit lap that should be excluded from that car's average (and therefore  */
+/* not drag its rank around).                                              */
+{
+  const lap = (n, t, pit = false) => ({ lap: n, timeSeconds: t, pit });
+  const byCar = new Map([
+    [24, [lap(1, 90.0), lap(2, 90.2), lap(3, 89.8)]],       // avg 90.0 -> fastest
+    [8,  [lap(1, 91.5), lap(2, 91.0), lap(3, 91.0), lap(4, 150.0, true)]], // pit lap excluded, avg 91.166..
+    [15, [lap(1, 92.0), lap(2, 92.0), lap(3, 92.0)]],       // avg 92.0
+    [3,  [lap(1, 93.0), lap(2, 93.5)]],                     // only 2 clean laps -> no rank
+    [77, [lap(1, 95.0), lap(2, 95.0), lap(3, 95.0)]],       // avg 95.0 -> slowest
+  ]);
+  const ranked = rankPaceByCar(byCar);
+  assert.equal(ranked.size, 4, 'car with <3 clean laps should be excluded from ranking entirely');
+  assert.equal(ranked.get(3), undefined);
+  assert.equal(ranked.get(24).rank, 1); assert.equal(ranked.get(24).of, 4);
+  assert.equal(ranked.get(8).rank, 2, 'car 8s pit lap should be excluded, not counted toward its average');
+  assert.equal(ranked.get(15).rank, 3);
+  assert.equal(ranked.get(77).rank, 4);
+  assert.ok(Math.abs(ranked.get(8).avgSeconds - 91.1666666) < 1e-4);
+  console.log('OK  rankPaceByCar (grid-wide pace ranking, pit laps excluded, thin fields dropped)');
 }
 
 console.log('\n✅ all fixture tests passed');
