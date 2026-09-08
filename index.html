@@ -633,6 +633,13 @@ function renderRacePace(){
     // where this driver's average pace ranked against the WHOLE grid that
     // raced (not just the other tracked drivers) in each session.
     const rankCell = p => p && p.gridRank ? `<span title="${p.avgSeconds.toFixed(3)}s avg, ${p.lapsCounted} laps counted${p.lapsExcluded?`, ${p.lapsExcluded} pit lap${p.lapsExcluded===1?'':'s'} excluded`:''}">P${p.gridRank}<span class="rp-of">/${p.gridSize}</span></span>` : '—';
+    // A session that exists in the data (at least one tracked driver got
+    // classified in it) but has no row for THIS driver means they weren't
+    // classified — almost always a DNF, not missing data. Distinguish that
+    // ("DNF") from a session that simply hasn't been run/scraped yet ("—"),
+    // so a blank cell doesn't read as the archive being behind.
+    const posCell = (sess, c) => c ? ord(c.pos) : (sess ? 'DNF' : '—');
+    const ptsCell = c => c && c.pts!==null ? c.pts : '—';
     const rows = relevant.map(r => {
       const sp = r.sessions.sprint, ft = r.sessions.feature;
       const spC = sp && sp.classification.find(c=>c.driverId===id);
@@ -641,11 +648,11 @@ function renderRacePace(){
       const ftP = ft && ft.pace.find(p=>p.driverId===id);
       return `<tr>
         <td>${r.event}</td>
-        <td>${spC ? ord(spC.pos) : '—'}</td>
-        <td>${spC && spC.pts!==null ? spC.pts : '—'}</td>
+        <td>${posCell(sp, spC)}</td>
+        <td>${ptsCell(spC)}</td>
         <td>${rankCell(spP)}</td>
-        <td>${ftC ? ord(ftC.pos) : '—'}</td>
-        <td>${ftC && ftC.pts!==null ? ftC.pts : '—'}</td>
+        <td>${posCell(ft, ftC)}</td>
+        <td>${ptsCell(ftC)}</td>
         <td>${rankCell(ftP)}</td>
       </tr>`;
     }).join('');
