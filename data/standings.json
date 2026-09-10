@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-08T09:15:07.814Z",
+  "updated": "2026-09-10T10:42:03.556Z",
   "source": "mixed (official sites + Wikipedia fallback)",
   "drivers": {
     "slater": {
@@ -79,7 +79,7 @@
     },
     "sammalisto": {
       "pos": "1st*",
-      "pts": 374,
+      "pts": 288,
       "series": "2026 Italian F4"
     },
     "cristofor": {

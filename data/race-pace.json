@@ -1,11 +1,9 @@
 {
-  "updated": "2026-09-08T09:15:10.351Z",
+  "updated": "2026-09-10T10:42:07.115Z",
   "warnings": [
-    "F2 Madrid: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/madrid/eventtiming-information) — skipped",
     "F2 Baku: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/baku/eventtiming-information) — skipped",
     "F2 Lusail: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/lusail/eventtiming-information) — skipped",
-    "F2 Yas Marina: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/yas-marina/eventtiming-information) — skipped",
-    "F3 Madrid: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/fia-formula-3-championship/season-2026/madrid/eventtiming-information) — skipped"
+    "F2 Yas Marina: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/yas-marina/eventtiming-information) — skipped"
   ],
   "rounds": {
     "F2": [
