@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T10:42:07.115Z",
+  "updated": "2026-09-14T08:45:13.120Z",
   "warnings": [
     "F2 Baku: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/baku/eventtiming-information) — skipped",
     "F2 Lusail: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/lusail/eventtiming-information) — skipped",
@@ -1402,6 +1402,143 @@
             ]
           }
         }
+      },
+      {
+        "event": "Madrid",
+        "slug": "madrid",
+        "sessions": {
+          "sprint": {
+            "label": "Sprint Race",
+            "classification": [
+              {
+                "driverId": "camara",
+                "pos": 6,
+                "pts": 3
+              },
+              {
+                "driverId": "mini",
+                "pos": 9,
+                "pts": 21
+              },
+              {
+                "driverId": "dunne",
+                "pos": 7,
+                "pts": 2
+              },
+              {
+                "driverId": "leon",
+                "pos": 4,
+                "pts": 5
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "leon",
+                "avgSeconds": 123.764,
+                "lapsCounted": 23,
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 18
+              },
+              {
+                "driverId": "camara",
+                "avgSeconds": 123.821,
+                "lapsCounted": 23,
+                "lapsExcluded": 0,
+                "gridRank": 8,
+                "gridSize": 18
+              },
+              {
+                "driverId": "dunne",
+                "avgSeconds": 123.845,
+                "lapsCounted": 23,
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 18
+              },
+              {
+                "driverId": "mini",
+                "avgSeconds": 123.946,
+                "lapsCounted": 23,
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 18
+              }
+            ]
+          },
+          "feature": {
+            "label": "Feature Race",
+            "classification": [
+              {
+                "driverId": "tsolov",
+                "pos": 18,
+                "pts": 12
+              },
+              {
+                "driverId": "camara",
+                "pos": 10,
+                "pts": 1
+              },
+              {
+                "driverId": "mini",
+                "pos": 7,
+                "pts": 6
+              },
+              {
+                "driverId": "dunne",
+                "pos": 2,
+                "pts": 19
+              },
+              {
+                "driverId": "leon",
+                "pos": 16,
+                "pts": 15
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "dunne",
+                "avgSeconds": 123.477,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 7,
+                "gridSize": 20
+              },
+              {
+                "driverId": "camara",
+                "avgSeconds": 124.054,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 14,
+                "gridSize": 20
+              },
+              {
+                "driverId": "tsolov",
+                "avgSeconds": 124.827,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 18,
+                "gridSize": 20
+              },
+              {
+                "driverId": "leon",
+                "avgSeconds": 124.436,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 16,
+                "gridSize": 20
+              },
+              {
+                "driverId": "mini",
+                "avgSeconds": 123.939,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 12,
+                "gridSize": 20
+              }
+            ]
+          }
+        }
       }
     ],
     "F3": [
@@ -2470,6 +2607,143 @@
                 "lapsExcluded": 0,
                 "gridRank": 11,
                 "gridSize": 28
+              }
+            ]
+          }
+        }
+      },
+      {
+        "event": "Madrid",
+        "slug": "madrid",
+        "sessions": {
+          "sprint": {
+            "label": "Sprint Race",
+            "classification": [
+              {
+                "driverId": "slater",
+                "pos": 18,
+                "pts": 5
+              },
+              {
+                "driverId": "ugochukwu",
+                "pos": 8,
+                "pts": 3
+              },
+              {
+                "driverId": "rivera",
+                "pos": 6,
+                "pts": 5
+              },
+              {
+                "driverId": "nael",
+                "pos": 1,
+                "pts": 11
+              },
+              {
+                "driverId": "badoer",
+                "pos": 21,
+                "pts": 10
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "nael",
+                "avgSeconds": 112.384,
+                "lapsCounted": 16,
+                "lapsExcluded": 0,
+                "gridRank": 1,
+                "gridSize": 28
+              },
+              {
+                "driverId": "rivera",
+                "avgSeconds": 113.34,
+                "lapsCounted": 16,
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 28
+              },
+              {
+                "driverId": "ugochukwu",
+                "avgSeconds": 113.687,
+                "lapsCounted": 16,
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 28
+              },
+              {
+                "driverId": "slater",
+                "avgSeconds": 114.733,
+                "lapsCounted": 16,
+                "lapsExcluded": 0,
+                "gridRank": 18,
+                "gridSize": 28
+              },
+              {
+                "driverId": "badoer",
+                "avgSeconds": 114.854,
+                "lapsCounted": 16,
+                "lapsExcluded": 0,
+                "gridRank": 21,
+                "gridSize": 28
+              }
+            ]
+          },
+          "feature": {
+            "label": "Feature Race",
+            "classification": [
+              {
+                "driverId": "ugochukwu",
+                "pos": 4,
+                "pts": 12
+              },
+              {
+                "driverId": "rivera",
+                "pos": 8,
+                "pts": 4
+              },
+              {
+                "driverId": "nael",
+                "pos": 9,
+                "pts": 2
+              },
+              {
+                "driverId": "badoer",
+                "pos": 17,
+                "pts": 6
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "ugochukwu",
+                "avgSeconds": 119.358,
+                "lapsCounted": 17,
+                "lapsExcluded": 1,
+                "gridRank": 4,
+                "gridSize": 21
+              },
+              {
+                "driverId": "rivera",
+                "avgSeconds": 119.612,
+                "lapsCounted": 17,
+                "lapsExcluded": 1,
+                "gridRank": 9,
+                "gridSize": 21
+              },
+              {
+                "driverId": "nael",
+                "avgSeconds": 119.58,
+                "lapsCounted": 17,
+                "lapsExcluded": 1,
+                "gridRank": 8,
+                "gridSize": 21
+              },
+              {
+                "driverId": "badoer",
+                "avgSeconds": 120.048,
+                "lapsCounted": 17,
+                "lapsExcluded": 1,
+                "gridRank": 18,
+                "gridSize": 21
               }
             ]
           }

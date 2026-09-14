@@ -1,29 +1,29 @@
 {
-  "updated": "2026-09-10T10:42:03.556Z",
+  "updated": "2026-09-14T08:45:09.580Z",
   "source": "mixed (official sites + Wikipedia fallback)",
   "drivers": {
     "slater": {
-      "pos": "1st*",
-      "pts": 141,
+      "pos": "2nd*",
+      "pts": 145,
       "series": "2026 FIA F3"
     },
     "ugochukwu": {
-      "pos": "2nd*",
-      "pts": 126,
+      "pos": "1st*",
+      "pts": 159,
       "series": "2026 FIA F3"
     },
     "rivera": {
-      "pos": "3rd*",
-      "pts": 76,
+      "pos": "7th*",
+      "pts": 87,
       "series": "2026 FIA F3"
     },
     "nael": {
-      "pos": "4th*",
-      "pts": 75,
+      "pos": "5th*",
+      "pts": 88,
       "series": "2026 FIA F3"
     },
     "badoer": {
-      "pos": "5th*",
+      "pos": "8th*",
       "pts": 71,
       "series": "2026 FIA F3"
     },
@@ -34,42 +34,42 @@
     },
     "camara": {
       "pos": "2nd*",
-      "pts": 166,
+      "pts": 170,
       "series": "2026 FIA F2"
     },
     "mini": {
       "pos": "3rd*",
-      "pts": 147,
+      "pts": 153,
       "series": "2026 FIA F2"
     },
     "dunne": {
       "pos": "4th*",
-      "pts": 118,
+      "pts": 139,
       "series": "2026 FIA F2"
     },
     "leon": {
       "pos": "5th*",
-      "pts": 114,
+      "pts": 119,
       "series": "2026 FIA F2"
     },
     "olivieri": {
       "pos": "1st*",
-      "pts": 200,
+      "pts": 218,
       "series": "2026 FRECA"
     },
     "wheldon": {
       "pos": "2nd*",
-      "pts": 180,
+      "pts": 209,
       "series": "2026 FRECA"
     },
     "nakamuraberta": {
       "pos": "3rd*",
-      "pts": 175,
+      "pts": 201,
       "series": "2026 FRECA"
     },
     "aldhaheri": {
       "pos": "4th*",
-      "pts": 165,
+      "pts": 180,
       "series": "2026 FRECA"
     },
     "francot": {
@@ -79,27 +79,27 @@
     },
     "sammalisto": {
       "pos": "1st*",
-      "pts": 288,
+      "pts": 374,
       "series": "2026 Italian F4"
     },
     "cristofor": {
       "pos": "2nd*",
-      "pts": 233,
+      "pts": 275,
       "series": "2026 Italian F4"
     },
     "aksoy": {
-      "pos": "3rd*",
-      "pts": 214,
+      "pos": "4th*",
+      "pts": 244,
       "series": "2026 Italian F4"
     },
     "bansal": {
-      "pos": "4th*",
-      "pts": 198,
+      "pos": "3rd*",
+      "pts": 254,
       "series": "2026 Italian F4"
     },
     "savinkov": {
-      "pos": "5th*",
-      "pts": 168,
+      "pos": "8th*",
+      "pts": 179,
       "series": "2026 Italian F4"
     }
   },
