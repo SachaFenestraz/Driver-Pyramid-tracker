@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-21T12:05:42.824Z",
+  "updated": "2026-09-24T11:10:30.728Z",
   "source": "mixed (official sites + Wikipedia fallback)",
   "drivers": {
     "slater": {
@@ -104,6 +104,8 @@
     }
   },
   "warnings": [
-    "FRECA: official source \"https://fiafrec.com/standings/\" returned no recognizable table — falling back to Wikipedia"
+    "FRECA: official source failed (HTTP 403 fetching https://fiafrec.com/standings/) — falling back to Wikipedia",
+    "FRECA: Wikipedia fallback failed too (Wikipedia fetch failed for 2026_Formula_Regional_European_Championship: HTTP 429)",
+    "F4: Wikipedia fallback failed too (Wikipedia fetch failed for 2026_Italian_F4_Championship: HTTP 429)"
   ]
 }
