@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-24T11:10:30.728Z",
+  "updated": "2026-09-28T13:00:37.202Z",
   "source": "mixed (official sites + Wikipedia fallback)",
   "drivers": {
     "slater": {
@@ -28,28 +28,28 @@
       "series": "2026 FIA F3"
     },
     "tsolov": {
-      "pos": "1st*",
-      "pts": 177,
+      "pos": "4th*",
+      "pts": 200,
       "series": "2026 FIA F2"
     },
     "camara": {
       "pos": "2nd*",
-      "pts": 170,
+      "pts": 207,
       "series": "2026 FIA F2"
     },
     "mini": {
-      "pos": "3rd*",
-      "pts": 153,
+      "pos": "8th*",
+      "pts": 163,
       "series": "2026 FIA F2"
     },
     "dunne": {
-      "pos": "4th*",
-      "pts": 139,
+      "pos": "6th*",
+      "pts": 189,
       "series": "2026 FIA F2"
     },
     "leon": {
-      "pos": "5th*",
-      "pts": 119,
+      "pos": "12th*",
+      "pts": 133,
       "series": "2026 FIA F2"
     },
     "olivieri": {
@@ -104,8 +104,6 @@
     }
   },
   "warnings": [
-    "FRECA: official source failed (HTTP 403 fetching https://fiafrec.com/standings/) — falling back to Wikipedia",
-    "FRECA: Wikipedia fallback failed too (Wikipedia fetch failed for 2026_Formula_Regional_European_Championship: HTTP 429)",
-    "F4: Wikipedia fallback failed too (Wikipedia fetch failed for 2026_Italian_F4_Championship: HTTP 429)"
+    "FRECA: official source failed (HTTP 403 fetching https://fiafrec.com/standings/) — falling back to Wikipedia"
   ]
 }
