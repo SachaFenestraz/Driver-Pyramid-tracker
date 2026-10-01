@@ -1,13 +1,8 @@
 {
-  "updated": "2026-09-28T13:00:41.288Z",
+  "updated": "2026-10-01T12:30:56.250Z",
   "warnings": [
-    "F2 Monaco: timing page unreachable (HTTP 504 fetching https://www.fia.com/events/formula-2-championship/season-2026/monaco/eventtiming-information) — skipped",
-    "F2 Spielberg: timing page unreachable (HTTP 504 fetching https://www.fia.com/events/formula-2-championship/season-2026/spielberg/eventtiming-information) — skipped",
-    "F2 Madrid: timing page unreachable (HTTP 504 fetching https://www.fia.com/events/formula-2-championship/season-2026/madrid/eventtiming-information) — skipped",
     "F2 Lusail: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/lusail/eventtiming-information) — skipped",
-    "F2 Yas Marina: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/yas-marina/eventtiming-information) — skipped",
-    "F3 Silverstone Sprint Race: classification fetch failed (HTTP 404 fetching https://www.fia.com/sites/default/files/2026_09_gbr_f3_r1_timing_sprintraceprovisionalclassification_v01.pdf)",
-    "F3 Budapest Feature Race: history chart fetch failed (HTTP 404 fetching https://www.fia.com/sites/default/files/2026_11_hun_f3_r2_timing_featureracehistorychart_v01.pdf)"
+    "F2 Yas Marina: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/yas-marina/eventtiming-information) — skipped"
   ],
   "rounds": {
     "F2": [
@@ -423,6 +418,143 @@
         }
       },
       {
+        "event": "Monaco",
+        "slug": "monaco",
+        "sessions": {
+          "sprint": {
+            "label": "Sprint Race",
+            "classification": [
+              {
+                "driverId": "tsolov",
+                "pos": 10,
+                "pts": 1
+              },
+              {
+                "driverId": "camara",
+                "pos": 8,
+                "pts": 1
+              },
+              {
+                "driverId": "mini",
+                "pos": 3,
+                "pts": 6
+              },
+              {
+                "driverId": "dunne",
+                "pos": 9,
+                "pts": 13
+              },
+              {
+                "driverId": "leon",
+                "pos": 1,
+                "pts": 10
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "leon",
+                "avgSeconds": 86.214,
+                "lapsCounted": 30,
+                "lapsExcluded": 0,
+                "gridRank": 1,
+                "gridSize": 22
+              },
+              {
+                "driverId": "mini",
+                "avgSeconds": 86.347,
+                "lapsCounted": 30,
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 22
+              },
+              {
+                "driverId": "camara",
+                "avgSeconds": 87.02,
+                "lapsCounted": 30,
+                "lapsExcluded": 0,
+                "gridRank": 8,
+                "gridSize": 22
+              },
+              {
+                "driverId": "dunne",
+                "avgSeconds": 87.181,
+                "lapsCounted": 30,
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 22
+              },
+              {
+                "driverId": "tsolov",
+                "avgSeconds": 87.933,
+                "lapsCounted": 30,
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 22
+              }
+            ]
+          },
+          "feature": {
+            "label": "Feature Race",
+            "classification": [
+              {
+                "driverId": "tsolov",
+                "pos": 1,
+                "pts": 26
+              },
+              {
+                "driverId": "mini",
+                "pos": 11,
+                "pts": 34
+              },
+              {
+                "driverId": "dunne",
+                "pos": 2,
+                "pts": 18
+              },
+              {
+                "driverId": "leon",
+                "pos": 9,
+                "pts": 2
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "tsolov",
+                "avgSeconds": 85.651,
+                "lapsCounted": 41,
+                "lapsExcluded": 1,
+                "gridRank": 1,
+                "gridSize": 22
+              },
+              {
+                "driverId": "dunne",
+                "avgSeconds": 85.909,
+                "lapsCounted": 41,
+                "lapsExcluded": 1,
+                "gridRank": 2,
+                "gridSize": 22
+              },
+              {
+                "driverId": "mini",
+                "avgSeconds": 86.681,
+                "lapsCounted": 41,
+                "lapsExcluded": 1,
+                "gridRank": 11,
+                "gridSize": 22
+              },
+              {
+                "driverId": "leon",
+                "avgSeconds": 86.652,
+                "lapsCounted": 41,
+                "lapsExcluded": 1,
+                "gridRank": 8,
+                "gridSize": 22
+              }
+            ]
+          }
+        }
+      },
+      {
         "event": "Barcelona-Catalunya",
         "slug": "barcelona-catalunya",
         "sessions": {
@@ -567,6 +699,156 @@
                 "lapsExcluded": 1,
                 "gridRank": 9,
                 "gridSize": 21
+              }
+            ]
+          }
+        }
+      },
+      {
+        "event": "Spielberg",
+        "slug": "spielberg",
+        "sessions": {
+          "sprint": {
+            "label": "Sprint Race",
+            "classification": [
+              {
+                "driverId": "tsolov",
+                "pos": 9,
+                "pts": 11
+              },
+              {
+                "driverId": "camara",
+                "pos": 6,
+                "pts": 4
+              },
+              {
+                "driverId": "mini",
+                "pos": 5,
+                "pts": 4
+              },
+              {
+                "driverId": "dunne",
+                "pos": 4,
+                "pts": 5
+              },
+              {
+                "driverId": "leon",
+                "pos": 10,
+                "pts": 6
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "mini",
+                "avgSeconds": 84.494,
+                "lapsCounted": 28,
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 19
+              },
+              {
+                "driverId": "camara",
+                "avgSeconds": 84.577,
+                "lapsCounted": 28,
+                "lapsExcluded": 0,
+                "gridRank": 7,
+                "gridSize": 19
+              },
+              {
+                "driverId": "dunne",
+                "avgSeconds": 84.487,
+                "lapsCounted": 28,
+                "lapsExcluded": 0,
+                "gridRank": 5,
+                "gridSize": 19
+              },
+              {
+                "driverId": "leon",
+                "avgSeconds": 84.86,
+                "lapsCounted": 28,
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 19
+              },
+              {
+                "driverId": "tsolov",
+                "avgSeconds": 84.703,
+                "lapsCounted": 28,
+                "lapsExcluded": 0,
+                "gridRank": 10,
+                "gridSize": 19
+              }
+            ]
+          },
+          "feature": {
+            "label": "Feature Race",
+            "classification": [
+              {
+                "driverId": "tsolov",
+                "pos": 1,
+                "pts": 25
+              },
+              {
+                "driverId": "camara",
+                "pos": 4,
+                "pts": 12
+              },
+              {
+                "driverId": "mini",
+                "pos": 2,
+                "pts": 18
+              },
+              {
+                "driverId": "dunne",
+                "pos": 7,
+                "pts": 6
+              },
+              {
+                "driverId": "leon",
+                "pos": 8,
+                "pts": 4
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "tsolov",
+                "avgSeconds": 84.249,
+                "lapsCounted": 39,
+                "lapsExcluded": 1,
+                "gridRank": 1,
+                "gridSize": 20
+              },
+              {
+                "driverId": "leon",
+                "avgSeconds": 84.786,
+                "lapsCounted": 39,
+                "lapsExcluded": 1,
+                "gridRank": 9,
+                "gridSize": 20
+              },
+              {
+                "driverId": "mini",
+                "avgSeconds": 84.352,
+                "lapsCounted": 39,
+                "lapsExcluded": 1,
+                "gridRank": 3,
+                "gridSize": 20
+              },
+              {
+                "driverId": "dunne",
+                "avgSeconds": 84.79,
+                "lapsCounted": 39,
+                "lapsExcluded": 1,
+                "gridRank": 10,
+                "gridSize": 20
+              },
+              {
+                "driverId": "camara",
+                "avgSeconds": 84.615,
+                "lapsCounted": 39,
+                "lapsExcluded": 1,
+                "gridRank": 6,
+                "gridSize": 20
               }
             ]
           }
@@ -1115,6 +1397,143 @@
                 "lapsExcluded": 1,
                 "gridRank": 14,
                 "gridSize": 22
+              }
+            ]
+          }
+        }
+      },
+      {
+        "event": "Madrid",
+        "slug": "madrid",
+        "sessions": {
+          "sprint": {
+            "label": "Sprint Race",
+            "classification": [
+              {
+                "driverId": "camara",
+                "pos": 6,
+                "pts": 3
+              },
+              {
+                "driverId": "mini",
+                "pos": 9,
+                "pts": 21
+              },
+              {
+                "driverId": "dunne",
+                "pos": 7,
+                "pts": 2
+              },
+              {
+                "driverId": "leon",
+                "pos": 4,
+                "pts": 5
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "leon",
+                "avgSeconds": 123.764,
+                "lapsCounted": 23,
+                "lapsExcluded": 0,
+                "gridRank": 6,
+                "gridSize": 18
+              },
+              {
+                "driverId": "camara",
+                "avgSeconds": 123.821,
+                "lapsCounted": 23,
+                "lapsExcluded": 0,
+                "gridRank": 8,
+                "gridSize": 18
+              },
+              {
+                "driverId": "dunne",
+                "avgSeconds": 123.845,
+                "lapsCounted": 23,
+                "lapsExcluded": 0,
+                "gridRank": 9,
+                "gridSize": 18
+              },
+              {
+                "driverId": "mini",
+                "avgSeconds": 123.946,
+                "lapsCounted": 23,
+                "lapsExcluded": 0,
+                "gridRank": 11,
+                "gridSize": 18
+              }
+            ]
+          },
+          "feature": {
+            "label": "Feature Race",
+            "classification": [
+              {
+                "driverId": "tsolov",
+                "pos": 18,
+                "pts": 12
+              },
+              {
+                "driverId": "camara",
+                "pos": 10,
+                "pts": 1
+              },
+              {
+                "driverId": "mini",
+                "pos": 7,
+                "pts": 6
+              },
+              {
+                "driverId": "dunne",
+                "pos": 2,
+                "pts": 19
+              },
+              {
+                "driverId": "leon",
+                "pos": 16,
+                "pts": 15
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "dunne",
+                "avgSeconds": 123.477,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 7,
+                "gridSize": 20
+              },
+              {
+                "driverId": "camara",
+                "avgSeconds": 124.054,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 14,
+                "gridSize": 20
+              },
+              {
+                "driverId": "tsolov",
+                "avgSeconds": 124.827,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 18,
+                "gridSize": 20
+              },
+              {
+                "driverId": "leon",
+                "avgSeconds": 124.436,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 16,
+                "gridSize": 20
+              },
+              {
+                "driverId": "mini",
+                "avgSeconds": 123.939,
+                "lapsCounted": 30,
+                "lapsExcluded": 1,
+                "gridRank": 12,
+                "gridSize": 20
               }
             ]
           }
@@ -1772,6 +2191,78 @@
         "event": "Silverstone",
         "slug": "silverstone",
         "sessions": {
+          "sprint": {
+            "label": "Sprint Race",
+            "classification": [
+              {
+                "driverId": "slater",
+                "pos": 7,
+                "pts": 4
+              },
+              {
+                "driverId": "ugochukwu",
+                "pos": 1,
+                "pts": 11
+              },
+              {
+                "driverId": "rivera",
+                "pos": 14,
+                "pts": 5
+              },
+              {
+                "driverId": "nael",
+                "pos": 3,
+                "pts": 8
+              },
+              {
+                "driverId": "badoer",
+                "pos": 19,
+                "pts": 12
+              }
+            ],
+            "pace": [
+              {
+                "driverId": "ugochukwu",
+                "avgSeconds": 109.513,
+                "lapsCounted": 18,
+                "lapsExcluded": 0,
+                "gridRank": 1,
+                "gridSize": 30
+              },
+              {
+                "driverId": "nael",
+                "avgSeconds": 110.491,
+                "lapsCounted": 18,
+                "lapsExcluded": 0,
+                "gridRank": 3,
+                "gridSize": 30
+              },
+              {
+                "driverId": "rivera",
+                "avgSeconds": 110.822,
+                "lapsCounted": 18,
+                "lapsExcluded": 0,
+                "gridRank": 14,
+                "gridSize": 30
+              },
+              {
+                "driverId": "slater",
+                "avgSeconds": 110.533,
+                "lapsCounted": 18,
+                "lapsExcluded": 0,
+                "gridRank": 7,
+                "gridSize": 30
+              },
+              {
+                "driverId": "badoer",
+                "avgSeconds": 110.926,
+                "lapsCounted": 18,
+                "lapsExcluded": 0,
+                "gridRank": 19,
+                "gridSize": 30
+              }
+            ]
+          },
           "feature": {
             "label": "Feature Race",
             "classification": [
@@ -2088,7 +2579,48 @@
                 "pts": 15
               }
             ],
-            "pace": []
+            "pace": [
+              {
+                "driverId": "slater",
+                "avgSeconds": 109.313,
+                "lapsCounted": 23,
+                "lapsExcluded": 1,
+                "gridRank": 15,
+                "gridSize": 27
+              },
+              {
+                "driverId": "badoer",
+                "avgSeconds": 109.336,
+                "lapsCounted": 23,
+                "lapsExcluded": 1,
+                "gridRank": 16,
+                "gridSize": 27
+              },
+              {
+                "driverId": "ugochukwu",
+                "avgSeconds": 109.2,
+                "lapsCounted": 23,
+                "lapsExcluded": 1,
+                "gridRank": 11,
+                "gridSize": 27
+              },
+              {
+                "driverId": "nael",
+                "avgSeconds": 109.354,
+                "lapsCounted": 23,
+                "lapsExcluded": 1,
+                "gridRank": 18,
+                "gridSize": 27
+              },
+              {
+                "driverId": "rivera",
+                "avgSeconds": 109.295,
+                "lapsCounted": 23,
+                "lapsExcluded": 1,
+                "gridRank": 14,
+                "gridSize": 27
+              }
+            ]
           }
         }
       },

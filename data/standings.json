@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-28T13:00:37.202Z",
+  "updated": "2026-10-01T12:30:52.676Z",
   "source": "mixed (official sites + Wikipedia fallback)",
   "drivers": {
     "slater": {
@@ -28,27 +28,27 @@
       "series": "2026 FIA F3"
     },
     "tsolov": {
-      "pos": "4th*",
+      "pos": "2nd*",
       "pts": 200,
       "series": "2026 FIA F2"
     },
     "camara": {
-      "pos": "2nd*",
+      "pos": "1st*",
       "pts": 207,
       "series": "2026 FIA F2"
     },
     "mini": {
-      "pos": "8th*",
+      "pos": "4th*",
       "pts": 163,
       "series": "2026 FIA F2"
     },
     "dunne": {
-      "pos": "6th*",
+      "pos": "3rd*",
       "pts": 189,
       "series": "2026 FIA F2"
     },
     "leon": {
-      "pos": "12th*",
+      "pos": "6th*",
       "pts": 133,
       "series": "2026 FIA F2"
     },
