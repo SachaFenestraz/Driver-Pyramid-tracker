@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-15T10:54:58.307Z",
+  "updated": "2026-10-19T12:14:34.477Z",
   "source": "mixed (official sites + Wikipedia fallback)",
   "drivers": {
     "slater": {
@@ -104,6 +104,6 @@
     }
   },
   "warnings": [
-    "FRECA: official source failed (HTTP 403 fetching https://fiafrec.com/standings/) — falling back to Wikipedia"
+    "FRECA: official source \"https://fiafrec.com/standings/\" returned no recognizable table — falling back to Wikipedia"
   ]
 }
