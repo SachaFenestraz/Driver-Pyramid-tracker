@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T14:51:33.424Z",
+  "updated": "2026-11-05T14:02:27.469Z",
   "source": "mixed (official sites + Wikipedia fallback)",
   "drivers": {
     "slater": {
@@ -79,27 +79,27 @@
     },
     "sammalisto": {
       "pos": "1st*",
-      "pts": 386,
+      "pts": 476,
       "series": "2026 Italian F4"
     },
     "cristofor": {
-      "pos": "4th*",
-      "pts": 286,
+      "pos": "2nd*",
+      "pts": 357,
       "series": "2026 Italian F4"
     },
     "aksoy": {
-      "pos": "2nd*",
-      "pts": 318,
+      "pos": "3rd*",
+      "pts": 352,
       "series": "2026 Italian F4"
     },
     "bansal": {
-      "pos": "3rd*",
-      "pts": 294,
+      "pos": "5th*",
+      "pts": 309,
       "series": "2026 Italian F4"
     },
     "savinkov": {
       "pos": "8th*",
-      "pts": 199,
+      "pts": 227,
       "series": "2026 Italian F4"
     }
   },
