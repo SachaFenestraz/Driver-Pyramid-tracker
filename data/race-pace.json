@@ -1,6 +1,7 @@
 {
-  "updated": "2026-11-16T14:54:05.621Z",
+  "updated": "2026-11-19T15:18:20.640Z",
   "warnings": [
+    "F2 Montreal Sprint Race: classification fetch failed (fetch failed)",
     "F2 Lusail: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/lusail/eventtiming-information) — skipped",
     "F2 Yas Marina: timing page unreachable (HTTP 404 fetching https://www.fia.com/events/formula-2-championship/season-2026/yas-marina/eventtiming-information) — skipped"
   ],
@@ -271,78 +272,6 @@
         "event": "Montreal",
         "slug": "montreal",
         "sessions": {
-          "sprint": {
-            "label": "Sprint Race",
-            "classification": [
-              {
-                "driverId": "tsolov",
-                "pos": 14,
-                "pts": 24
-              },
-              {
-                "driverId": "camara",
-                "pos": 7,
-                "pts": 2
-              },
-              {
-                "driverId": "mini",
-                "pos": 2,
-                "pts": 8
-              },
-              {
-                "driverId": "dunne",
-                "pos": 13,
-                "pts": 23
-              },
-              {
-                "driverId": "leon",
-                "pos": 1,
-                "pts": 11
-              }
-            ],
-            "pace": [
-              {
-                "driverId": "mini",
-                "avgSeconds": 93.593,
-                "lapsCounted": 28,
-                "lapsExcluded": 0,
-                "gridRank": 7,
-                "gridSize": 21
-              },
-              {
-                "driverId": "leon",
-                "avgSeconds": 93.46,
-                "lapsCounted": 28,
-                "lapsExcluded": 0,
-                "gridRank": 5,
-                "gridSize": 21
-              },
-              {
-                "driverId": "tsolov",
-                "avgSeconds": 93.666,
-                "lapsCounted": 28,
-                "lapsExcluded": 0,
-                "gridRank": 9,
-                "gridSize": 21
-              },
-              {
-                "driverId": "dunne",
-                "avgSeconds": 93.574,
-                "lapsCounted": 28,
-                "lapsExcluded": 0,
-                "gridRank": 6,
-                "gridSize": 21
-              },
-              {
-                "driverId": "camara",
-                "avgSeconds": 93.807,
-                "lapsCounted": 28,
-                "lapsExcluded": 0,
-                "gridRank": 13,
-                "gridSize": 21
-              }
-            ]
-          },
           "feature": {
             "label": "Feature Race",
             "classification": [
